@@ -13,7 +13,7 @@ def main():
     chain = Chain()
 
     
-    for letter in aminocode:
+    for i in range(len(aminocode) - 1):
         chain.build()
     
     print(chain.folds)
