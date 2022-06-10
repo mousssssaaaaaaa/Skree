@@ -1,9 +1,13 @@
+# wat als chain object wordt en folder functie die wij aanroepen op chain? 
+
 class proteine_folder(chain):
-    self.chain = chain
-    self.folds = [(0,0)]
-    self.current_position = () # tuple
-    self.score = 0
-    self.output = () # tuple
+    # mid 
+    def __init__(self, chain):
+        self.chain = chain
+        self.folds = [(0,0)]
+        self.current_position = () # tuple
+        self.score = 0
+        self.output = () # tuple
 
     def next_coordinate():
         # check previous coordinates in folds
@@ -17,12 +21,16 @@ class proteine_folder(chain):
 
         # append answers tuple (random, chain[i])
         # converter(previous and current)
+    
+    # mid 
+    def route():
+        return folds
 
 
-    def converter():
-        # previous and current 
-        # return direction 
+    # def converter():
+    #     # previous and current 
+    #     # return direction 
 
-    def score():
-        # TODO: count (C)HH bonds
+    # def score():
+    #     # TODO: count (C)HH bonds
 

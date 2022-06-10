@@ -1,16 +1,18 @@
-    def folder():
-        # main programme to fold proteine
+from folderMain import proteine_folder 
 
-        # start position = 0,0, chain[0] / append folds
+def folder():
+    # main programme to fold proteine
+
+    # start position = 0,0, chain[0] / append folds
+    
+
+        # For chain is not empty:
+            # next_coordinate = next_coordinate(i)
+            # folds.append(next_coordinate)
         
+        # result = score()
 
-            # For chain is not empty:
-                # next_coordinate = next_coordinate(i)
-                # folds.append(next_coordinate)
-            
-            # result = score()
+    # Manual run    
+    chain = ['H', 'P', 'P', 'H']
 
-        # Manual run    
-        chain = ['H', 'P', 'P', 'H']
-
-        proteine_folder(chain)
+    return proteine_folder.route(chain)

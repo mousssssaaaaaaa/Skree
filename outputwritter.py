@@ -8,6 +8,8 @@ def main():
 
     if len(argv) != 2:
         exit(1)
+    
+    data = ["test"]
 
     # open the file in the write mode
     with open(argv[1], 'w') as f:
