@@ -17,6 +17,7 @@ def main():
         chain.build()
     
     vis.visualisation(chain)
+    print(chain.get_score())
 
     # # Outputwritter
     # data = ["test"]
