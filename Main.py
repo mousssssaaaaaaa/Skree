@@ -1,8 +1,8 @@
 
 from sys import argv, exit
 import csv
-from Class_Chain import Chain
-from Visualization import visualization 
+from code.classes import chain as ch
+from code.visualisation import visualisation as vis
 
 def main():
     if len(argv) != 2:
@@ -10,14 +10,15 @@ def main():
 
     aminocode = list(argv[1])
     
-    chain = Chain()
+    chain = ch.Chain(aminocode)
 
     
     for i in range(len(aminocode) - 1):
-        chain.build()
+        if chain.build() == False:
+            chain.aminocode = chain.aminocode[0:i+1]
+            break
     
-    print(chain.folds)
-    visualization(chain)
+    vis.visualisation(chain)
 
     # # Outputwritter
     # data = ["test"]
