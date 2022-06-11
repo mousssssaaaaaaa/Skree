@@ -13,10 +13,8 @@ def main():
     chain = ch.Chain(aminocode)
 
     
-    for i in range(len(aminocode) - 1):
-        if chain.build() == False:
-            chain.aminocode = chain.aminocode[0:i+1]
-            break
+    while len(chain.folds) < len(aminocode):
+        chain.build()
     
     vis.visualisation(chain)
 

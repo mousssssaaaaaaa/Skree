@@ -1,23 +1,23 @@
-import random
+from code.algorithms import Algorithm as alg_r
+
 class Chain():
     def __init__(self, aminocode):
         self.folds = [(0,0)]
         self.score = 0
-        self.output = () # tuple
+        self.output = ()
         self.aminocode = aminocode
+        self.wrong_option = ()
 
     def build(self):
         # check previous coordinates in folds
         # find next coordinate random
 
         options = self.get_options()
-        print(options)
-        if options == []:
-            print("I'm stuck")
-            return False
+        while options == []:
+            self.remove_point()
+            options = self.get_options()
 
-        next_point = random.choice(options) 
-        print(next_point)
+        next_point = alg_r.algorithm_random(options)
 
         self.folds.append(next_point)
 
@@ -32,9 +32,13 @@ class Chain():
 
         all_options = {top, bottom, left, right}
 
-        options = all_options - all_options.intersection(set(self.folds))
+        options = all_options - all_options.intersection(set(self.folds)) - set([self.wrong_option])
+
         return list(options)
 
+    def remove_point(self):
+        self.wrong_option = self.folds[-1]
+        self.folds.pop(-1)
 
         # append answers tuple (random, chain[i])
         # converter(previous and current)
