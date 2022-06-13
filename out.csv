@@ -1,4 +1,4 @@
-step,x,y,amino
-0,0,0,P
-1,0,1,H
-2,1,1,H
+index,amino,fold
+0,P,-1
+1,H,2
+2,H,0

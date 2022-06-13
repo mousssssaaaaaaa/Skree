@@ -73,15 +73,4 @@ class Chain():
     #     return self.dictionary
     #     return self.score
 
-    def converter():
-        directions = []
-
-        for point in self.dictionary:
-            index = self.folds.index(point)
-            next_point = self.folds[index + 1] 
-            current_point = self.folds[index]
-            directions.append(current_point)
-        
-        print(directions)
-        return directions
 
