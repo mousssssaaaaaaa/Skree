@@ -6,6 +6,7 @@ def outputwriter(output, aminocode, chain):
 
     directions = []
     
+    # compare every point on chain to find direction
     for point in output:
             index = output.index(point)
             if index == (len(output) - 1):
@@ -20,7 +21,11 @@ def outputwriter(output, aminocode, chain):
 
                 directions.append(direction)
 
+
+    # create empty dataframe
     df = pd.DataFrame()
+    
+    # add results to dataframe/ csv 
     df['amino'] = aminocode
     df['fold'] = directions
     df.loc[''] = ['score', int(chain.get_score())]

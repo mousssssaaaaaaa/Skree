@@ -9,6 +9,7 @@ def main():
         print("Error not right amount arguments")
         exit(1)
 
+    # 
     aminocode = list((argv[1]).upper())
     
     chain = ch.Chain(aminocode)
@@ -18,6 +19,7 @@ def main():
     
     vis.visualisation(chain)
 
+    # 
     out.outputwriter(chain.folds, aminocode, chain)
     
 if __name__ == "__main__":

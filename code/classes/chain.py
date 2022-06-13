@@ -10,13 +10,12 @@ class Chain():
 
     def build(self):
         # check previous coordinates in folds
-        # find next coordinate random
-
         options = self.get_options()
         while options == []:
             self.remove_point()
             options = self.get_options()
 
+        # find next coordinate random
         next_point = alg_r.algorithm_random(options)
 
         self.folds.append(next_point)
