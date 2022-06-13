@@ -9,18 +9,20 @@ def main():
         print("Error not right amount arguments")
         exit(1)
 
-    # 
+    # capitalize argument input
     aminocode = list((argv[1]).upper())
-    
+
+    # build protein chain
     chain = ch.Chain(aminocode)
 
     while len(chain.folds) < len(aminocode):
         chain.build()
-    
+
+    # visualize protein chain
     vis.visualisation(chain)
 
-    # 
+    # store protein data into csv
     out.outputwriter(chain.folds, aminocode, chain)
-    
+
 if __name__ == "__main__":
     main()
