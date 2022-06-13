@@ -48,10 +48,11 @@ class Chain():
         score = 0
         dictionary = dict(zip(self.folds, self.aminocode))
 
+        print(dictionary)
+
         for point in dictionary:
             if dictionary[point] == 'H':
                 neighbours = self.get_neighbours(point)
-                print(neighbours)
                 for neighbour in neighbours:
                     covalent = self.get_covalent(point)
                     if dictionary.get(neighbour) == 'H' and neighbour not in covalent:
@@ -68,6 +69,19 @@ class Chain():
         else: 
             return [self.folds[index-1], self.folds[index + 1]]
 
-    # def converter():
-    #     # previous and current 
-    #     # return direction 
+    # def get_output(self):
+    #     return self.dictionary
+    #     return self.score
+
+    def converter():
+        directions = []
+
+        for point in self.dictionary:
+            index = self.folds.index(point)
+            next_point = self.folds[index + 1] 
+            current_point = self.folds[index]
+            directions.append(current_point)
+        
+        print(directions)
+        return directions
+
