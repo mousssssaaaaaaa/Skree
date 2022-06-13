@@ -43,12 +43,9 @@ class Chain():
         self.wrong_option = self.folds[-1]
         self.folds.pop(-1)
 
-
     def get_score(self):
         score = 0
         dictionary = dict(zip(self.folds, self.aminocode))
-
-        print(dictionary)
 
         for point in dictionary:
             if dictionary[point] == 'H':
@@ -68,9 +65,3 @@ class Chain():
             return [self.folds[index-1]]
         else: 
             return [self.folds[index-1], self.folds[index + 1]]
-
-    # def get_output(self):
-    #     return self.dictionary
-    #     return self.score
-
-
