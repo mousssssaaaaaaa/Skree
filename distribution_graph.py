@@ -54,17 +54,11 @@ def distribution():
     scores = list(score_dict.keys())
     N = list(score_dict.values())
     
-    plt.plot(N, scores)
-    plt.xlabel("N")
-    plt.ylabel("scores")
+    plt.bar(scores, N)
+    plt.ylabel("N")
+    plt.xlabel("scores")
 
     plt.savefig("graph.pdf")
-    # # create empty dataframe
-    # df = pd.DataFrame([score_dict])
-    # # add results to dataframe/ csv 
-    # # df['score'] = score_list
-    # df.to_csv('csv/graph.csv', index=False)
-
 
 distribution()
 
