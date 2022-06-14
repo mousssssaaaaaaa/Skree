@@ -28,9 +28,6 @@ def distribution():
     while runs < n:
         # build protein chain
         chain = ch.Chain(aminocode)
-
-        # while len(chain.folds) < len(aminocode):
-        #     chain.build()
         
         chain_result = alg.algorithm_random(chain)
 
@@ -38,25 +35,12 @@ def distribution():
 
         runs +=1
 
-
-    score_dict= {}
-
-    # count scores
-    for index in range(len(score_list)):
-        if score_list[index] in score_dict.keys():
-            score_dict[score_list[index]] +=1 
-        else: 
-            score_dict[score_list[index]] = 1
-            pass
-
-    print(score_dict)
-
-    scores = list(score_dict.keys())
-    N = list(score_dict.values())
+    highest_score = max(score_list)
     
-    plt.bar(scores, N)
+    plt.hist(score_list)
     plt.ylabel("N")
     plt.xlabel("scores")
+    plt.xticks(np.arange(0, (highest_score + 1), step=1))
 
     plt.savefig("graph.pdf")
 
