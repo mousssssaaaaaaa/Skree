@@ -13,9 +13,37 @@ class Chain():
         """Get all possible options to move to from current point"""
 
         all_options = self.get_neighbours(self.folds[-1])
-        options = all_options - all_options.intersection(set(self.folds)) 
+        options = all_options - all_options.intersection(set(self.folds))
 
         return options
+
+    def validate_option(self):
+        """
+        Check if placed amino acid is next to other existing amino acid
+        Requirement:
+        - Happens after fold is appended
+        - Set threshold of when to start validation, otherwise
+        the chain would only spiral (when len(chain.folds) > 7?).
+        - Do not include covalent bond into the condition.
+        - Minesweeper-method (Nienke)
+        - Alternatief: zwaartepunt-method ("gemiddelde" van coordinates)
+        """
+
+        if len(chain.folds) < 0.3 * len(chain.aminocode):
+            return True
+        else:
+            pot_neighbour = self.get_neighbours(self.folds[-1])
+                            + self.get_diag_neighbours(self, point)
+            val_neighbour = pot_neighbour - self.folds[-1]
+
+    # def get_diag_neighbours(self, point):
+    #     x, y = point
+    #     t_left = (x - 1, y + 1)
+    #     t_right = (x + 1, y + 1)
+    #     b_left = (x - 1, y - 1)
+    #     b_right = (x + 1, y - 1)
+
+        # return {}
 
     def get_neighbours(self, point):
         x, y = point
@@ -49,5 +77,5 @@ class Chain():
             return [self.folds[index + 1]]
         elif index == len(self.aminocode) - 1:
             return [self.folds[index-1]]
-        else: 
+        else:
             return [self.folds[index-1], self.folds[index + 1]]
