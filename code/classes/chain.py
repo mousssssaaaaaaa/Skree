@@ -15,7 +15,7 @@ class Chain():
         all_options = self.get_neighbours(self.folds[-1])
         options = all_options - all_options.intersection(set(self.folds)) 
 
-        return list(options)
+        return options
 
     def get_neighbours(self, point):
         x, y = point

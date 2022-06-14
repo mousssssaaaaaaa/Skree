@@ -7,13 +7,13 @@ def algorithm_random(chain):
 
         # check previous coordinates in folds
         options = chain.get_options()
-        while options == []:
+        while len(options) == 0:
             wrong_option = chain.folds[-1]
             chain.remove_last_point()
-            options = chain.get_options() - set([wrong_option])
+            options = chain.get_options() - {wrong_option}
 
         # find next coordinate random
-        next_point = random.choice(options)
+        next_point = random.choice(list(options))
         chain.build(next_point)
 
     return chain
