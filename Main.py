@@ -3,6 +3,7 @@ from sys import argv, exit
 from code.classes import chain as ch
 from code.visualisation import visualisation as vis
 from code.functions import outputwriter as out
+from code.algorithms import Algorithm as alg
 
 def main():
     if len(argv) != 2:
@@ -14,15 +15,13 @@ def main():
 
     # build protein chain
     chain = ch.Chain(aminocode)
-
-    while len(chain.folds) < len(aminocode):
-        chain.build()
+    chain_result = alg.algorithm_random(chain)
 
     # visualize protein chain
-    vis.visualisation(chain)
+    vis.visualisation(chain_result)
 
     # store protein data into csv
-    out.outputwriter(chain.folds, aminocode, chain)
+    out.outputwriter(chain_result.folds, aminocode, chain_result)
 
 if __name__ == "__main__":
     main()
