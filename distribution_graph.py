@@ -1,10 +1,14 @@
+from code.algorithms import Algorithm as alg
 import csv
 import pandas as pd 
 from sys import argv, exit
 from code.classes import chain as ch
 from code.visualisation import visualisation as vis
 from code.functions import outputwriter as out
-from code.algorithms import Algorithm as alg
+
+import numpy as np
+import matplotlib.pyplot as plt
+
 
 def distribution(): 
     if len(argv) != 3:
@@ -19,37 +23,6 @@ def distribution():
 
     # create list for scores
     score_list = []
-
-
-    runs = 0 
-    while runs < n:
-        # build protein chain
-        chain = ch.Chain(aminocode)
-
-        while len(chain.folds) < len(aminocode):
-            chain.build()
-        
-        import csv
-import pandas as pd 
-from sys import argv, exit
-from code.classes import chain as ch
-from code.visualisation import visualisation as vis
-from code.functions import outputwriter as out
-
-def distribution(): 
-    if len(argv) != 3:
-        print("Error not right amount arguments")
-        exit(1)
-        
-    # capitalize argument input
-    aminocode = list((argv[1]).upper())
-
-    # store number of runs 
-    n = int(argv[2])
-
-    # create list for scores
-    score_list = []
-
 
     runs = 0 
     while runs < n:
@@ -78,13 +51,19 @@ def distribution():
 
     print(score_dict)
 
-    # create empty dataframe
-    df = pd.DataFrame()
+    scores = list(score_dict.keys())
+    N = list(score_dict.values())
     
-    # add results to dataframe/ csv 
-    df['score'] = score_list
+    plt.plot(N, scores)
+    plt.xlabel("N")
+    plt.ylabel("scores")
 
-    df.to_csv('csv/graph.csv', index= True)
+    plt.savefig("graph.pdf")
+    # # create empty dataframe
+    # df = pd.DataFrame([score_dict])
+    # # add results to dataframe/ csv 
+    # # df['score'] = score_list
+    # df.to_csv('csv/graph.csv', index=False)
 
 
 distribution()
