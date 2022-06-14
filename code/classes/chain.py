@@ -5,6 +5,7 @@ class Chain():
         self.folds = [(0,0)]
         self.score = 0
         self.aminocode = aminocode
+        self.H_folds = {(0,0): aminocode[0]}
 
     def build(self, point):
         self.folds.append(point)

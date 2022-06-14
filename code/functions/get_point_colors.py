@@ -8,4 +8,4 @@ def get_point_colors(aminocode):
             color = 'blue'
         colors.append(color)
 
-    return colors
+    return colors 
