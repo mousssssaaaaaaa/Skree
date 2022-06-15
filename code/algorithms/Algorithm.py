@@ -22,6 +22,7 @@ def algorithm_random(chain):
         chain.build(next_point)
 
     return chain
+#'Hoi'
 
 def algorithm_greedy(chain):
     wrong_option = ()
