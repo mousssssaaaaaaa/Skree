@@ -6,6 +6,7 @@ from code.functions import get_point_colors as gp
 def visualisation(chain):
     """Visualise aminoacid chain on a grid """
     input = chain.folds
+    print(len(chain.folds))
     x, y = zip(*input)
 
     point_color = gp.get_point_colors(chain.aminocode)
