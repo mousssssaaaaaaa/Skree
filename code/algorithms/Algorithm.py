@@ -60,7 +60,8 @@ def algorithm_greedy_gravity():
     gravity_value = gravity.get_gravity()
     for point in options:
         gravity_distance = d.distance(point, gravity_value)
-        if gravity_distance
+        if gravity_distance:
+            pass
 
     # find next coordinate random
     next_point = random.choice(options)

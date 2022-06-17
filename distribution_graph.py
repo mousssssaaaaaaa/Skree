@@ -45,4 +45,3 @@ def distribution():
     plt.savefig("graph.pdf")
 
 distribution()
-
