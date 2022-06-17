@@ -1,11 +1,9 @@
-from code.algorithms import Algorithm as alg_r
-
 class Chain():
     def __init__(self, aminocode):
         self.folds = [(0,0,0)]
         self.score = 0
         self.aminocode = aminocode
-        self.H_folds = {(0,0): aminocode[0]}
+        self.hydrophobe = []
 
     def build(self, point):
         self.folds.append(point)

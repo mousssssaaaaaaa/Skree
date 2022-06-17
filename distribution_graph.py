@@ -30,7 +30,7 @@ def distribution():
         chain = ch.Chain(aminocode)
         
         chain_result = alg.algorithm_random(chain)
-
+        
         score_list.append(int(chain_result.get_score()))
 
         runs +=1
