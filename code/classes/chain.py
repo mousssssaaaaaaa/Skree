@@ -1,6 +1,6 @@
 class Chain():
     def __init__(self, aminocode):
-        self.folds = [(0,0)]
+        self.folds = [(0,0,0)]
         self.score = 0
         self.aminocode = aminocode
         self.hydrophobe = []
@@ -17,13 +17,15 @@ class Chain():
         return options
 
     def get_neighbours(self, point):
-        x, y = point
-        top = (x, y + 1)
-        bottom = (x, y - 1)
-        left = (x - 1, y)
-        right = (x + 1, y)
+        x, y, z = point
+        top = (x, y + 1, z)
+        bottom = (x, y - 1, z)
+        left = (x - 1, y, z)
+        right = (x + 1, y, z)
+        up = (x, y, z + 1)
+        down = (x, y, z - 1)
 
-        return {top, bottom, left, right}
+        return {top, bottom, left, right, up, down}
 
     def remove_last_point(self):
         self.folds.pop(-1)

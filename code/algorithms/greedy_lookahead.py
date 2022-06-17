@@ -1,5 +1,15 @@
 import random
 
+def functie(n):
+get options
+	for i in alle opties:
+		bouw de chain
+		if n = 1 :
+			get score
+			
+		else:
+			functie(n-1)
+
 def algorithm_greedy(chain):
 
     while len(chain.folds) < len(chain.aminocode):
