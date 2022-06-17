@@ -1,6 +1,7 @@
 import random
 import math
 from code.functions import distance as d
+from code.functions import gravity as g
 from code.functions import distance_to_H as dh
 
 def algorithm_random(chain):
@@ -19,10 +20,10 @@ def algorithm_random(chain):
             next_point = random.choice(list(options))
             chain.build(next_point)
 
-        
+
 
         # find next coordinate random
-        
+
 
     return chain
 
@@ -32,7 +33,7 @@ def algorithm_greedy(chain):
     # check if first aminocode is H and add
     if chain.aminocode[0] == 'H':
         chain.hydrophobe.append((0,0))
-        
+
 
     while len(chain.folds) < len(chain.aminocode):
 
@@ -53,7 +54,7 @@ def algorithm_greedy(chain):
             # remove current point from hydrophobe list
             if chain.folds[-1] in chain.hydrophobe:
                 list_H.remove(chain.folds[-1])
-            
+
             # check all options for best score
             index_to_check = len(chain.folds) - 1
             aminocode = chain.aminocode[index_to_check]
@@ -63,7 +64,7 @@ def algorithm_greedy(chain):
                     if distance < score:
                         best_point = point
                         score = distance
-        
+
         chain.build(best_point)
 
         # add if H to list
@@ -72,31 +73,34 @@ def algorithm_greedy(chain):
 
     return chain
 
-# def algorithm_greedy_gravity():
-#     """
-#     Pick random coordinate as option on grid and
-#     see if proposed chain elongation is valid.
-#     """
+def algorithm_greedy_gravity(chain):
+    """
+    Pick random coordinate as option on grid and
+    see if proposed chain elongation is valid.
+    """
+    wrong_option = ()
 
-#     options = chain.get_options()
-#     while options == []:
-#         wrong_option = chain.folds[-1]
-#         chain.remove_last_point()
-#         options = chain.get_options() - set([wrong_option])
+    while len(chain.folds) < len(chain.aminocode):
 
-#     score = 1
-#     gravity_value = gravity.get_gravity()
-#     for point in options:
-#         gravity_distance = d.distance(point, gravity_value)
-#         if gravity_distance
+        options = chain.get_options()
 
-#     # find next coordinate random
-#     next_point = random.choice(options)
-#     chain.build(next_point)
+        while options == []:
+            wrong_option = chain.folds[-1]
+            chain.remove_last_point()
+            options = chain.get_options() - set([wrong_option])
 
-    # if validate_option() == False:
-    #     wrong_option = chain.folds[-1]
-    #     chain.remove_last_point()
-    #     options = chain.get_options() - set([wrong_option])
-    #     next_point = random.choice(options) # ???
-    #     chain.build(next_point) # ???
+        if len(chain.folds) < 6:
+            next_point = random.choice(list(options))
+            chain.build(next_point)
+        else:
+            score = 100
+            # bereken zwaartepunt van huidige eiwit
+            gravity_value = g.get_gravity(chain.folds)
+            # bereken afstand (Pythagoras)
+            for point in options:
+                gravity_distance = d.distance(point, gravity_value)
+                if gravity_distance < score:
+                    score = gravity_distance
+                    best_point = point
+            chain.build(best_point)
+    return chain
