@@ -47,7 +47,7 @@ def algorithm_greedy(chain):
         score = 100
         best_point = random.choice(list(options))
 
-        #print(best_point)
+        # print(best_point)
         if len(chain.hydrophobe) != 0:
 
             list_H = chain.hydrophobe.copy()
@@ -82,31 +82,6 @@ def algorithm_greedy_gravity(chain):
 
     while len(chain.folds) < len(chain.aminocode):
 
-<<<<<<< HEAD
-    options = chain.get_options()
-    while options == []:
-        wrong_option = chain.folds[-1]
-        chain.remove_last_point()
-        options = chain.get_options() - set([wrong_option])
-
-    score = 1
-    gravity_value = gravity.get_gravity()
-    for point in options:
-        gravity_distance = d.distance(point, gravity_value)
-        if gravity_distance:
-            pass
-
-    # find next coordinate random
-    next_point = random.choice(options)
-    chain.build(next_point)
-
-    # if validate_option() == False:
-    #     wrong_option = chain.folds[-1]
-    #     chain.remove_last_point()
-    #     options = chain.get_options() - set([wrong_option])
-    #     next_point = random.choice(options) # ???
-    #     chain.build(next_point) # ???
-=======
         options = chain.get_options()
 
         while options == []:
@@ -129,4 +104,3 @@ def algorithm_greedy_gravity(chain):
                     best_point = point
             chain.build(best_point)
     return chain
->>>>>>> d50bc6904d1ac6b4d5637863740c191f2703c9e6
