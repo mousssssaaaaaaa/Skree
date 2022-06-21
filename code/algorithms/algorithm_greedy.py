@@ -17,7 +17,7 @@ def algorithm_greedy(chain):
             chain.remove_last_point()
             options = chain.get_options() - {wrong_option}
 
-        score = 100
+        score = 100 #replace with "inf"
         best_point = random.choice(list(options))
 
         #print(best_point)

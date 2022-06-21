@@ -20,8 +20,6 @@ def algorithm_random(chain):
             next_point = random.choice(list(options))
             chain.build(next_point)
 
-
-
         # find next coordinate random
 
 
@@ -48,9 +46,11 @@ def algorithm_greedy_gravity(chain):
             chain.build(next_point)
         else:
             score = 100
-            # bereken zwaartepunt van huidige eiwit
+
+            # calculate center of gravity for current protein
             gravity_value = g.get_gravity(chain.folds)
-            # bereken afstand (Pythagoras)
+
+            # calculate distance (Pythagoras)
             for point in options:
                 gravity_distance = d.distance(point, gravity_value)
                 if gravity_distance < score:

@@ -15,7 +15,7 @@ def main():
 
     # build protein chain
     chain = ch.Chain(aminocode)
-    chain_result = alg.algorithm_greedy_gravity(chain)
+    chain_result = alg.algorithm_greedy(chain)
 
     # visualize protein chain
     vis.visualisation(chain_result)
