@@ -2,7 +2,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from code.functions import get_point_colors as gp
-
 import matplotlib.lines as mlines
 
 def visualisation():
