@@ -21,6 +21,8 @@ def algorithm_greedy(chain):
         score = 100 #replace with "inf"
         best_point = random.choice(list(options))
 
+        index_to_check = 0 
+
         #print(best_point)
         if len(chain.hydrophobe) != 0:
 
