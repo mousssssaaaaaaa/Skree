@@ -4,8 +4,8 @@ from code.classes import chain as ch
 from code.visualisation import visualisation as vis
 from code.functions import outputwriter as out
 from code.algorithms import Algorithm as alg
-from code.algorithms import algorithm_greedy as algr
-from code.algorithms import greedy_lookahead as algC
+from code.algorithms import greedy_distance as algr
+from code.algorithms import depth_first as algC
 
 def main():
     if len(argv) != 2:

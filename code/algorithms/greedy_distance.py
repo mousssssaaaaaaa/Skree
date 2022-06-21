@@ -1,8 +1,10 @@
 import random
 from code.functions import distance_to_H as dh
 
-def algorithm_greedy(chain):
-    wrong_option = ()
+def greedy_distance(chain):
+    """
+    Greedy based on best choice. Optimal choice is direction in which an 'H' is closest.
+    """
 
     # check if first aminocode is H and add
     if chain.aminocode[0] == 'H':
@@ -10,15 +12,12 @@ def algorithm_greedy(chain):
         
 
     while len(chain.folds) < len(chain.aminocode):
-
-        # check previous coordinates in folds
+        
         options = chain.get_options()
-        while len(options) == 0:
-            wrong_option = chain.folds[-1]
-            chain.remove_last_point()
-            options = chain.get_options() - {wrong_option}
+        if len(options) == 0:
+            chain.folds = [(0, 0, 0)]
 
-        score = 100 #replace with "inf"
+        score = float('inf')
         best_point = random.choice(list(options))
 
         #print(best_point)

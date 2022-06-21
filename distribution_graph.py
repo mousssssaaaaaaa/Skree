@@ -30,7 +30,7 @@ def distribution():
         # build protein chain
         chain = ch.Chain(aminocode)
         
-        chain_result = alg.algorithm_random(chain)
+        chain_result = greed.greedy_lookahead(chain)
         
         score_list.append(int(chain_result.get_score()))
 
@@ -50,11 +50,11 @@ def distribution():
     highest_score = max(score_list)
     
     bins = np.arange(highest_score + 2) - 0.5
-    plt.hist(score_list, bins)
+    plt.hist(score_list, bins, density=True)
     plt.xticks(range(highest_score + 2))
-    plt.ylabel("N")
+    plt.ylabel("P(scores)")
     plt.xlabel("scores")
-
-    plt.savefig("graph.pdf")
+    plt.title('Depth first')
+    plt.savefig("graph.png")
 
 distribution()

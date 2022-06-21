@@ -27,16 +27,13 @@ def algorithm_greedy_gravity(chain):
     Pick random coordinate as option on grid and
     see if proposed chain elongation is valid.
     """
-    wrong_option = ()
 
     while len(chain.folds) < len(chain.aminocode):
 
         options = chain.get_options()
 
-        while options == []:
-            wrong_option = chain.folds[-1]
-            chain.remove_last_point()
-            options = chain.get_options() - set([wrong_option])
+        if len(options) == 0:
+            chain.folds = [(0, 0, 0)]
 
         if len(chain.folds) < 6:
             next_point = random.choice(list(options))
