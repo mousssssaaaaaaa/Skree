@@ -4,6 +4,8 @@ from code.classes import chain as ch
 from code.visualisation import visualisation as vis
 from code.functions import outputwriter as out
 from code.algorithms import Algorithm as alg
+from code.algorithms import algorithm_greedy as algr
+from code.algorithms import greedy_lookahead as algC
 
 def main():
     if len(argv) != 2:
@@ -15,7 +17,7 @@ def main():
 
     # build protein chain
     chain = ch.Chain(aminocode)
-    chain_result = alg.algorithm_greedy(chain)
+    chain_result = algC.greedy_lookahead(chain)
 
     # visualize protein chain
     vis.visualisation(chain_result)

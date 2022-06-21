@@ -32,7 +32,7 @@ class Chain():
 
     def get_score(self):
         score = 0
-        dictionary = dict(zip(self.folds, self.aminocode))
+        dictionary = dict(zip(self.folds, self.aminocode[0: len(self.folds)]))
 
         for point in dictionary:
             if dictionary[point] == 'H':
@@ -45,10 +45,10 @@ class Chain():
 
     def get_covalent(self, point):
         index = self.folds.index(point)
-
+    
         if index == 0:
             return [self.folds[index + 1]]
-        elif index == len(self.aminocode) - 1:
+        elif index == len(self.aminocode[0: len(self.folds)]) - 1:
             return [self.folds[index-1]]
         else:
             return [self.folds[index-1], self.folds[index + 1]]
