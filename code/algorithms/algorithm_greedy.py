@@ -1,12 +1,14 @@
 import random
+from code.functions import distance as d
+from code.functions import distance_to_H as dh
 
 def algorithm_greedy(chain):
     wrong_option = ()
 
     # check if first aminocode is H and add
     if chain.aminocode[0] == 'H':
-        chain.hydrophobe.append((0,0))
-        
+        chain.hydrophobe.append((0,0,0))
+
 
     while len(chain.folds) < len(chain.aminocode):
 
@@ -27,7 +29,7 @@ def algorithm_greedy(chain):
             # remove current point from hydrophobe list
             if chain.folds[-1] in chain.hydrophobe:
                 list_H.remove(chain.folds[-1])
-            
+
             # check all options for best score
             index_to_check = len(chain.folds) - 1
             aminocode = chain.aminocode[index_to_check]
@@ -37,7 +39,7 @@ def algorithm_greedy(chain):
                     if distance < score:
                         best_point = point
                         score = distance
-        
+
         chain.build(best_point)
 
         # add if H to list
