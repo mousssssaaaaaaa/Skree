@@ -8,18 +8,18 @@ import matplotlib.lines as mlines
 
 def visualisation(chain):
     """Visualise aminoacid chain on a grid """
-    
+
     # get input
     input = chain.folds
 
     x, y, z = zip(*input)
     point_color = gp.get_point_colors(chain.aminocode)
     colors = np.array(point_color)
-    
+
     # plot 3d graph
     ax = plt.axes(projection='3d')
     plt.plot(x, y, z, c='gray')
-    ax.scatter3D(x, y, z, c = colors) 
+    ax.scatter3D(x, y, z, c = colors)
     plt.grid(True)
 
     # Add descriptions in legend
