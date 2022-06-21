@@ -1,11 +1,14 @@
-from code.algorithms import Algorithm as alg
+
 import csv
 import pandas as pd 
 from sys import argv, exit
 from code.classes import chain as ch
 from code.visualisation import visualisation as vis
 from code.functions import outputwriter as out
+
 from code.algorithms import greedy_lookahead as greed
+from code.algorithms import Algorithm as alg
+from code.algorithms import algorithm_greedy as algr
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -52,9 +55,11 @@ def distribution():
     bins = np.arange(highest_score + 2) - 0.5
     plt.hist(score_list, bins, density=True)
     plt.xticks(range(highest_score + 2))
-    plt.ylabel("P(scores)")
+    plt.ylabel("P")
     plt.xlabel("scores")
-    plt.title('Depth first')
-    plt.savefig("graph.png")
+
+    plt.title("Depth first")
+
+    plt.savefig("graph.pdf")
 
 distribution()

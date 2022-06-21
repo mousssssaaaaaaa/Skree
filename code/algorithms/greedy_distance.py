@@ -20,6 +20,8 @@ def greedy_distance(chain):
         score = float('inf')
         best_point = random.choice(list(options))
 
+        index_to_check = 0 
+
         #print(best_point)
         if len(chain.hydrophobe) != 0:
 
