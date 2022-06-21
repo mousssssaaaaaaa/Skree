@@ -64,7 +64,7 @@ class Chain():
                     if dictionary.get(neighbour) == 'H' and neighbour not in covalent:
                         score += 1
 
-        # halve score since two hydrophobic neighbours equals 1 point, not 2
+        # half score since two hydrophobic neighbours equals 1 point, not 2
         return score/2
 
     def get_covalent(self, point):

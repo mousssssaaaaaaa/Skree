@@ -1,2 +1,6 @@
 __pycache__/
-results/
+<<<<<<< HEAD
+results/*
+results/.gitkeep 
+=======
+>>>>>>> 5074b877c99326103074983341db57bb51c5f8b4
