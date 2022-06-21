@@ -1,8 +1,5 @@
 import random
-<<<<<<< HEAD
 from code.functions import distance as d
-=======
->>>>>>> 1f93ba0739feb9f31838dc4d63d617e7492847c7
 from code.functions import distance_to_H as dh
 
 def algorithm_greedy(chain):
@@ -11,11 +8,7 @@ def algorithm_greedy(chain):
     # check if first aminocode is H and add
     if chain.aminocode[0] == 'H':
         chain.hydrophobe.append((0,0,0))
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 1f93ba0739feb9f31838dc4d63d617e7492847c7
 
     while len(chain.folds) < len(chain.aminocode):
 
