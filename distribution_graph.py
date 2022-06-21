@@ -5,6 +5,7 @@ from sys import argv, exit
 from code.classes import chain as ch
 from code.visualisation import visualisation as vis
 from code.functions import outputwriter as out
+from code.algorithms import greedy_lookahead as greed
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -29,7 +30,7 @@ def distribution():
         # build protein chain
         chain = ch.Chain(aminocode)
         
-        chain_result = alg.algorithm_random(chain)
+        chain_result = greed.greedy_lookahead(chain)
         
         score_list.append(int(chain_result.get_score()))
 

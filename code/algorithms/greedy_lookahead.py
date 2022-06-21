@@ -1,51 +1,49 @@
 import random
+from copy import deepcopy
+from code.classes import chain
 
-def functie(n):
-get options
-	for i in alle opties:
-		bouw de chain
-		if n = 1 :
-			get score
-			
-		else:
-			functie(n-1)
+def depth_first(chain, depth, state_depth, ways):
+    """
+    Returns all possibilities and their scores with depth
+    """  
+    
+    if state_depth != 0 :
+        options = chain.get_options()
+        if len(options) == 0:
+            return False
+        for coordinate in options:
+            chain.build(coordinate)
+            _ = depth_first(chain, depth, state_depth-1, ways)	
+            
+        chain.remove_last_point()
+    else:
+        score = chain.get_score()
+        ways.append([score, chain.folds[-depth:]])
+        chain.remove_last_point()
+        
+    
+    return ways
 
-def algorithm_greedy(chain):
+def greedy_lookahead(chain):
 
     while len(chain.folds) < len(chain.aminocode):
-
-        # # check previous coordinates in folds
-        # options = chain.get_options()
-        # while len(options) == 0:
-        #     wrong_option = chain.folds[-1]
-        #     chain.remove_last_point()
-        #     options = chain.get_options() - {wrong_option}
-
-        # score = 100
-        # best_point = random.choice(list(options))
-
-        # #print(best_point)
-        # if len(chain.hydrophobe) != 0:
-
-        #     list_H = chain.hydrophobe.copy()
-        #     # remove current point from hydrophobe list
-        #     if chain.folds[-1] in chain.hydrophobe:
-        #         list_H.remove(chain.folds[-1])
-            
-        #     # check all options for best score
-        #     index_to_check = len(chain.folds) - 1
-        #     aminocode = chain.aminocode[index_to_check]
-        #     if len(list_H) != 0 and aminocode != 'H':
-        #         for point in options:
-        #             distance = dh.distance_to_H(point, list_H)
-        #             if distance < score:
-        #                 best_point = point
-        #                 score = distance
+        ways = depth_first(deepcopy(chain), 4, 4, []) 
         
-        # chain.build(best_point)
+        if ways == False:
+            chain.folds = [(0, 0, 0)]
+        else:
+            highscore = 0
+            best_routes = []
+            for way in ways:
+                score = way[0]
+                if score >= highscore:
+                    highscore = score
+                    best_routes.append(way[1])
 
-        # # add if H to list
-        # if chain.aminocode[index_to_check + 1] == 'H':
-        #     chain.hydrophobe.append(best_point)
+            # take one of the best routes and add first point
+            
+            next_point = random.choice(best_routes)[0]
+            
+            chain.build(next_point)
 
     return chain
