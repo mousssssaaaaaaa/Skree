@@ -11,6 +11,7 @@ def visualisation(chain):
     
     # get input
     input = chain.folds
+
     x, y, z = zip(*input)
     point_color = gp.get_point_colors(chain.aminocode)
     colors = np.array(point_color)

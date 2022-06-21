@@ -20,9 +20,6 @@ def algorithm_random(chain):
             next_point = random.choice(list(options))
             chain.build(next_point)
 
-        # find next coordinate random
-
-
     return chain
 
 def algorithm_greedy_gravity(chain):

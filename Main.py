@@ -17,7 +17,7 @@ def main():
 
     # build protein chain
     chain = ch.Chain(aminocode)
-    chain_result = algC.greedy_lookahead(chain)
+    chain_result = alg.algorithm_random(chain)
 
     # visualize protein chain
     vis.visualisation(chain_result)
@@ -27,7 +27,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 """
 HHPHHHPHPHHHPH
