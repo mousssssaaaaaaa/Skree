@@ -1,14 +1,14 @@
-
+import pickle
 import csv
 import pandas as pd 
 from sys import argv, exit
 from code.classes import chain as ch
 from code.visualisation import visualisation as vis
 from code.functions import outputwriter as out
-
-from code.algorithms import greedy_lookahead as greed
+from copy import deepcopy
+from code.algorithms import depth_first as df
 from code.algorithms import Algorithm as alg
-from code.algorithms import algorithm_greedy as algr
+from code.algorithms import greedy_distance as gd
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,19 +26,28 @@ def distribution():
     n = int(argv[2])
 
     # create list for scores
-    score_list = []
+    score_list = [-1]
 
     runs = 0 
+    best_chain = ch.Chain('')
+    
     while runs < n:
         # build protein chain
         chain = ch.Chain(aminocode)
         
-        chain_result = greed.greedy_lookahead(chain)
+        chain_result = df.depth_first(chain)
         
-        score_list.append(int(chain_result.get_score()))
+        score = int(chain_result.get_score())
 
+        m = max(score_list)
+
+        if score >= m:
+            best_chain = deepcopy(chain_result)
+
+        score_list.append(score)
+        
         runs +=1
-
+        
     # # TODO: show max values if to small to see
     # count_score = 0
     # for i in score_list:
@@ -60,6 +69,10 @@ def distribution():
 
     plt.title("Depth first")
 
-    plt.savefig("graph.pdf")
+    plt.savefig("graph.png")
+    plt.close()
+
+    # visualize protein chain
+    vis.visualisation(best_chain)
 
 distribution()

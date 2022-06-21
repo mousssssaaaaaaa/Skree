@@ -17,7 +17,7 @@ def main():
 
     # build protein chain
     chain = ch.Chain(aminocode)
-    chain_result = algC.greedy_lookahead(chain)
+    chain_result = algC.depth_first(chain)
 
     # visualize protein chain
     vis.visualisation(chain_result)
