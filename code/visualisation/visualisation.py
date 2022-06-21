@@ -11,6 +11,7 @@ def visualisation(chain):
     
     # get input
     input = chain.folds
+
     x, y, z = zip(*input)
     point_color = gp.get_point_colors(chain.aminocode)
     colors = np.array(point_color)
@@ -30,6 +31,4 @@ def visualisation(chain):
     Score = "Score: " + str(int(Score))
     plt.legend(handles=[blue_square, red_square], title= Score)
 
-    plt.savefig("scatter.pdf")
-
-
+    plt.savefig("results/scatter.png")
