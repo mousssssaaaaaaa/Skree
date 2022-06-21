@@ -31,4 +31,4 @@ def visualisation(chain):
     Score = "Score: " + str(int(Score))
     plt.legend(handles=[blue_square, red_square], title= Score)
 
-    plt.savefig("scatter.png")
+    plt.savefig("results/scatter.png")
