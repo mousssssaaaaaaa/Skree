@@ -32,10 +32,10 @@ def visualisation(chain):
     # add descriptions in legend
     blue_sq = mlines.Line2D([], [], color = 'blue', marker = 'o',
                             linestyle = 'None', markersize = 10,
-                            label = 'Hydrofoob')
+                            label = 'Polair')
     red_sq = mlines.Line2D([], [], color = 'red', marker = 'o',
                             linestyle = 'None', markersize = 10,
-                            label = 'Polair')
+                            label = 'Hydrofoob')
     score = "Score: " + str(int(chain.get_score()))
     ax.legend(handles = [blue_sq, red_sq], title = score)
 

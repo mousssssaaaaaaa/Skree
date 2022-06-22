@@ -45,6 +45,7 @@ def distribution():
         #     best_chain = deepcopy(chain_result)
         #
         # score_list.append(score)
+        # plt.title("Random")
 
         " --------------------------------- Depth First ---------------------------------------- "
         # depth_first = df.DepthFirst(chain)
@@ -58,6 +59,7 @@ def distribution():
         #     best_chain = deepcopy(depth_first.chain)
 
         # score_list.append(score)
+        # plt.title("Depth First")
 
         " -------------------------------- Greedy Distance ------------------------------------- "
         greedy_distance = gd.GreedyDistance(chain)
@@ -71,6 +73,7 @@ def distribution():
             best_chain = deepcopy(greedy_distance.chain)
 
         score_list.append(score)
+        plt.title("Greedy distance")
 
         " --------------------------------- Greedy Gravity --------------------------------------- "
         # greedy_gravity = gg.GreedyGravity(chain)
@@ -84,19 +87,9 @@ def distribution():
         #     best_chain = deepcopy(greedy_gravity.chain)
 
         # score_list.append(score)
+        # plt.title("Greedy Gravity")
 
     "-----------------------TODO -------------------------------------------"
-    # # TODO: show max values if to small to see
-    # count_score = 0
-    # for i in score_list:
-    #     if i > max(score_list):
-
-    #         print("scatter")
-    #         # visualize protein chain
-    #         vis.visualisation(chain_result)
-
-    #         count_score += 1
-
 
     highest_score = max(score_list)
 
@@ -105,17 +98,17 @@ def distribution():
     # create histogram and assign elements separately
     n, bin, patch = plt.hist(score_list, density=True)
 
-    # print values on top of patch
-    for bin_val in patch:
-        x = (bin_val.xy[0] + (bin_val.xy[0] + bin_val._width))/2 - 0.25
-        y = bin_val._height + 0.005
-        plt.text(x, y, bin_val._height)
+    # # print values on top of patch
+    # for bin_val in patch:
+    #     x = (bin_val._x0 + bin_val._x1)/2 - 0.25
+    #     y = bin_val._y1 + 0.005
+    #     plt.text(x, y, bin_val._y1)
 
     plt.xticks(range(highest_score + 2))
     plt.ylabel("P")
     plt.xlabel("scores")
-    plt.title("Depth first")
-    #plt.show()
+    
+    plt.show()
 
     # save produced image
     plt.savefig("results/graph.png")
