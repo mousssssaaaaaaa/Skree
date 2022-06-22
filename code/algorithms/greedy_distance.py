@@ -23,7 +23,7 @@ class GreedyDistance:
         # check all options for best score
         self.index_to_check = len(self.chain.folds) - 1
         aminocode = self.chain.aminocode[self.index_to_check]
-        if len(list_H) != 0 and aminocode != 'H':
+        if len(list_H) != 0 and aminocode == 'H':
             for point in options:
                 distance = dh.distance_to_H(point, list_H)
                 if distance < score:
@@ -54,17 +54,17 @@ class GreedyDistance:
             options = self.chain.get_options()
             if len(options) == 0:
                 self.chain.folds = [(0, 0, 0)]
-
-            # get option closest to H
-            if len(self.chain.hydrophobe) != 0:
-                best_point = self.closest_to_H(options)
             else:
-                best_point = random.choice(list(options))
-                
-            # add to chain
-            self.chain.build(best_point)
+                    # get option closest to H
+                if len(self.chain.hydrophobe) != 0:
+                    best_point = self.closest_to_H(options)
+                else:
+                    best_point = random.choice(list(options))
+                    
+                # add to chain
+                self.chain.build(best_point)
 
-            # add if H to list of hydrophoc amino
-            self.add_hydrophobic(best_point)
+                # add if H to list of hydrophoc amino
+                self.add_hydrophobic(best_point)
     
     

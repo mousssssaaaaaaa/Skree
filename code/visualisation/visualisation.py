@@ -40,7 +40,7 @@ def visualisation(chain):
     ax.legend(handles = [blue_sq, red_sq], title = score)
 
     # show interactive figure
-    plt.show()
+    #plt.show()
 
     # store static figure
     plt.savefig("results/scatter.png")

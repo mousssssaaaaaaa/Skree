@@ -35,16 +35,16 @@ def distribution():
         chain = ch.Chain(aminocode)
 
         " ---------------------------------- Random ------------------------------------------- "
-        chain_result = rnd.algorithm_random(chain)
+        # chain_result = rnd.algorithm_random(chain)
 
-        score = int(chain_result.get_score())
+        # score = int(chain_result.get_score())
 
-        m = max(score_list)
+        # m = max(score_list)
 
-        if score > m:
-            best_chain = deepcopy(chain_result)
+        # if score > m:
+        #     best_chain = deepcopy(chain_result)
 
-        score_list.append(score)
+        # score_list.append(score)
 
         " --------------------------------- Depth First ---------------------------------------- "
         # depth_first = df.DepthFirst(chain)
@@ -60,17 +60,17 @@ def distribution():
         # score_list.append(score)
 
         " -------------------------------- Greedy Distance ------------------------------------- "
-        # greedy_distance = gd.GreedyDistance(chain)
-        # greedy_distance.run()
+        greedy_distance = gd.GreedyDistance(chain)
+        greedy_distance.run()
 
-        # score = int(greedy_distance.chain.get_score())
+        score = int(greedy_distance.chain.get_score())
 
-        # m = max(score_list)
+        m = max(score_list)
 
-        # if score > m:
-        #     best_chain = deepcopy(greedy_distance.chain)
+        if score > m:
+            best_chain = deepcopy(greedy_distance.chain)
 
-        # score_list.append(score)
+        score_list.append(score)
 
         " --------------------------------- Greedy Gravity --------------------------------------- "
         # greedy_gravity = gg.GreedyGravity(chain)
@@ -103,19 +103,20 @@ def distribution():
     bins = np.arange(highest_score + 2) - 0.5
 
     # create histogram and assign elements separately
-    n, bin, patch = plt.hist(score_list, bins, density=True)
+    n, bin, patch = plt.hist(score_list, density=True)
 
     # print values on top of patch
     for bin_val in patch:
-        x = (bin_val._x0 + bin_val._x1)/2 - 0.25
-        y = bin_val._y1 + 0.005
-        plt.text(x, y, bin_val._y1)
+        print(bin_val)
+        x = (bin_val.xy[0] + (bin_val.xy[0] + bin_val._width))/2 - 0.25
+        y = bin_val._height + 0.005
+        plt.text(x, y, bin_val._height)
 
     plt.xticks(range(highest_score + 2))
     plt.ylabel("P")
     plt.xlabel("scores")
     plt.title("Depth first")
-    plt.show()
+    #plt.show()
 
     # save produced image
     plt.savefig("results/graph.png")
