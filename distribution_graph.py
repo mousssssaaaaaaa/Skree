@@ -108,7 +108,7 @@ def distribution():
     plt.xticks(range(highest_score + 2))
     plt.ylabel("P")
     plt.xlabel("scores")
-    
+
     plt.show()
 
     # save produced image
