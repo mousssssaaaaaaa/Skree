@@ -36,15 +36,14 @@ def distribution():
 
         " ---------------------------------- Random ------------------------------------------- "
         # chain_result = rnd.algorithm_random(chain)
-
-
+        #
         # score = int(chain_result.get_score())
-
+        #
         # m = max(score_list)
-
+        #
         # if score > m:
         #     best_chain = deepcopy(chain_result)
-
+        #
         # score_list.append(score)
         # plt.title("Random")
 
