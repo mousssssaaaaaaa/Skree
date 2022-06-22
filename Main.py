@@ -21,22 +21,21 @@ def main():
 
 
     " ---------------------------------- Random ------------------------------------------- "
-    chain_result = rnd.algorithm_random(chain)
-    vis.visualisation(chain_result)
+    # chain_result = rnd.algorithm_random(chain)
 
     " --------------------------------- Depth First ---------------------------------------- "
     # depth_first = df.DepthFirst(chain)
-    # depth_first.run() 
+    # depth_first.run()
     # chain_result = depth_first.chain
 
     " -------------------------------- Greedy Distance ------------------------------------- "
     # greedy_distance = gd.GreedyDistance(chain)
-    # greedy_distance.run() 
+    # greedy_distance.run()
     # chain_result = greedy_distance.chain
 
     " --------------------------------- Greedy Gravity --------------------------------------- "
     # greedy_gravity = gg.GreedyGravity(chain)
-    # greedy_gravity.run() 
+    # greedy_gravity.run()
     # chain_result = greedy_gravity.chain
 
     # visualize protein chain
