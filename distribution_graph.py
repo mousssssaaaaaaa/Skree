@@ -108,7 +108,7 @@ def distribution():
     plt.ylabel("P")
     plt.xlabel("scores")
     
-    plt.show()
+    #plt.show()
 
     # save produced image
     plt.savefig("results/graph.png")
