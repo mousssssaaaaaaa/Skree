@@ -98,17 +98,22 @@ def distribution():
     # create histogram and assign elements separately
     n, bin, patch = plt.hist(score_list, density=True)
 
-    # # print values on top of patch
-    # for bin_val in patch:
-    #     x = (bin_val._x0 + bin_val._x1)/2 - 0.25
-    #     y = bin_val._y1 + 0.005
-    #     plt.text(x, y, bin_val._y1)
+    # print values on top of patch
+    for bin_val in patch:
+        x = (bin_val.xy[0] + (bin_val.xy[0] + bin_val._width))/2 - 0.25
+        y = bin_val._height + 0.005
+        plt.text(x, y, bin_val._height)
 
     plt.xticks(range(highest_score + 2))
     plt.ylabel("P")
     plt.xlabel("scores")
+<<<<<<< HEAD
 
     plt.show()
+=======
+    
+    #plt.show()
+>>>>>>> 4d22200706caf70be7b30e2681fb0f4ce9fbdfec
 
     # save produced image
     plt.savefig("results/graph.png")
