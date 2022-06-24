@@ -11,6 +11,7 @@ from code.algorithms import depth_first as df
 from code.algorithms import random as rnd
 from code.algorithms import greedy_distance as gd
 from code.algorithms import greedy_gravity as gg
+from code.algorithms import hill_climber as hc
 
 def distribution():
     if len(argv) != 3:
@@ -62,18 +63,18 @@ def distribution():
         # plt.title("Depth First")
 
         " -------------------------------- Greedy Distance ------------------------------------- "
-        greedy_distance = gd.GreedyDistance(chain)
-        greedy_distance.run()
+        # greedy_distance = gd.GreedyDistance(chain)
+        # greedy_distance.run()
 
-        score = int(greedy_distance.chain.get_score())
+        # score = int(greedy_distance.chain.get_score())
 
-        m = max(score_list)
+        # m = max(score_list)
 
-        if score > m:
-            best_chain = deepcopy(greedy_distance.chain)
+        # if score > m:
+        #     best_chain = deepcopy(greedy_distance.chain)
 
-        score_list.append(score)
-        plt.title("Greedy distance")
+        # score_list.append(score)
+        # plt.title("Greedy distance")
 
         " --------------------------------- Greedy Gravity --------------------------------------- "
         # greedy_gravity = gg.GreedyGravity(chain)
@@ -89,7 +90,19 @@ def distribution():
         # score_list.append(score)
         # plt.title("Greedy Gravity")
 
-    "-----------------------TODO -------------------------------------------"
+        " --------------------------------- Hill Climber --------------------------------------- "
+        # hill_climber = hc.algorithm_hill_climber(chain)
+        chain_result = hc.algorithm_hill_climber(chain, 4, 10) 
+        plt.title("Hill Climber")
+        score = int(chain_result.get_score())
+        
+        m = max(score_list)
+        
+        if score > m:
+            best_chain = deepcopy(chain_result)
+        
+        score_list.append(score)
+
 
     highest_score = max(score_list)
 
