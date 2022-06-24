@@ -36,8 +36,11 @@ def visualisation(chain):
     red_sq = mlines.Line2D([], [], color = 'red', marker = 'o',
                             linestyle = 'None', markersize = 10,
                             label = 'Hydrofoob')
+    yellow_sq = mlines.Line2D([], [], color = 'yellow', marker = 'o',
+                            linestyle = 'None', markersize = 10,
+                            label = 'Cysteïne')
     score = "Score: " + str(int(chain.get_score()))
-    ax.legend(handles = [blue_sq, red_sq], title = score)
+    ax.legend(handles = [blue_sq, red_sq, yellow_sq], title = score)
 
     # show interactive figure
     #plt.show()

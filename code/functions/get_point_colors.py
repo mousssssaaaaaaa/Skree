@@ -6,6 +6,8 @@ def get_point_colors(aminocode):
             color = 'red'
         if code == 'P':
             color = 'blue'
+        if code == 'C':
+            color = 'yellow'
         colors.append(color)
 
     return colors 
