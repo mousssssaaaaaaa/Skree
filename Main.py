@@ -7,6 +7,8 @@ from code.algorithms import depth_first as df
 from code.algorithms import random as rnd
 from code.algorithms import greedy_distance as gd
 from code.algorithms import greedy_gravity as gg
+from code.algorithms import hill_climber as hc
+
 
 def main():
     if len(argv) != 2:
@@ -37,6 +39,10 @@ def main():
     # greedy_gravity = gg.GreedyGravity(chain)
     # greedy_gravity.run()
     # chain_result = greedy_gravity.chain
+
+    " --------------------------------- Hill Climber --------------------------------------- "
+    # hill_climber = hc.algorithm_hill_climber(chain)
+    chain_result = hc.algorithm_hill_climber(chain, 1, 10)    
 
     # visualize protein chain
     vis.visualisation(chain_result)
