@@ -91,8 +91,8 @@ def distribution():
 
     "-----------------------TODO -------------------------------------------"
 
+    np.savetxt("results/scores.csv", score_list, delimiter =", ", fmt ='% s')
     highest_score = max(score_list)
-
     bins = np.arange(highest_score + 2) - 0.5
 
     # create histogram and assign elements separately
@@ -107,13 +107,8 @@ def distribution():
     plt.xticks(range(highest_score + 2))
     plt.ylabel("P")
     plt.xlabel("scores")
-<<<<<<< HEAD
 
     plt.show()
-=======
-    
-    #plt.show()
->>>>>>> 4d22200706caf70be7b30e2681fb0f4ce9fbdfec
 
     # save produced image
     plt.savefig("results/graph.png")
