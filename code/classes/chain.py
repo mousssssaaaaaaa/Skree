@@ -63,6 +63,16 @@ class Chain():
                     # score a point if neighbour is hydrophobic and not covalent
                     if dictionary.get(neighbour) == 'H' and neighbour not in covalent:
                         score += 1
+                    elif dictionary.get(neighbour) == 'C' and neighbour not in covalent:
+                        score += 2
+            elif dictionary[point] == 'C':
+                neighbours = self.get_neighbours(point)
+                for neighbour in neighbours:
+                    covalent = self.get_covalent(point)
+
+                    # score a point if neighbour is hydrophobic and not covalent
+                    if dictionary.get(neighbour) == 'C' and neighbour not in covalent:
+                        score += 5
 
         # half score since two hydrophobic neighbours equals 1 point, not 2
         return score/2
