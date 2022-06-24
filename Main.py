@@ -21,7 +21,7 @@ def main():
 
 
     " ---------------------------------- Random ------------------------------------------- "
-    # chain_result = rnd.algorithm_random(chain)
+    chain_result = rnd.algorithm_random(chain)
 
     " --------------------------------- Depth First ---------------------------------------- "
     # depth_first = df.DepthFirst(chain)
@@ -52,4 +52,14 @@ HHPHHHPHPHHHPH
 HPHPPHHPHPPHPHHPPHPH
 PPPHHPPHHPPPPPHHHHHHHPPHHPPPPHHPPHPP
 HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH
+"""
+
+"""
+PPCHHPPCHPPPPCHHHHCHHPPHHPPPPHHPPHPP
+
+CPPCHPPCHPPCPPHHHHHHCCPCHPPCPCHPPHPC
+
+HCPHPCPHPCHCHPHPPPHPPPHPPPPHPCPHPPPHPHHHCCHCHCHCHH
+
+HCPHPHPHCHHHHPCCPPHPPPHPPPPCPPPHPPPHPHHHHCHPHPHPHH
 """
