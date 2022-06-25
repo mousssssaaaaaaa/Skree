@@ -25,7 +25,7 @@ def distribution():
     n = int(argv[2])
 
     # create list for scores
-    score_list = [-1]
+    score_list = []
 
     # best chain to save
     best_chain = ch.Chain('')
@@ -37,14 +37,14 @@ def distribution():
 
         " ---------------------------------- Random ------------------------------------------- "
         # chain_result = rnd.algorithm_random(chain)
-        #
+        
         # score = int(chain_result.get_score())
-        #
-        # m = max(score_list)
-        #
+        
+        # m = max(score_list or [0])
+        
         # if score > m:
         #     best_chain = deepcopy(chain_result)
-        #
+        
         # score_list.append(score)
         # plt.title("Random")
 
@@ -82,7 +82,7 @@ def distribution():
 
         # score = int(greedy_gravity.chain.get_score())
 
-        # m = max(score_list)
+        # m = max(score_list or [0])
 
         # if score > m:
         #     best_chain = deepcopy(greedy_gravity.chain)
@@ -91,17 +91,18 @@ def distribution():
         # plt.title("Greedy Gravity")
 
         " --------------------------------- Hill Climber --------------------------------------- "
-        # hill_climber = hc.algorithm_hill_climber(chain)
-        chain_result = hc.algorithm_hill_climber(chain, 4, 10) 
+
+        chain_result = hc.algorithm_hill_climber(chain, 7, 1000) 
         plt.title("Hill Climber")
         score = int(chain_result.get_score())
         
-        m = max(score_list)
+        m = max(score_list or [0])
         
         if score > m:
             best_chain = deepcopy(chain_result)
         
         score_list.append(score)
+    
 
 
 
