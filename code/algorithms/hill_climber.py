@@ -6,17 +6,16 @@ from code.classes import chain as ch
 
 def algorithm_hill_climber(chain, n_flips, N):
     """
-    Hill climber algorithm that starts with random
+    Hill climber algorithm that starts with random solution
     """
 
     # Run a random algoritm to get starting point 
     chain = rnd.algorithm_random(chain)
-
     baseline_score = chain.get_score()
     copy_chain = deepcopy(chain)
-    fails = 0
 
     # Run until no improvements 
+    fails = 0
     while fails < N:
         
         # Flip parts of chain
