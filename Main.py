@@ -11,36 +11,43 @@ from code.algorithms import hill_climber as hc
 
 
 def main():
-    if len(argv) != 2:
-        print("Error not right amount arguments")
-        exit(1)
 
-    # capitalize argument input
-    aminocode = list((argv[1]).upper())
+    # Ask user for input chain
+    print("Welcome to Protein Po(w)der, fill in the following variables to get solutions")
+    aminocode = input("Chain: ")
 
-    # build protein chain
+    # Ask for algorithm
+    algoritm = int(input("Pick a number to choose an algoritm: (1) Random, (2) Depth First, (3) Greedy Distance, (4) Greedy Gravity, (5) Hill Climber \n"))
+
+    # Build protein chain
     chain = ch.Chain(aminocode)
 
-    " ---------------------------------- Random ------------------------------------------- "
-    # chain_result = rnd.algorithm_random(chain)
+    # Perform choosen algoritm
+    if algoritm == 1:
+        #---------------------------------- Random ------------------------------------------- 
+        chain_result = rnd.algorithm_random(chain)
 
-    " --------------------------------- Depth First ---------------------------------------- "
-    # depth_first = df.DepthFirst(chain)
-    # depth_first.run()
-    # chain_result = depth_first.chain
+    elif algoritm == 2: 
+        #--------------------------------- Depth First ----------------------------------------
+        depth_first = df.DepthFirst(chain)
+        depth_first.run()
+        chain_result = depth_first.chain
 
-    " -------------------------------- Greedy Distance ------------------------------------- "
-    # greedy_distance = gd.GreedyDistance(chain)
-    # greedy_distance.run()
-    # chain_result = greedy_distance.chain
-
-    " --------------------------------- Greedy Gravity --------------------------------------- "
-    # greedy_gravity = gg.GreedyGravity(chain)
-    # greedy_gravity.run()
-    # chain_result = greedy_gravity.chain
-
-    " --------------------------------- Hill Climber --------------------------------------- "
-    chain_result = hc.algorithm_hill_climber(chain, 7, 1000)    
+    elif algoritm == 3: 
+        #-------------------------------- Greedy Distance --------------------------------------
+        greedy_distance = gd.GreedyDistance(chain)
+        greedy_distance.run()
+        chain_result = greedy_distance.chain
+    
+    elif algoritm == 4: 
+        #--------------------------------- Greedy Gravity ---------------------------------------
+        greedy_gravity = gg.GreedyGravity(chain)
+        greedy_gravity.run()
+        chain_result = greedy_gravity.chain
+    
+    else: 
+        #--------------------------------- Hill Climber -----------------------------------------
+        chain_result = hc.algorithm_hill_climber(chain, 7, 1000)    
 
     # visualize protein chain
     vis.visualisation(chain_result)
