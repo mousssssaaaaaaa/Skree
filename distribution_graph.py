@@ -35,16 +35,31 @@ def distribution():
         # build protein chain
         chain = ch.Chain(aminocode)
 
+    #     " ---------------------------------- Random -------------------------- "
+    #     chain_result = rnd.algorithm_random(chain)
+    #
+    #     score = int(chain_result.get_score())
+    #
+    #     m = max(score_list)
+    #
+    #     if score > m:
+    #         best_chain = deepcopy(chain_result)
+    #
+    #     score_list.append(score)
+    #     plt.title("Random")
+    #
+    # np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
+
         " ---------------------------------- Random ------------------------------------------- "
         # chain_result = rnd.algorithm_random(chain)
-        
+
         # score = int(chain_result.get_score())
-        
+
         # m = max(score_list or [0])
-        
+
         # if score > m:
         #     best_chain = deepcopy(chain_result)
-        
+
         # score_list.append(score)
         # plt.title("Random")
 
@@ -54,13 +69,11 @@ def distribution():
 
         # score = int(depth_first.chain.get_score())
 
-        # m = max(score_list)
+        # " --------------------------------- Depth First ---------------------- "
+        depth_first = df.DepthFirst(chain)
+        depth_first.run()
 
-        # if score > m:
-        #     best_chain = deepcopy(depth_first.chain)
-
-        # score_list.append(score)
-        # plt.title("Depth First")
+        score = int(depth_first.chain.get_score())
 
         " -------------------------------- Greedy Distance ------------------------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
@@ -70,6 +83,55 @@ def distribution():
 
         # m = max(score_list)
 
+    #     if score > m:
+    #         best_chain = deepcopy(depth_first.chain)
+    #
+    #     score_list.append(score)
+    #     plt.title("Depth First")
+    #
+    # np.savetxt("results/scores_depth.csv", score_list, delimiter =", ", fmt ='% s')
+
+
+        # " -------------------------------- Greedy Distance ------------------- "
+    #     greedy_distance = gd.GreedyDistance(chain)
+    #     greedy_distance.run()
+    #
+    #     score = int(greedy_distance.chain.get_score())
+    #
+    #     m = max(score_list)
+    #
+    #     if score > m:
+    #         best_chain = deepcopy(greedy_distance.chain)
+    #
+    #     score_list.append(score)
+    #     plt.title("Greedy distance")
+    #
+    # np.savetxt("results/scores_distance.csv", score_list, delimiter =", ", fmt ='% s')
+
+        # " --------------------------------- Greedy Gravity ------------------- "
+    #     greedy_gravity = gg.GreedyGravity(chain)
+    #     greedy_gravity.run()
+    #
+    #     score = int(greedy_gravity.chain.get_score())
+    #
+    #     m = max(score_list)
+    #
+    #     if score > m:
+    #         best_chain = deepcopy(greedy_gravity.chain)
+    #
+    #     score_list.append(score)
+    #     plt.title("Greedy Gravity")
+    #
+    # np.savetxt("results/scores_gravity.csv", score_list, delimiter =", ", fmt ='% s')
+
+
+        # # " ---------------- Hill Climber ---------------"
+        # chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
+        # plt.title("Hill Climber")
+        # score = int(chain_result.get_score())
+        #
+        # m = max(score_list or [0])
+        #
         # if score > m:
         #     best_chain = deepcopy(greedy_distance.chain)
 
@@ -85,31 +147,13 @@ def distribution():
         # m = max(score_list or [0])
 
         # if score > m:
-        #     best_chain = deepcopy(greedy_gravity.chain)
-
+        #     best_chain = deepcopy(chain_result)
+        #
         # score_list.append(score)
-        # plt.title("Greedy Gravity")
 
-        " --------------------------------- Hill Climber --------------------------------------- "
-
-        chain_result = hc.algorithm_hill_climber(chain, 3, 1000) 
-        plt.title("Hill Climber")
-        score = int(chain_result.get_score())
-        #print(chain_result.folds)
-        
-        m = max(score_list or [0])
-        
-        if score > m:
-            best_chain = deepcopy(chain_result)
-        
-        score_list.append(score)
-    
-
-
-
+    # "-----------------------TODO --------------------------------------------- "
 
     highest_score = max(score_list)
-
     bins = np.arange(highest_score + 2) - 0.5
 
     # create histogram and assign elements separately
@@ -124,6 +168,8 @@ def distribution():
     plt.xticks(range(highest_score + 2))
     plt.ylabel("P")
     plt.xlabel("scores")
+
+    plt.show()
 
     # save produced image
     plt.savefig("results/graph.png")

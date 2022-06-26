@@ -10,7 +10,7 @@ def algorithm_hill_climber(chain, n_flips, N):
     Hill climber algorithm that starts with random
     """
 
-    # Run a random algoritm to get starting point 
+    # Run a random algoritm to get starting point
     #chain = rnd.algorithm_random(chain)
     greedy_gravity = gg.GreedyGravity(chain)
     greedy_gravity.run()
@@ -22,7 +22,7 @@ def algorithm_hill_climber(chain, n_flips, N):
     #print(copy_chain.folds, '---------------------\n')
 
 
-    # Run until no improvements 
+    # Run until no improvements
     while fails < N:
 
         flips = 0
@@ -33,18 +33,16 @@ def algorithm_hill_climber(chain, n_flips, N):
         for _ in range(n_flips):
             # Choose a random point
             #print('point: ', random_point)
-    
             # Check if not last chain point
             if random_point_index <= (len(chain.folds) -3):
-                
-                
+
+
                 # Find next point
                 next_point = copy_chain.folds[random_point_index + 2]
 
-                # Find middle point 
+                # Find middle point
                 middle = list(copy_chain.folds[random_point_index + 1])
 
-                        
                 dif_end_x = next_point[0] - random_point[0]
                 dif_end_y = next_point[1] - random_point[1]
                 dif_end_z = next_point[2] - random_point[2]
@@ -60,7 +58,7 @@ def algorithm_hill_climber(chain, n_flips, N):
                     dim1 = 0
                     dim2 = 2
 
-                else: 
+                else:
                     dim1 = 0
                     dim2 = 1
 
@@ -82,10 +80,10 @@ def algorithm_hill_climber(chain, n_flips, N):
                 if tuple(middle) not in copy_chain.folds:
                     copy_chain.folds[random_point_index + 1] = tuple(middle)
                     #flips += 1
-                
+
                 random_point = copy_chain.folds[random_point_index + 1]
                 random_point_index += 1
-            
+
         # Compare score to baseline
         if copy_chain.get_score() > baseline_score:
             chain = copy_chain
