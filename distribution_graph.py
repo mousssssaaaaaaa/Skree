@@ -92,9 +92,10 @@ def distribution():
 
         " --------------------------------- Hill Climber --------------------------------------- "
 
-        chain_result = hc.algorithm_hill_climber(chain, 7, 1000) 
+        chain_result = hc.algorithm_hill_climber(chain, 3, 1000) 
         plt.title("Hill Climber")
         score = int(chain_result.get_score())
+        #print(chain_result.folds)
         
         m = max(score_list or [0])
         

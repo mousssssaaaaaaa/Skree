@@ -23,7 +23,7 @@ def main():
 
 
     " ---------------------------------- Random ------------------------------------------- "
-    chain_result = rnd.algorithm_random(chain)
+    #chain_result = rnd.algorithm_random(chain)
 
     " --------------------------------- Depth First ---------------------------------------- "
     # depth_first = df.DepthFirst(chain)
@@ -42,7 +42,7 @@ def main():
 
     " --------------------------------- Hill Climber --------------------------------------- "
     # hill_climber = hc.algorithm_hill_climber(chain)
-    chain_result = hc.algorithm_hill_climber(chain, 1, 10)    
+    chain_result = hc.algorithm_hill_climber(chain, 3, 100)    
 
     # visualize protein chain
     vis.visualisation(chain_result)

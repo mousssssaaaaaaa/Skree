@@ -2,6 +2,7 @@ import random
 from code.algorithms import random as rnd
 from copy import deepcopy
 from code.classes import chain as ch
+from code.algorithms import greedy_gravity as gg
 
 
 def algorithm_hill_climber(chain, n_flips, N):
@@ -10,21 +11,28 @@ def algorithm_hill_climber(chain, n_flips, N):
     """
 
     # Run a random algoritm to get starting point 
-    chain = rnd.algorithm_random(chain)
+    #chain = rnd.algorithm_random(chain)
+    greedy_gravity = gg.GreedyGravity(chain)
+    greedy_gravity.run()
+    chain = greedy_gravity.chain
 
     baseline_score = chain.get_score()
     copy_chain = deepcopy(chain)
     fails = 0
+    #print(copy_chain.folds, '---------------------\n')
 
 
     # Run until no improvements 
     while fails < N:
+
         flips = 0
+        random_point_index = random.randint(0,len(copy_chain.folds)-1)
+        random_point = copy_chain.folds[random_point_index]
+
         # Flip parts of chain
-        while flips < n_flips:
+        for _ in range(n_flips):
             # Choose a random point
-            random_point_index = random.randint(0,len(copy_chain.folds)-1)
-            random_point = copy_chain.folds[random_point_index]
+            #print('point: ', random_point)
     
             # Check if not last chain point
             if random_point_index <= (len(chain.folds) -3):
@@ -35,6 +43,7 @@ def algorithm_hill_climber(chain, n_flips, N):
 
                 # Find middle point 
                 middle = list(copy_chain.folds[random_point_index + 1])
+
                         
                 dif_end_x = next_point[0] - random_point[0]
                 dif_end_y = next_point[1] - random_point[1]
@@ -70,13 +79,17 @@ def algorithm_hill_climber(chain, n_flips, N):
                         middle[dim2] = random_point[dim2]
 
                 # Check if point in fold
-                if middle not in copy_chain.folds:
+                if tuple(middle) not in copy_chain.folds:
                     copy_chain.folds[random_point_index + 1] = tuple(middle)
-                    flips += 1
+                    #flips += 1
+                
+                random_point = copy_chain.folds[random_point_index + 1]
+                random_point_index += 1
             
         # Compare score to baseline
         if copy_chain.get_score() > baseline_score:
             chain = copy_chain
+            print('Succes!')
             baseline_score = chain.get_score()
         else:
             fails += 1
