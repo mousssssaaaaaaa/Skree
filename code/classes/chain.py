@@ -7,6 +7,7 @@ class Chain():
         self.score = 0
         self.aminocode = aminocode
         self.hydrophobe = []
+        self.cysteine = []
 
     def build(self, point):
         """
@@ -49,6 +50,8 @@ class Chain():
         """
         Calculate score of the current structure. 
         Neighbouring hydrophobic points that are not covalently connected equals 1 point.
+        Neighbouring hydrophobic and cysteine points also equal 1 point.
+        Neighbouring cysteine points equal 5 points.
         """
         score = 0
         dictionary = dict(zip(self.folds, self.aminocode[0: len(self.folds)]))
@@ -84,8 +87,8 @@ class Chain():
         index = self.folds.index(point)
     
         if index == 0:
-            return [self.folds[index + 1]]
+            return {self.folds[index + 1]}
         elif index == len(self.aminocode[0: len(self.folds)]) - 1:
-            return [self.folds[index-1]]
+            return {self.folds[index-1]}
         else:
-            return [self.folds[index-1], self.folds[index + 1]]
+            return {self.folds[index-1], self.folds[index + 1]}

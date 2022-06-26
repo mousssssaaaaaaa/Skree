@@ -14,19 +14,19 @@ def algorithm_hill_climber(chain, n_flips, N):
     baseline_score = chain.get_score()
     copy_chain = deepcopy(chain)
 
+
     # Run until no improvements 
     fails = 0
     while fails < N:
-        
+        flips = 0
         # Flip parts of chain
-        for _ in range(n_flips):
+        while flips < n_flips:
             # Choose a random point
             random_point_index = random.randint(0,len(copy_chain.folds)-1)
             random_point = copy_chain.folds[random_point_index]
     
             # Check if not last chain point
             if random_point_index <= (len(chain.folds) -3):
-                
                 
                 # Find next point
                 next_point = copy_chain.folds[random_point_index + 2]
@@ -70,13 +70,13 @@ def algorithm_hill_climber(chain, n_flips, N):
                 # Check if point in fold
                 if middle not in copy_chain.folds:
                     copy_chain.folds[random_point_index + 1] = tuple(middle)
+                    flips += 1
             
         # Compare score to baseline
         if copy_chain.get_score() > baseline_score:
             chain = copy_chain
             baseline_score = chain.get_score()
-            fails = 0
         else:
-            fails +=1
+            fails += 1
 
     return chain

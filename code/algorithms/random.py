@@ -14,7 +14,7 @@ def algorithm_random(chain):
         # check previous coordinates in folds
         options = chain.get_options()
         if len(options) == 0:
-            chain.folds = [(0, 0)]
+            chain.folds = [(0, 0, 0)]
         else:
             next_point = random.choice(list(options))
             chain.build(next_point)

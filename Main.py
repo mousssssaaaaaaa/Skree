@@ -21,9 +21,8 @@ def main():
     # build protein chain
     chain = ch.Chain(aminocode)
 
-
     " ---------------------------------- Random ------------------------------------------- "
-    chain_result = rnd.algorithm_random(chain)
+    # chain_result = rnd.algorithm_random(chain)
 
     " --------------------------------- Depth First ---------------------------------------- "
     # depth_first = df.DepthFirst(chain)
@@ -41,8 +40,7 @@ def main():
     # chain_result = greedy_gravity.chain
 
     " --------------------------------- Hill Climber --------------------------------------- "
-    # hill_climber = hc.algorithm_hill_climber(chain)
-    chain_result = hc.algorithm_hill_climber(chain, 1, 10)    
+    chain_result = hc.algorithm_hill_climber(chain, 7, 1000)    
 
     # visualize protein chain
     vis.visualisation(chain_result)
