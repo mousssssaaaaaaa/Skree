@@ -11,6 +11,8 @@ from code.algorithms import depth_first as df
 from code.algorithms import random as rnd
 from code.algorithms import greedy_distance as gd
 from code.algorithms import greedy_gravity as gg
+from code.algorithms import hill_climber as hc
+
 
 def distribution():
     if len(argv) != 3:
@@ -34,64 +36,86 @@ def distribution():
         # build protein chain
         chain = ch.Chain(aminocode)
 
-        " ---------------------------------- Random ------------------------------------------- "
-        # chain_result = rnd.algorithm_random(chain)
-        #
+    #     " ---------------------------------- Random -------------------------- "
+    #     chain_result = rnd.algorithm_random(chain)
+    #
+    #     score = int(chain_result.get_score())
+    #
+    #     m = max(score_list)
+    #
+    #     if score > m:
+    #         best_chain = deepcopy(chain_result)
+    #
+    #     score_list.append(score)
+    #     plt.title("Random")
+    #
+    # np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
+
+
+        # " --------------------------------- Depth First ---------------------- "
+        depth_first = df.DepthFirst(chain)
+        depth_first.run()
+
+        score = int(depth_first.chain.get_score())
+
+        m = max(score_list)
+
+        if score > m:
+            best_chain = deepcopy(depth_first.chain)
+
+        score_list.append(score)
+        plt.title("Depth First")
+
+    np.savetxt("results/scores_depth.csv", score_list, delimiter =", ", fmt ='% s')
+
+
+        # " -------------------------------- Greedy Distance ------------------- "
+    #     greedy_distance = gd.GreedyDistance(chain)
+    #     greedy_distance.run()
+    #
+    #     score = int(greedy_distance.chain.get_score())
+    #
+    #     m = max(score_list)
+    #
+    #     if score > m:
+    #         best_chain = deepcopy(greedy_distance.chain)
+    #
+    #     score_list.append(score)
+    #     plt.title("Greedy distance")
+    #
+    # np.savetxt("results/scores_distance.csv", score_list, delimiter =", ", fmt ='% s')
+
+        # " --------------------------------- Greedy Gravity ------------------- "
+    #     greedy_gravity = gg.GreedyGravity(chain)
+    #     greedy_gravity.run()
+    #
+    #     score = int(greedy_gravity.chain.get_score())
+    #
+    #     m = max(score_list)
+    #
+    #     if score > m:
+    #         best_chain = deepcopy(greedy_gravity.chain)
+    #
+    #     score_list.append(score)
+    #     plt.title("Greedy Gravity")
+    #
+    # np.savetxt("results/scores_gravity.csv", score_list, delimiter =", ", fmt ='% s')
+
+
+        # # " ---------------- Hill Climber ---------------"
+        # chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
+        # plt.title("Hill Climber")
         # score = int(chain_result.get_score())
         #
-        # m = max(score_list)
+        # m = max(score_list or [0])
         #
         # if score > m:
         #     best_chain = deepcopy(chain_result)
         #
         # score_list.append(score)
-        # plt.title("Random")
 
-        " --------------------------------- Depth First ---------------------------------------- "
-        # depth_first = df.DepthFirst(chain)
-        # depth_first.run()
+    # "-----------------------TODO --------------------------------------------- "
 
-        # score = int(depth_first.chain.get_score())
-
-        # m = max(score_list)
-
-        # if score > m:
-        #     best_chain = deepcopy(depth_first.chain)
-
-        # score_list.append(score)
-        # plt.title("Depth First")
-
-        " -------------------------------- Greedy Distance ------------------------------------- "
-        greedy_distance = gd.GreedyDistance(chain)
-        greedy_distance.run()
-
-        score = int(greedy_distance.chain.get_score())
-
-        m = max(score_list)
-
-        if score > m:
-            best_chain = deepcopy(greedy_distance.chain)
-
-        score_list.append(score)
-        plt.title("Greedy distance")
-
-        " --------------------------------- Greedy Gravity --------------------------------------- "
-        # greedy_gravity = gg.GreedyGravity(chain)
-        # greedy_gravity.run()
-
-        # score = int(greedy_gravity.chain.get_score())
-
-        # m = max(score_list)
-
-        # if score > m:
-        #     best_chain = deepcopy(greedy_gravity.chain)
-
-        # score_list.append(score)
-        # plt.title("Greedy Gravity")
-
-    "-----------------------TODO -------------------------------------------"
-
-    np.savetxt("results/scores.csv", score_list, delimiter =", ", fmt ='% s')
     highest_score = max(score_list)
     bins = np.arange(highest_score + 2) - 0.5
 
