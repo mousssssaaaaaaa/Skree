@@ -103,11 +103,11 @@ def distribution():
     # "-----------------------TODO --------------------------------------------- "
 
     np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
-    # np.savetxt("results/scores_distance.csv"), score_list, delimiter =", ", fmt = '% s')
-    # np.savetxt("results/scores_gravity.csv", score_list, delimiter =", ", fmt ='% s')
-    # np.savetxt("results/scores_depth.csv", score_list, delimiter =", ", fmt ='% s')
-    # np.savetxt("results/scores_hill_climber.csv", score_list, delimiter =", ", fmt ='% s')
-
+    # np.savetxt("results/scores_distance.csv"), score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_gravity.csv", score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_depth.csv", score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_hill_climber.csv", score_list, delimiter = ", ", fmt = '% s')
+    np.savetxt("results/scores_hill_climber_gravity.csv"), score_list, delimiter =", ", fmt = '% s')
 
     highest_score = max(score_list)
     bins = np.arange(highest_score + 2) - 0.5
