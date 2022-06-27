@@ -68,11 +68,7 @@ def main():
 
     else:
         #--------------------------------- Hill Climber -----------------------------------------
-<<<<<<< HEAD
-        chain_result = hc.algorithm_hill_climber(chain, 7, 1000)    
-=======
         chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
->>>>>>> 421c5a9602d4d6b9aac9ec94c3f0b8a797154211
 
     # visualize protein chain
     vis.visualisation(chain_result)
