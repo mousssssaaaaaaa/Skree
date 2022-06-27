@@ -88,7 +88,7 @@ def algorithm_hill_climber(chain, n_flips, N):
 
         # Compare score to baseline
         if copy_chain.get_score() > baseline_score:
-            chain = copy_chain
+            chain = deepcopy(copy_chain)
             print('Succes!')
             baseline_score = chain.get_score()
         else:
