@@ -35,22 +35,22 @@ def distribution():
         # build protein chain
         chain = ch.Chain(aminocode)
 
-    #     " ---------------------------------- Random -------------------------- "
-    #     chain_result = rnd.algorithm_random(chain)
-    #
-    #     score = int(chain_result.get_score())
-    #
-    #     m = max(score_list)
-    #
-    #     if score > m:
-    #         best_chain = deepcopy(chain_result)
-    #
-    #     score_list.append(score)
-    #     plt.title("Random")
-    #
-    # np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
+        " ---------------------------------- Random -------------------------- "
+        chain_result = rnd.algorithm_random(chain)
 
-        " ---------------------------------- Random ------------------------------------------- "
+        score = int(chain_result.get_score())
+
+        m = max(score_list or [0])
+
+        if score > m:
+            best_chain = deepcopy(chain_result)
+
+        score_list.append(score)
+        plt.title("Random")
+
+    np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
+
+        # " ---------------------------------- Random ------------------------------------------- "
         # chain_result = rnd.algorithm_random(chain)
 
         # score = int(chain_result.get_score())
@@ -63,19 +63,19 @@ def distribution():
         # score_list.append(score)
         # plt.title("Random")
 
-        " --------------------------------- Depth First ---------------------------------------- "
+        # " --------------------------------- Depth First ---------------------------------------- "
         # depth_first = df.DepthFirst(chain)
         # depth_first.run()
 
         # score = int(depth_first.chain.get_score())
 
         # " --------------------------------- Depth First ---------------------- "
-        depth_first = df.DepthFirst(chain)
-        depth_first.run()
+        # depth_first = df.DepthFirst(chain)
+        # depth_first.run()
+        #
+        # score = int(depth_first.chain.get_score())
 
-        score = int(depth_first.chain.get_score())
-
-        " -------------------------------- Greedy Distance ------------------------------------- "
+        # " -------------------------------- Greedy Distance ------------------------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
         # greedy_distance.run()
 
@@ -138,7 +138,7 @@ def distribution():
         # score_list.append(score)
         # plt.title("Greedy distance")
 
-        " --------------------------------- Greedy Gravity --------------------------------------- "
+        # " --------------------------------- Greedy Gravity --------------------------------------- "
         # greedy_gravity = gg.GreedyGravity(chain)
         # greedy_gravity.run()
 
