@@ -12,6 +12,8 @@ from code.algorithms import hill_climber as hc
 
 def main():
 
+<<<<<<< HEAD
+=======
     # " ---------------------------------- Random ------------------------------------------- "
     # chain_result = rnd.algorithm_random(chain)
 
@@ -30,6 +32,7 @@ def main():
     # greedy_gravity.run()
     # chain_result = greedy_gravity.chain
 
+>>>>>>> 421c5a9602d4d6b9aac9ec94c3f0b8a797154211
     # Ask user for input chain
     print("Welcome to Protein Po(w)der, fill in the following variables to get solutions")
     aminocode = input("Chain: ")
@@ -65,7 +68,11 @@ def main():
 
     else:
         #--------------------------------- Hill Climber -----------------------------------------
+<<<<<<< HEAD
+        chain_result = hc.algorithm_hill_climber(chain, 7, 1000)    
+=======
         chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
+>>>>>>> 421c5a9602d4d6b9aac9ec94c3f0b8a797154211
 
     # visualize protein chain
     vis.visualisation(chain_result)

@@ -1,3 +1,10 @@
+# import random
+# import math
+
+# als parent - child
+# from code.algorithms import algorithm_hill_climber as HillClimber
+
+# directe kopie
 import random
 from code.algorithms import random as rnd
 from copy import deepcopy
@@ -6,9 +13,9 @@ from code.algorithms import greedy_gravity as gg
 from code.functions import gravity as g
 
 
-def algorithm_hill_climber(chain, n_flips, N):
+def algorithm_simulated_annealing(chain, n_flips, N):
     """
-    Hill climber algorithm that starts with Greedy Gravity
+    Simulated Annealing algorithm that starts with Greedy Gravity
     """
 
     # Run a random algoritm to get starting point
@@ -20,6 +27,11 @@ def algorithm_hill_climber(chain, n_flips, N):
     baseline_score = chain.get_score()
     copy_chain = deepcopy(chain)
     fails = 0
+
+
+    # V.SA: Introduce temperature and alpha
+    temp = 1
+    alpha = 0.99
 
     # Run until no improvements
     while fails < N:
@@ -86,12 +98,20 @@ def algorithm_hill_climber(chain, n_flips, N):
         # Compare score to baseline
         if copy_chain.get_score() > baseline_score:
             chain = deepcopy(copy_chain)
-<<<<<<< HEAD
-=======
-            print('Succes!')
->>>>>>> 421c5a9602d4d6b9aac9ec94c3f0b8a797154211
             baseline_score = chain.get_score()
         else:
             fails += 1
+
+        # Accept if better, accepts some bad solutions depending on the current temperature.
+        if copy_chain.get_score() > baseline_score:
+            chain = deepcopy(copy_chain)
+            baseline_score = chain.get_score()
+        elif (2 ** (baseline_score - copy_chain.get_score())) > temp:
+            chain = deepcopy(copy_chain)
+            baseline_score = chain.get_score()
+        else:
+            fails += 1
+        
+        temp = temp * alpha
 
     return chain
