@@ -12,6 +12,7 @@ from code.algorithms import random as rnd
 from code.algorithms import greedy_distance as gd
 from code.algorithms import greedy_gravity as gg
 from code.algorithms import hill_climber as hc
+from code.algorithms import hill_climber_gravity as hcg
 from code.algorithms import simulated_annealing as sa
 
 def distribution():
@@ -38,16 +39,16 @@ def distribution():
         print(runs)
 
         # " ---------------------------------- Random -------------------------- "
-        # chain_result = rnd.algorithm_random(chain)
-        #
-        # score = int(chain_result.get_score())
-        # m = max(score_list or [0])
-        #
-        # if score > m:
-        #     best_chain = deepcopy(chain_result)
-        #
-        # score_list.append(score)
-        # plt.title("Random")
+        chain_result = rnd.algorithm_random(chain)
+        
+        score = int(chain_result.get_score())
+        m = max(score_list or [0])
+        
+        if score > m:
+            best_chain = deepcopy(chain_result)
+        
+        score_list.append(score)
+        plt.title("Random")
 
         # " -------------------------------- Greedy Distance ------------------------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
@@ -92,27 +93,27 @@ def distribution():
         # " --------------------------------- Hill Climber --------------------------------------- "
         # chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
         # plt.title("Hill Climber")
-        #
+        
         # score = int(chain_result.get_score())
         # m = max(score_list or [0])
-        #
+        
         # if score > m:
         #     best_chain = deepcopy(chain_result)
-        #
+        
         # score_list.append(score)
         # plt.title("Hill Climber")
 
         " --------------------------------- Simulated Annealing --------------------------------------- "
-        chain_result = sa.algorithm_simulated_annealing(chain, 7, 1000)
-        score = int(chain_result.get_score())
+        # chain_result = sa.algorithm_simulated_annealing(chain, 7, 1000)
+        # score = int(chain_result.get_score())
         
-        m = max(score_list or [0])
+        # m = max(score_list or [0])
         
-        if score > m:
-            best_chain = deepcopy(chain_result)
+        # if score > m:
+        #     best_chain = deepcopy(chain_result)
 
-        score_list.append(score)
-        plt.title("Simulated Annealing??")
+        # score_list.append(score)
+        # plt.title("Simulated Annealing??")
 
     # np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
     # np.savetxt("results/scores_distance.csv"), score_list, delimiter =", ", fmt = '% s')

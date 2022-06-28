@@ -6,89 +6,106 @@ from code.algorithms import greedy_gravity as gg
 from code.functions import gravity as g
 
 
-def algorithm_hill_climber(chain, n_flips, N):
+class HillClimber(chain, n_flips, N):
     """
     Hill climber algorithm that starts with Greedy Gravity
     """
+    def __init__(self, chain, n_flips, upperbound_fails):
+        self.chain = chain
+        self.n_flips = n_flips
+        self.upperbound_fails = upperbound_fails
 
-    # Run a random algoritm to get starting point
-    # chain = rnd.algorithm_random(chain)
-    greedy_gravity = gg.GreedyGravity(chain)
-    greedy_gravity.run()
-    chain = greedy_gravity.chain
+    def beginning_chain(self):
+        """
+        Begin with a greedy gravity chain.
+        """
+        greedy_gravity = gg.GreedyGravity(chain)
+        greedy_gravity.run()
+        self.chain = greedy_gravity.chain
 
-    baseline_score = chain.get_score()
-    #print('Baseline score: ', baseline_score, '\n')
-    copy_chain = deepcopy(chain)
-    fails = 0
+    def run():
+        """
+        
+        """
 
-    # Run until no improvements
-    while fails < N:
+        # Get folded chain
+        self.beginning_chain(self)
 
-        flips = 0
-        random_point_index = random.randint(0,len(copy_chain.folds)-1)
-        random_point = copy_chain.folds[random_point_index]
+        # Get a baseline score
+        baseline_score = chain.get_score()
 
-        # Flip parts of chain
-        for _ in range(n_flips):
-            # Choose a random point
-            
+        # Initiate copy to make small changes
+        copy_chain = deepcopy(chain)
+        fails = 0
 
-            # Check if not last chain point
-            if random_point_index <= (len(chain.folds) - n_flips):
+        # Run until no improvements
+        while fails < N:
 
-                # Find next point
-                next_point = copy_chain.folds[random_point_index + 2]
-            
+            flips = 0
+            random_point_index = random.randint(0,len(copy_chain.folds)-1)
+            random_point = copy_chain.folds[random_point_index]
 
-                # Find middle point
-                middle = list(copy_chain.folds[random_point_index + 1])
+            # Flip parts of chain
+            for _ in range(n_flips):
+                # Choose a random point
 
-                dif_end_x = next_point[0] - random_point[0]
-                dif_end_y = next_point[1] - random_point[1]
-                dif_end_z = next_point[2] - random_point[2]
 
-                differences_end = (dif_end_x, dif_end_y, dif_end_z)
+                # Check if not last chain point
+                if random_point_index <= (len(chain.folds) - n_flips):
 
-                # check which dimension to ignore
-                if dif_end_x == 0:
-                    dim1 = 1
-                    dim2 = 2
+                    # Find next point
+                    next_point = copy_chain.folds[random_point_index + 2]
+                
 
-                elif dif_end_y == 0:
-                    dim1 = 0
-                    dim2 = 2
+                    # Find middle point
+                    middle = list(copy_chain.folds[random_point_index + 1])
 
-                else:
-                    dim1 = 0
-                    dim2 = 1
+                    dif_end_x = next_point[0] - random_point[0]
+                    dif_end_y = next_point[1] - random_point[1]
+                    dif_end_z = next_point[2] - random_point[2]
 
-                # Check if not straight line (if only one coordinate)
-                if differences_end[dim1] != 0 and differences_end[dim2] != 0:
+                    differences_end = (dif_end_x, dif_end_y, dif_end_z)
 
-                    # Calculate coordinates new point (invert change):
+                    # check which dimension to ignore
+                    if dif_end_x == 0:
+                        dim1 = 1
+                        dim2 = 2
 
-                    dif_middle_dim1 = middle[dim1] - random_point[dim1]
+                    elif dif_end_y == 0:
+                        dim1 = 0
+                        dim2 = 2
 
-                    if dif_middle_dim1 == differences_end[dim1]:
-                        middle[dim1] = random_point[dim1]
-                        middle[dim2] = random_point[dim2] + differences_end[dim2]
                     else:
-                        middle[dim1] = random_point[dim1] + differences_end[dim1]
-                        middle[dim2] = random_point[dim2]
+                        dim1 = 0
+                        dim2 = 1
 
-                # Check if point in fold
-                if tuple(middle) not in copy_chain.folds:
-                    copy_chain.folds[random_point_index + 1] = tuple(middle)
+                    # Check if not straight line (if only one coordinate)
+                    if differences_end[dim1] != 0 and differences_end[dim2] != 0:
 
-                random_point = copy_chain.folds[random_point_index + 1]
-                random_point_index += 1
+                        # Calculate coordinates new point (invert change):
 
-        # Compare score to baseline
-        if copy_chain.get_score() > baseline_score:
-            chain = deepcopy(copy_chain)
-            baseline_score = chain.get_score()
-        else:
-            fails += 1
+                        dif_middle_dim1 = middle[dim1] - random_point[dim1]
 
-    return chain
+                        if dif_middle_dim1 == differences_end[dim1]:
+                            middle[dim1] = random_point[dim1]
+                            middle[dim2] = random_point[dim2] + differences_end[dim2]
+                        else:
+                            middle[dim1] = random_point[dim1] + differences_end[dim1]
+                            middle[dim2] = random_point[dim2]
+
+                    # Check if point in fold
+                    if tuple(middle) not in copy_chain.folds:
+                        copy_chain.folds[random_point_index + 1] = tuple(middle)
+
+                    random_point = copy_chain.folds[random_point_index + 1]
+                    random_point_index += 1
+
+            # Compare score to baseline
+            if copy_chain.get_score() > baseline_score:
+                chain = deepcopy(copy_chain)
+                baseline_score = chain.get_score()
+                #print('New score: ', baseline_score, '\n')
+            else:
+                fails += 1
+
+        return chain
