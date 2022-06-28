@@ -19,11 +19,11 @@ Aannames die zijn meegenomen:
 
 ## Gebruiksinstructies
 
-1. In de terminal initieer je het programma vanaf de juiste directory met: python main.py
+1. In de terminal initieer je het programma vanaf de juiste directory met: ``python main.py``
 2. Vervolgens verschijnt er een prompt die vraagt om (1) aminozuursequentie; (2) keuze algoritme; (3) aantal iteraties; (4) gepresenteerd in 2D of 3D.
 3. Nadat de opties zijn ingevoerd, verschijnt er een pop-up met een interactieve figuur van het meest stabiele eiwit dat gevonden kan worden met de gekozen algoritme.
-4. De resultaten worden opgeslagen op een .csv in de folder '/results'.
-5. Met ``plot_all.py``
+4. De stabiliteitsscores en figuur worden respectievelijk opgeslagen op een ``.csv``- en ``.png``-bestand in de folder ``/results``.
+5. Wanneer alle vijf algoritmes zijn toegepast, kan er een histogram gemaakt worden met de resultaten over elkaar heen geplot. Dit wordt uitgevoerd met: ``python plot_all.py``.
 
 #### Note: De resultaten hieronder zijn gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH in 3D-formaat (3D50).
 
