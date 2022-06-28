@@ -89,12 +89,12 @@ def algorithm_simulated_annealing(chain, n_flips, N):
         # Set score to compare to baseline
         current_score = copy_chain.get_score()
 
+        # Put a lower bound on temperature
         if temp < 0.09:
             temp = 0.09
 
+        # Set probability of accepting a solution
         probability = 2 ** ((current_score - baseline_score)/ temp)
-
-        print("score", (current_score - baseline_score))
         if current_score == baseline_score:
             probability = temp
 
@@ -105,7 +105,7 @@ def algorithm_simulated_annealing(chain, n_flips, N):
         else:
             fails += 1
         
+        # Lower temperature 
         temp = temp * alpha
-        print(fails)
 
     return chain
