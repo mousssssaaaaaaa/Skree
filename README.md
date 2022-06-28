@@ -30,7 +30,7 @@ Aannames die zijn meegenomen:
 
 ## Algoritmes vergelijken
 
-![plot](./results/3D50_composite.png)
+![plot](3D50_composite.png)
 
 
 
