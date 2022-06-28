@@ -54,14 +54,6 @@ def main():
     # store protein data into csv
     out.outputwriter(chain_result.folds, aminocode, chain_result)
 
-    # " ------------------ Hill Climber ------------------------------------- "
-    # hill_climber = hc.algorithm_hill_climber(chain, 5, 100)
-    # chain_result = greedy_gravity.chain_result
-
-    vis.visualisation(chain_result)
-
-    out.outputwriter(chain_result.folds, aminocode, chain_result)
-
 if __name__ == "__main__":
     main()
 
