@@ -13,13 +13,9 @@ def algorithm_simulated_annealing(chain, n_flips, N):
     """
 
     # Run a random algoritm to get starting point
-    # chain = rnd.algorithm_random(chain)
     greedy_gravity = gg.GreedyGravity(chain)
     greedy_gravity.run()
     chain = greedy_gravity.chain
-
-    # visualize protein chain
-    vis.visualisation(chain)
 
     baseline_score = chain.get_score()
     copy_chain = deepcopy(chain)
@@ -104,10 +100,6 @@ def algorithm_simulated_annealing(chain, n_flips, N):
             baseline_score = chain.get_score()
         else:
             fails += 1
-        
-        # if current_score > baseline_score:
-        #  chain = deepcopy(copy_chain)
-        #  baseline_score = chain.get_score()
         
         temp = temp * alpha
 
