@@ -1,4 +1,5 @@
 # Programmertheorie (Heuristieken): Protein Pow(d)er
+<<<<<<< HEAD
 
 Teamleden: Nienke, Moussa, Jason
 
@@ -23,6 +24,8 @@ De volgende algoritmes werden toegepast:
 ## Parameter tuning
 
 ## Algoritmes vergelijken
+=======
+>>>>>>> b2235b8272300024ed264e00bdc1ca6b4ae5787a
 
 
 ## Baseline

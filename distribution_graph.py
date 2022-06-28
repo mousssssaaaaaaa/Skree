@@ -36,23 +36,27 @@ def distribution():
 
         # build protein chain
         chain = ch.Chain(aminocode, 3)
-        print(runs)
 
         # " ---------------------------------- Random -------------------------- "
         # chain_result = rnd.algorithm_random(chain)
-        #
+        # best_chain = chain_result
+
         # score = int(chain_result.get_score())
         # m = max(score_list or [0])
-        #
+
         # if score > m:
         #     best_chain = deepcopy(chain_result)
-        #
+        #     print(best_chain)
+
         # score_list.append(score)
+        # print(score_list)
         # plt.title("Random")
 
         # " -------------------------------- Greedy Distance ------------------------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
         # greedy_distance.run()
+        # chain_result = greedy_distance.chain
+        # best_chain = chain_result
         #
         # score = int(greedy_distance.chain.get_score())
         # m = max(score_list or [0])
@@ -143,7 +147,6 @@ def distribution():
     # create histogram and assign elements separately
     n, bin, patch = plt.hist(score_list, density=True)
 
-    print(score_list)
 
     # print values on top of patch
     for bin_val in patch:

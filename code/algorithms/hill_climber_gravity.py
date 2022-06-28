@@ -34,7 +34,7 @@ def algorithm_hill_climber(chain, n_flips, N):
 
 
             # Check if not last chain point
-            if random_point_index <= (len(chain.folds) -3):
+            if random_point_index <= (len(chain.folds) - n_flips):
 
                 # Find next point
                 next_point = copy_chain.folds[random_point_index + 2]

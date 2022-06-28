@@ -21,9 +21,9 @@ def algorithm_simulated_annealing(chain, n_flips, N):
     copy_chain = deepcopy(chain)
     fails = 0
 
-    # V.SA: Introduce temperature and alpha
+    # Introduce temperature and alpha
     temp = 1
-    alpha = 0.8
+    alpha = 0.85
 
     # Run until no improvements
     while fails < N:
@@ -41,7 +41,7 @@ def algorithm_simulated_annealing(chain, n_flips, N):
 
 
             # Check if not last chain point
-            if random_point_index <= (len(chain.folds) -3):
+            if random_point_index <= (len(chain.folds) -n_flips):
 
                 # Find next point
                 next_point = copy_chain.folds[random_point_index + 2]
@@ -91,11 +91,17 @@ def algorithm_simulated_annealing(chain, n_flips, N):
 
         # Set score to compare to baseline
         current_score = copy_chain.get_score()
+        print(current_score)
 
-        if temp < 0.0005:
-            temp = 0.005
+        if temp < 0.09:
+            temp = 0.09
 
-        probability = 2 ** ((current_score - baseline_score)/ temp)
+        probability = 2 ** ((baseline_score - current_score)/ temp)
+        #print(baseline_score)
+
+
+        if baseline_score - current_score == 0:
+            probability = temp
 
         # Accept if better or accept some bad solutions depending on the current temperature.
         if  probability > random.random():
@@ -104,6 +110,7 @@ def algorithm_simulated_annealing(chain, n_flips, N):
         else:
             fails += 1
 
+        # Lower temperature
         temp = temp * alpha
 
     return chain

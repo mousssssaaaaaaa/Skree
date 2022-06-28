@@ -12,6 +12,7 @@ def visualisation(chain):
 
     # get input
     input = chain.folds
+    print(input)
 
     # assign colours to each scatter point
     x, y, z = zip(*input)
