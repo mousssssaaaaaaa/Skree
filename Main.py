@@ -9,8 +9,7 @@ from code.algorithms import greedy_distance as gd
 from code.algorithms import greedy_gravity as gg
 from code.algorithms import hill_climber as hc
 
-def main():
-
+def main():    
     # Ask user for input chain
     print("Welcome to Protein Po(w)der, fill in the following variables to get solutions")
     aminocode = input("Chain: ").upper()
