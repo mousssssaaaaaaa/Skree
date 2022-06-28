@@ -32,7 +32,7 @@ def algorithm_hill_climber(chain, n_flips, N):
         # Flip parts of chain
         for _ in range(n_flips):
             # Choose a random point
-            
+
 
             # Check if not last chain point
             if random_point_index <= (len(chain.folds) -3):
@@ -85,15 +85,15 @@ def algorithm_hill_climber(chain, n_flips, N):
                 gravity_distance_new = d.distance(middle, gravity_value)
 
                 # V2: Check if point moves closer
-                if (gravity_distance_old > gravity_distance_new) and (tuple(middle) not in copy_chain.folds): 
+                if (gravity_distance_old > gravity_distance_new) and (tuple(middle) not in copy_chain.folds):
                     copy_chain.folds[random_point_index + 1] = tuple(middle)
 
                 # # Check if point in fold
                 # if tuple(middle) not in copy_chain.folds:
                 #     copy_chain.folds[random_point_index + 1] = tuple(middle)
 
-                # random_point = copy_chain.folds[random_point_index + 1]
-                # random_point_index += 1
+                random_point = copy_chain.folds[random_point_index + 1]
+                random_point_index += 1
 
         # Compare score to baseline
         if copy_chain.get_score() > baseline_score:

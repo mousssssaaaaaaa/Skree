@@ -10,7 +10,7 @@ class DepthFirst:
         """
         Returns all possibilities and their scores.
         Recursive.
-        """  
+        """
         #  build every possibilty and save with its score
         if state_depth != 0 :
             options = chain.get_options()
@@ -19,7 +19,7 @@ class DepthFirst:
             for coordinate in options:
                 chain.build(coordinate)
                 _ = self.search(chain, depth, state_depth-1, ways)	
-                
+
             # after building all in-between points, remove point
             chain.remove_last_point()
         else:
@@ -28,7 +28,7 @@ class DepthFirst:
 
             # after building last point, remove point
             chain.remove_last_point()
-            
+
         return ways
 
     def run(self):
@@ -38,7 +38,7 @@ class DepthFirst:
         while len(self.chain.folds) < len(self.chain.aminocode):
 
             # searh for all possible routes of depth 4
-            ways = self.search(deepcopy(self.chain), 4, 4, []) 
+            ways = self.search(deepcopy(self.chain), 4, 4, [])
             if ways == False:
                 self.chain.folds = [(0, 0, 0)]
 
@@ -53,6 +53,5 @@ class DepthFirst:
                         best_routes.append(way[1])
 
                 # take one of the best routes and add first point
-                next_point = random.choice(best_routes)[0] 
+                next_point = random.choice(best_routes)[0]
                 self.chain.build(next_point)
-
