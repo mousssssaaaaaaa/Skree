@@ -28,9 +28,6 @@ def distribution():
     # create list for scores
     score_list = []
 
-    # best chain to save
-    best_chain = ch.Chain('', 3)
-
     for runs in range(n):
 
         # build protein chain
@@ -38,16 +35,17 @@ def distribution():
         print(runs)
 
         # " ---------------------------------- Random -------------------------- "
-        # chain_result = rnd.algorithm_random(chain)
-        #
-        # score = int(chain_result.get_score())
-        # m = max(score_list or [0])
-        #
-        # if score > m:
-        #     best_chain = deepcopy(chain_result)
-        #
-        # score_list.append(score)
-        # plt.title("Random")
+        chain_result = rnd.algorithm_random(chain)
+        best_chain = chain_result
+
+        score = int(chain_result.get_score())
+        m = max(score_list or [0])
+        
+        if score > m:
+            best_chain = deepcopy(chain_result)
+        
+        score_list.append(score)
+        plt.title("Random")
 
         # " -------------------------------- Greedy Distance ------------------------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
@@ -103,16 +101,16 @@ def distribution():
         # plt.title("Hill Climber")
 
         " --------------------------------- Simulated Annealing --------------------------------------- "
-        chain_result = sa.algorithm_simulated_annealing(chain, 9, 100)
-        score = int(chain_result.get_score())
+        # chain_result = sa.algorithm_simulated_annealing(chain, 9, 100)
+        # score = int(chain_result.get_score())
         
-        m = max(score_list or [0])
+        # m = max(score_list or [0])
         
-        if score > m:
-            best_chain = deepcopy(chain_result)
+        # if score > m:
+        #     best_chain = deepcopy(chain_result)
 
-        score_list.append(score)
-        plt.title("Simulated Annealing!?")
+        # score_list.append(score)
+        # plt.title("Simulated Annealing!?")
 
     # np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
     # np.savetxt("results/scores_distance.csv"), score_list, delimiter =", ", fmt = '% s')
@@ -145,5 +143,7 @@ def distribution():
 
     # visualize protein chain
     vis.visualisation(best_chain)
+
+    print(best_chain.folds)
 
 distribution()
