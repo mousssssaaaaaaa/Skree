@@ -3,12 +3,13 @@ from code.algorithms import random as rnd
 from copy import deepcopy
 from code.classes import chain as ch
 from code.algorithms import greedy_gravity as gg
+from code.functions import distance as d
 from code.functions import gravity as g
 
 
 def algorithm_hill_climber(chain, n_flips, N):
     """
-    Hill climber algorithm that starts with Greedy Gravity
+    Hill climber algorithm that starts with random
     """
 
     # Run a random algoritm to get starting point
@@ -18,7 +19,6 @@ def algorithm_hill_climber(chain, n_flips, N):
     chain = greedy_gravity.chain
 
     baseline_score = chain.get_score()
-    #print('Baseline score: ', baseline_score, '\n')
     copy_chain = deepcopy(chain)
     fails = 0
 
@@ -32,17 +32,17 @@ def algorithm_hill_climber(chain, n_flips, N):
         # Flip parts of chain
         for _ in range(n_flips):
             # Choose a random point
-
+            
 
             # Check if not last chain point
-            if random_point_index <= (len(chain.folds) - n_flips):
+            if random_point_index <= (len(chain.folds) -3):
 
                 # Find next point
                 next_point = copy_chain.folds[random_point_index + 2]
-            
 
                 # Find middle point
                 middle = list(copy_chain.folds[random_point_index + 1])
+                middle_old = middle
 
                 dif_end_x = next_point[0] - random_point[0]
                 dif_end_y = next_point[1] - random_point[1]
@@ -77,18 +77,28 @@ def algorithm_hill_climber(chain, n_flips, N):
                         middle[dim1] = random_point[dim1] + differences_end[dim1]
                         middle[dim2] = random_point[dim2]
 
-                # Check if point in fold
-                if tuple(middle) not in copy_chain.folds:
+                # V2: calculate center of gravity for current protein
+                gravity_value = g.get_gravity(copy_chain.folds)
+
+                # V2: Calculate distance before and after flip
+                gravity_distance_old = d.distance(middle_old, gravity_value)
+                gravity_distance_new = d.distance(middle, gravity_value)
+
+                # V2: Check if point moves closer
+                if (gravity_distance_old > gravity_distance_new) and (tuple(middle) not in copy_chain.folds): 
                     copy_chain.folds[random_point_index + 1] = tuple(middle)
 
-                random_point = copy_chain.folds[random_point_index + 1]
-                random_point_index += 1
+                # # Check if point in fold
+                # if tuple(middle) not in copy_chain.folds:
+                #     copy_chain.folds[random_point_index + 1] = tuple(middle)
+
+                # random_point = copy_chain.folds[random_point_index + 1]
+                # random_point_index += 1
 
         # Compare score to baseline
         if copy_chain.get_score() > baseline_score:
             chain = deepcopy(copy_chain)
             baseline_score = chain.get_score()
-            #print('New score: ', baseline_score, '\n')
         else:
             fails += 1
 

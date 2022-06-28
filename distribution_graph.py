@@ -12,6 +12,7 @@ from code.algorithms import random as rnd
 from code.algorithms import greedy_distance as gd
 from code.algorithms import greedy_gravity as gg
 from code.algorithms import hill_climber as hc
+from code.algorithms import simulated_annealing as sa
 
 def distribution():
     if len(argv) != 3:
@@ -35,99 +36,73 @@ def distribution():
         # build protein chain
         chain = ch.Chain(aminocode)
 
-    #     " ---------------------------------- Random -------------------------- "
-    #     chain_result = rnd.algorithm_random(chain)
-    #
-    #     score = int(chain_result.get_score())
-    #
-    #     m = max(score_list)
-    #
-    #     if score > m:
-    #         best_chain = deepcopy(chain_result)
-    #
-    #     score_list.append(score)
-    #     plt.title("Random")
-    #
-    # np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
-
-        " ---------------------------------- Random ------------------------------------------- "
+        # " ---------------------------------- Random -------------------------- "
         # chain_result = rnd.algorithm_random(chain)
-
+        #
         # score = int(chain_result.get_score())
-
         # m = max(score_list or [0])
-
+        #
         # if score > m:
         #     best_chain = deepcopy(chain_result)
-
+        #
         # score_list.append(score)
         # plt.title("Random")
 
-        " --------------------------------- Depth First ---------------------------------------- "
-        # depth_first = df.DepthFirst(chain)
-        # depth_first.run()
-
-        # score = int(depth_first.chain.get_score())
-
-        # " --------------------------------- Depth First ---------------------- "
-        # depth_first = df.DepthFirst(chain)
-        # depth_first.run()
-
-        # score = int(depth_first.chain.get_score())
-
-        " -------------------------------- Greedy Distance ------------------------------------- "
+        # " -------------------------------- Greedy Distance ------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
         # greedy_distance.run()
-
+        #
         # score = int(greedy_distance.chain.get_score())
-
         # m = max(score_list)
-
-    #     if score > m:
-    #         best_chain = deepcopy(depth_first.chain)
-    #
-    #     score_list.append(score)
-    #     plt.title("Depth First")
-    #
-    # np.savetxt("results/scores_depth.csv", score_list, delimiter =", ", fmt ='% s')
-
-
-        # " -------------------------------- Greedy Distance ------------------- "
-    #     greedy_distance = gd.GreedyDistance(chain)
-    #     greedy_distance.run()
-    #
-    #     score = int(greedy_distance.chain.get_score())
-    #
-    #     m = max(score_list)
-    #
-    #     if score > m:
-    #         best_chain = deepcopy(greedy_distance.chain)
-    #
-    #     score_list.append(score)
-    #     plt.title("Greedy distance")
-    #
-    # np.savetxt("results/scores_distance.csv", score_list, delimiter =", ", fmt ='% s')
+        #
+        # if score > m:
+        #     best_chain = deepcopy(greedy_distance.chain)
+        #
+        # score_list.append(score)
+        # plt.title("Greedy Distance")
 
         # " --------------------------------- Greedy Gravity ------------------- "
-    #     greedy_gravity = gg.GreedyGravity(chain)
-    #     greedy_gravity.run()
-    #
-    #     score = int(greedy_gravity.chain.get_score())
-    #
-    #     m = max(score_list)
-    #
-    #     if score > m:
-    #         best_chain = deepcopy(greedy_gravity.chain)
-    #
-    #     score_list.append(score)
-    #     plt.title("Greedy Gravity")
-    #
-    # np.savetxt("results/scores_gravity.csv", score_list, delimiter =", ", fmt ='% s')
+        # greedy_gravity = gg.GreedyGravity(chain)
+        # greedy_gravity.run()
+        #
+        # score = int(greedy_gravity.chain.get_score())
+        #
+        # m = max(score_list)
+        #
+        # if score > m:
+        #     best_chain = deepcopy(greedy_gravity.chain)
+        #
+        # score_list.append(score)
+        # plt.title("Greedy Gravity")
 
+        # " --------------------------------- Depth First ---------------------------------------- "
+        # depth_first = df.DepthFirst(chain)
+        # depth_first.run()
+        #
+        # score = int(depth_first.chain.get_score())
+        # m = max(score_list or [0])
+        #
+        # if score > m:
+        #     best_chain = deepcopy(depth_first.chain)
+        #
+        # score_list.append(score)
+        # plt.title("Depth First")
 
-        " ---------------- Hill Climber ---------------"
-        chain_result = hc.algorithm_hill_climber(chain, 5, 100) 
-        plt.title("Hill Climber")
+        # " --------------------------------- Hill Climber --------------------------------------- "
+        # chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
+        # plt.title("Hill Climber")
+        #
+        # score = int(chain_result.get_score())
+        # m = max(score_list or [0])
+        #
+        # if score > m:
+        #     best_chain = deepcopy(chain_result)
+        #
+        # score_list.append(score)
+        # plt.title("Hill Climber")
+
+        " --------------------------------- Simulated Annealing --------------------------------------- "
+        chain_result = sa.algorithm_simulated_annealing(chain, 7, 1000)
         score = int(chain_result.get_score())
 
         m = max(score_list or [0])
@@ -136,21 +111,15 @@ def distribution():
             best_chain = deepcopy(chain_result)
 
         score_list.append(score)
+        plt.title("Simulated Annealing")
 
-        " --------------------------------- Greedy Gravity --------------------------------------- "
-        # greedy_gravity = gg.GreedyGravity(chain)
-        # greedy_gravity.run()
-
-        # score = int(greedy_gravity.chain.get_score())
-
-        # m = max(score_list or [0])
-
-        # if score > m:
-        #     best_chain = deepcopy(chain_result)
-        #
-        # score_list.append(score)
-
-    # "-----------------------TODO --------------------------------------------- "
+    # np.savetxt("results/scores_random.csv", score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_distance.csv"), score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_gravity.csv", score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_depth.csv", score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_hill_climber.csv", score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_hill_climber_gravity.csv", score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_simulated_annealing.csv", score_list, delimiter = ", ", fmt = '% s')
 
     highest_score = max(score_list)
     bins = np.arange(highest_score + 2) - 0.5
