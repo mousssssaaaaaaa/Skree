@@ -23,14 +23,17 @@ Aannames die zijn meegenomen:
 2. Vervolgens verschijnt er een prompt die vraagt om (1) aminozuursequentie; (2) keuze algoritme; (3) aantal iteraties; (4) gepresenteerd in 2D of 3D.
 3. Nadat de opties zijn ingevoerd, verschijnt er een pop-up met een interactieve figuur van het meest stabiele eiwit dat gevonden kan worden met de gekozen algoritme.
 4. De resultaten worden opgeslagen op een .csv in de folder '/results'.
+5. Met ``plot_all.py``
 
-#### Note: De resultaten hieronder zijn gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH in 3D-formaat.
+#### Note: De resultaten hieronder zijn gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH in 3D-formaat (3D50).
 
 ## Parameter tuning
 
 ## Algoritmes vergelijken
 
 ![plot](3D50_composite.png)
+
+In bovenstaand figuur zijn de normaalverdelingen weergegeven van het 3D50-eiwit op basis van de vijf algoritmes, waarbij elk algoritme met duizend iteraties werd toegepast. Op de x-as vind je de gevonden stabiliteitsscores en op de y-as de kansdichtheid van elke score.
 
 
 
