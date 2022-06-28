@@ -36,23 +36,27 @@ def distribution():
 
         # build protein chain
         chain = ch.Chain(aminocode, 3)
-        print(runs)
 
         # " ---------------------------------- Random -------------------------- "
-        chain_result = rnd.algorithm_random(chain)
+        # chain_result = rnd.algorithm_random(chain)
+        # best_chain = chain_result
         
-        score = int(chain_result.get_score())
-        m = max(score_list or [0])
+        # score = int(chain_result.get_score())
+        # m = max(score_list or [0])
         
-        if score > m:
-            best_chain = deepcopy(chain_result)
+        # if score > m:
+        #     best_chain = deepcopy(chain_result)
+        #     print(best_chain)
         
-        score_list.append(score)
-        plt.title("Random")
+        # score_list.append(score)
+        # print(score_list)
+        # plt.title("Random")
 
         # " -------------------------------- Greedy Distance ------------------------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
         # greedy_distance.run()
+        # chain_result = greedy_distance.chain
+        # best_chain = chain_result
         #
         # score = int(greedy_distance.chain.get_score())
         # m = max(score_list)
@@ -91,8 +95,9 @@ def distribution():
         # plt.title("Depth First")
 
         # " --------------------------------- Hill Climber --------------------------------------- "
-        # chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
-        # plt.title("Hill Climber")
+        # hillclimber = hc.HillClimber(chain, 5, 500)
+        # hillclimber.run()
+        # chain_result = hillclimber.chain
         
         # score = int(chain_result.get_score())
         # m = max(score_list or [0])
@@ -103,9 +108,22 @@ def distribution():
         # score_list.append(score)
         # plt.title("Hill Climber")
 
-        " --------------------------------- Simulated Annealing --------------------------------------- "
-        chain_result = sa.algorithm_simulated_annealing(chain, 7, 10)
+        " --------------------------------- Hill Climber Gravity --------------------------------------- "
+        chain_result = hcg.algorithm_hill_climber(chain, 7, 1000)
+        plt.title("Hill Climber Gravity")
+
         score = int(chain_result.get_score())
+        m = max(score_list or [0])
+
+        if score > m:
+            best_chain = deepcopy(chain_result)
+
+        score_list.append(score)
+        plt.title("Hill Climber")
+
+        " --------------------------------- Simulated Annealing --------------------------------------- "
+        # chain_result = sa.algorithm_simulated_annealing(chain, 7, 10)
+        # score = int(chain_result.get_score())
         
         # m = max(score_list or [0])
         
@@ -120,7 +138,7 @@ def distribution():
     # np.savetxt("results/scores_gravity.csv", score_list, delimiter =", ", fmt ='% s')
     # np.savetxt("results/scores_depth.csv", score_list, delimiter =", ", fmt ='% s')
     # np.savetxt("results/scores_hill_climber.csv", score_list, delimiter =", ", fmt ='% s')
-    np.savetxt("results/scores_simulated_annealing.csv", score_list, delimiter =", ", fmt ='% s')
+    # np.savetxt("results/scores_simulated_annealing.csv", score_list, delimiter =", ", fmt ='% s')
 
     highest_score = max(score_list)
     bins = np.arange(highest_score + 2) - 0.5
@@ -128,7 +146,6 @@ def distribution():
     # create histogram and assign elements separately
     n, bin, patch = plt.hist(score_list, density=True)
 
-    print(score_list)
 
     # print values on top of patch
     for bin_val in patch:

@@ -18,9 +18,6 @@ def algorithm_simulated_annealing(chain, n_flips, N):
     greedy_gravity.run()
     chain = greedy_gravity.chain
 
-    # visualize protein chain
-    vis.visualisation(chain)
-
     baseline_score = chain.get_score()
     copy_chain = deepcopy(chain)
     fails = 0
@@ -42,7 +39,7 @@ def algorithm_simulated_annealing(chain, n_flips, N):
         for _ in range(n_flips):
 
             # Check if not last chain point
-            if random_point_index <= (len(chain.folds) -3):
+            if random_point_index <= (len(chain.folds) -n_flips):
 
                 # Find next point
                 next_point = copy_chain.folds[random_point_index + 2]
@@ -92,11 +89,17 @@ def algorithm_simulated_annealing(chain, n_flips, N):
 
         # Set score to compare to baseline
         current_score = copy_chain.get_score() 
+        print(current_score)
 
-        if temp < 0.0005:
-            temp = 0.005
+        if temp < 0.09:
+            temp = 0.09
 
-        probability = 2 ** ((current_score - baseline_score)/ temp)
+        probability = 2 ** ((baseline_score - current_score)/ temp)
+        #print(baseline_score)
+        
+
+        if baseline_score - current_score == 0:
+            probability = temp
 
         # Accept if better or accept some bad solutions depending on the current temperature.
         if  probability > random.random():
@@ -104,11 +107,7 @@ def algorithm_simulated_annealing(chain, n_flips, N):
             baseline_score = chain.get_score()
         else:
             fails += 1
-        
-        # if current_score > baseline_score:
-        #  chain = deepcopy(copy_chain)
-        #  baseline_score = chain.get_score()
-        
+
         temp = temp * alpha
 
     return chain
