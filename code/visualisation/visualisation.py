@@ -49,4 +49,4 @@ def visualisation(chain):
     plt.savefig("results/scatter.png")
 
     # store interactive figure
-    pkl.dump(fig, open('results/latestFigObj.fig.pickle', 'wb'))
+    # pkl.dump(fig, open('results/latestFigObj.fig.pickle', 'wb'))

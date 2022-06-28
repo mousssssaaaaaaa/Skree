@@ -32,7 +32,7 @@ def algorithm_hill_climber(chain, n_flips, N):
         # Flip parts of chain
         for _ in range(n_flips):
             # Choose a random point
-
+            
 
             # Check if not last chain point
             if random_point_index <= (len(chain.folds) - n_flips):
@@ -88,7 +88,6 @@ def algorithm_hill_climber(chain, n_flips, N):
         if copy_chain.get_score() > baseline_score:
             chain = deepcopy(copy_chain)
             baseline_score = chain.get_score()
-            #print('New score: ', baseline_score, '\n')
         else:
             fails += 1
 

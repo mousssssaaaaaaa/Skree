@@ -9,17 +9,19 @@ from code.algorithms import greedy_distance as gd
 from code.algorithms import greedy_gravity as gg
 from code.algorithms import hill_climber as hc
 
-
-def main():
+def main():    
     # Ask user for input chain
     print("Welcome to Protein Po(w)der, fill in the following variables to get solutions")
-    aminocode = input("Chain: ")
+    aminocode = input("Chain: ").upper()
 
     # Ask for algorithm
     algoritm = int(input("Pick a number to choose an algoritm: (1) Random, (2) Depth First, (3) Greedy Distance, (4) Greedy Gravity, (5) Hill Climber \n"))
 
+    # Ask for amount of dimensions
+    dimensions = int(input("How many dimensions can the chain occupy (choose between 2 and 3)?\n"))
+
     # Build protein chain
-    chain = ch.Chain(aminocode)
+    chain = ch.Chain(aminocode, dimensions)
 
     # Perform choosen algoritm
     if algoritm == 1:

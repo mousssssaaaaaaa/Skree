@@ -1,16 +1,10 @@
-# import random
-# import math
-
-# als parent - child
-# from code.algorithms import algorithm_hill_climber as HillClimber
-
-# directe kopie
 import random
 from code.algorithms import random as rnd
 from copy import deepcopy
 from code.classes import chain as ch
 from code.algorithms import greedy_gravity as gg
 from code.functions import gravity as g
+from code.visualisation import visualisation as vis
 
 
 def algorithm_simulated_annealing(chain, n_flips, N):
@@ -24,25 +18,28 @@ def algorithm_simulated_annealing(chain, n_flips, N):
     greedy_gravity.run()
     chain = greedy_gravity.chain
 
+    # visualize protein chain
+    vis.visualisation(chain)
+
     baseline_score = chain.get_score()
     copy_chain = deepcopy(chain)
     fails = 0
 
-
     # V.SA: Introduce temperature and alpha
     temp = 1
-    alpha = 0.99
+    alpha = 0.95
 
     # Run until no improvements
     while fails < N:
 
         flips = 0
+
+        # Choose a random point
         random_point_index = random.randint(0,len(copy_chain.folds)-1)
         random_point = copy_chain.folds[random_point_index]
 
         # Flip parts of chain
         for _ in range(n_flips):
-            # Choose a random point
             
 
             # Check if not last chain point
@@ -53,7 +50,6 @@ def algorithm_simulated_annealing(chain, n_flips, N):
 
                 # Find middle point
                 middle = list(copy_chain.folds[random_point_index + 1])
-
 
                 dif_end_x = next_point[0] - random_point[0]
                 dif_end_y = next_point[1] - random_point[1]
@@ -95,18 +91,14 @@ def algorithm_simulated_annealing(chain, n_flips, N):
                 random_point = copy_chain.folds[random_point_index + 1]
                 random_point_index += 1
 
-        # Compare score to baseline
-        if copy_chain.get_score() > baseline_score:
-            chain = deepcopy(copy_chain)
-            baseline_score = chain.get_score()
-        else:
-            fails += 1
+        # Set score to compare to baseline
+        current_score = copy_chain.get_score() 
 
-        # Accept if better, accepts some bad solutions depending on the current temperature.
-        if copy_chain.get_score() > baseline_score:
+        # Accept if better or accept some bad solutions depending on the current temperature.
+        if current_score > baseline_score:
             chain = deepcopy(copy_chain)
             baseline_score = chain.get_score()
-        elif (2 ** (baseline_score - copy_chain.get_score())) > temp:
+        elif (2 ** (baseline_score - current_score)) < temp:
             chain = deepcopy(copy_chain)
             baseline_score = chain.get_score()
         else:

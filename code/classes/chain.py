@@ -2,12 +2,13 @@ class Chain():
     """
     The Chain class represents an aminoacid chain with aminocode.
     """
-    def __init__(self, aminocode):
+    def __init__(self, aminocode, dimensions):
         self.folds = [(0,0,0)]
         self.score = 0
         self.aminocode = aminocode
         self.hydrophobe = []
         self.cysteine = []
+        self.dimensions = dimensions
 
     def build(self, point):
         """
@@ -28,17 +29,30 @@ class Chain():
 
     def get_neighbours(self, point):
         """
-        Get all neighbouring points.
+        Get all neighbouring points depending on dimensions.
         """
-        x, y, z = point
-        top = (x, y + 1, z)
-        bottom = (x, y - 1, z)
-        left = (x - 1, y, z)
-        right = (x + 1, y, z)
-        up = (x, y, z + 1)
-        down = (x, y, z - 1)
+        
+        if self.dimensions == 3:
+            x, y, z = point
+            top = (x, y + 1, z)
+            bottom = (x, y - 1, z)
+            left = (x - 1, y, z)
+            right = (x + 1, y, z)
+            up = (x, y, z + 1)
+            down = (x, y, z - 1)
+            
+            return {top, bottom, left, right, up, down}
+        
+        else:
+            x, y, z = point
+            top = (x, y + 1, z)
+            bottom = (x, y - 1, z)
+            left = (x - 1, y, z)
+            right = (x + 1, y, z)
+            up = (x, y, z + 1)
+            down = (x, y, z - 1)
 
-        return {top, bottom, left, right, up, down}
+            return {top, bottom, left, right}
 
     def remove_last_point(self):
         """
