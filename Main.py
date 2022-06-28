@@ -9,39 +9,19 @@ from code.algorithms import greedy_distance as gd
 from code.algorithms import greedy_gravity as gg
 from code.algorithms import hill_climber as hc
 
-
-def main():
-
-<<<<<<< HEAD
-=======
-    # " ---------------------------------- Random ------------------------------------------- "
-    # chain_result = rnd.algorithm_random(chain)
-
-    # " --------------------------------- Depth First ---------------------------------------- "
-    # depth_first = df.DepthFirst(chain)
-    # depth_first.run()
-    # chain_result = depth_first.chain
-
-    # " -------------------------------- Greedy Distance ------------------------------------- "
-    # greedy_distance = gd.GreedyDistance(chain)
-    # greedy_distance.run()
-    # chain_result = greedy_distance.chain
-
-    # " --------------------------------- Greedy Gravity --------------------------------------- "
-    # greedy_gravity = gg.GreedyGravity(chain)
-    # greedy_gravity.run()
-    # chain_result = greedy_gravity.chain
-
->>>>>>> 421c5a9602d4d6b9aac9ec94c3f0b8a797154211
+def main():    
     # Ask user for input chain
     print("Welcome to Protein Po(w)der, fill in the following variables to get solutions")
-    aminocode = input("Chain: ")
+    aminocode = input("Chain: ").upper()
 
     # Ask for algorithm
     algoritm = int(input("Pick a number to choose an algoritm: (1) Random, (2) Depth First, (3) Greedy Distance, (4) Greedy Gravity, (5) Hill Climber \n"))
 
+    # Ask for amount of dimensions
+    dimensions = int(input("How many dimensions can the chain occupy (choose between 2 and 3)?\n"))
+
     # Build protein chain
-    chain = ch.Chain(aminocode)
+    chain = ch.Chain(aminocode, dimensions)
 
     # Perform choosen algoritm
     if algoritm == 1:
@@ -74,14 +54,6 @@ def main():
     vis.visualisation(chain_result)
 
     # store protein data into csv
-    out.outputwriter(chain_result.folds, aminocode, chain_result)
-
-    " ------------------ Hill Climber ------------------------------------- "
-    hill_climber = hc.algorithm_hill_climber(chain, 5, 100)
-    chain_result = greedy_gravity.chain_result
-
-    vis.visualisation(chain_result)
-
     out.outputwriter(chain_result.folds, aminocode, chain_result)
 
 if __name__ == "__main__":

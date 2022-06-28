@@ -30,12 +30,13 @@ def distribution():
     score_list = []
 
     # best chain to save
-    best_chain = ch.Chain('')
+    best_chain = ch.Chain('', 3)
 
     for runs in range(n):
 
         # build protein chain
-        chain = ch.Chain(aminocode)
+        chain = ch.Chain(aminocode, 3)
+        print(runs)
 
         " ---------------------------------- Random -------------------------- "
         chain_result = rnd.algorithm_random(chain)
@@ -49,7 +50,7 @@ def distribution():
         score_list.append(score)
         plt.title("Random")
 
-        # " -------------------------------- Greedy Distance ------------------- "
+        # " -------------------------------- Greedy Distance ------------------------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
         # greedy_distance.run()
         #
@@ -90,18 +91,18 @@ def distribution():
         # score_list.append(score)
         # plt.title("Depth First")
 
-        # " --------------------------------- Hill Climber --------------------------------------- "
-        # chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
-        # plt.title("Hill Climber")
-        #
-        # score = int(chain_result.get_score())
-        # m = max(score_list or [0])
-        #
-        # if score > m:
-        #     best_chain = deepcopy(chain_result)
-        #
-        # score_list.append(score)
-        # plt.title("Hill Climber")
+        " --------------------------------- Hill Climber --------------------------------------- "
+        chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
+        plt.title("Hill Climber")
+
+        score = int(chain_result.get_score())
+        m = max(score_list or [0])
+
+        if score > m:
+            best_chain = deepcopy(chain_result)
+
+        score_list.append(score)
+        plt.title("Hill Climber")
 
         # " --------------------------------- Hill Climber Gravity --------------------------------------- "
         # chain_result = hcg.algorithm_hill_climber(chain, 7, 1000)
@@ -132,7 +133,7 @@ def distribution():
     # np.savetxt("results/scores_distance.csv", score_list, delimiter = ", ", fmt = '% s')
     # np.savetxt("results/scores_gravity.csv", score_list, delimiter = ", ", fmt = '% s')
     # np.savetxt("results/scores_depth.csv", score_list, delimiter = ", ", fmt = '% s')
-    # np.savetxt("results/scores_hill_climber.csv", score_list, delimiter = ", ", fmt = '% s')
+    np.savetxt("results/scores_hill_climber.csv", score_list, delimiter = ", ", fmt = '% s')
     # np.savetxt("results/scores_hill_climber_gravity.csv", score_list, delimiter = ", ", fmt = '% s')
     # np.savetxt("results/scores_simulated_annealing.csv", score_list, delimiter = ", ", fmt = '% s')
 
@@ -141,6 +142,8 @@ def distribution():
 
     # create histogram and assign elements separately
     n, bin, patch = plt.hist(score_list, density=True)
+
+    print(score_list)
 
     # print values on top of patch
     for bin_val in patch:
@@ -152,11 +155,11 @@ def distribution():
     plt.ylabel("P")
     plt.xlabel("scores")
 
-    plt.show()
+    # plt.show()
 
     # save produced image
     plt.savefig("results/graph.png")
-    plt.close()
+    # plt.close()
 
     # visualize protein chain
     vis.visualisation(best_chain)

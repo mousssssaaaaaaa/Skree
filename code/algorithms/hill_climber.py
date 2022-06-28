@@ -12,12 +12,12 @@ def algorithm_hill_climber(chain, n_flips, N):
     """
 
     # Run a random algoritm to get starting point
-    # chain = rnd.algorithm_random(chain)
     greedy_gravity = gg.GreedyGravity(chain)
     greedy_gravity.run()
     chain = greedy_gravity.chain
 
     baseline_score = chain.get_score()
+    #print('Baseline score: ', baseline_score, '\n')
     copy_chain = deepcopy(chain)
     fails = 0
 
@@ -31,17 +31,16 @@ def algorithm_hill_climber(chain, n_flips, N):
         # Flip parts of chain
         for _ in range(n_flips):
             # Choose a random point
-
+            
 
             # Check if not last chain point
-            if random_point_index <= (len(chain.folds) -3):
+            if random_point_index <= (len(chain.folds) - n_flips):
 
                 # Find next point
                 next_point = copy_chain.folds[random_point_index + 2]
-
+            
                 # Find middle point
                 middle = list(copy_chain.folds[random_point_index + 1])
-
 
                 dif_end_x = next_point[0] - random_point[0]
                 dif_end_y = next_point[1] - random_point[1]
