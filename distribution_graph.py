@@ -92,18 +92,18 @@ def distribution():
         # " --------------------------------- Hill Climber --------------------------------------- "
         # chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
         # plt.title("Hill Climber")
-        #
+        
         # score = int(chain_result.get_score())
         # m = max(score_list or [0])
-        #
+        
         # if score > m:
         #     best_chain = deepcopy(chain_result)
-        #
+        
         # score_list.append(score)
         # plt.title("Hill Climber")
 
         " --------------------------------- Simulated Annealing --------------------------------------- "
-        chain_result = sa.algorithm_simulated_annealing(chain, 7, 1000)
+        chain_result = sa.algorithm_simulated_annealing(chain, 7, 10)
         score = int(chain_result.get_score())
         
         m = max(score_list or [0])
@@ -126,6 +126,8 @@ def distribution():
 
     # create histogram and assign elements separately
     n, bin, patch = plt.hist(score_list, density=True)
+
+    print(score_list)
 
     # print values on top of patch
     for bin_val in patch:
