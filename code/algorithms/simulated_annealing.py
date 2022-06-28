@@ -13,7 +13,6 @@ def algorithm_simulated_annealing(chain, n_flips, N):
     """
 
     # Run a random algoritm to get starting point
-    # chain = rnd.algorithm_random(chain)
     greedy_gravity = gg.GreedyGravity(chain)
     greedy_gravity.run()
     chain = greedy_gravity.chain
@@ -22,9 +21,9 @@ def algorithm_simulated_annealing(chain, n_flips, N):
     copy_chain = deepcopy(chain)
     fails = 0
 
-    # V.SA: Introduce temperature and alpha
+    # Introduce temperature and alpha
     temp = 1
-    alpha = 0.8
+    alpha = 0.85
 
     # Run until no improvements
     while fails < N:
@@ -107,7 +106,8 @@ def algorithm_simulated_annealing(chain, n_flips, N):
             baseline_score = chain.get_score()
         else:
             fails += 1
-
+        
+        # Lower temperature 
         temp = temp * alpha
 
     return chain

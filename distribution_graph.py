@@ -146,7 +146,10 @@ def distribution():
     # create histogram and assign elements separately
     n, bin, patch = plt.hist(score_list, density=True)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5aeed6cab2f90b7547cbe595c9a008cfa1e92a0b
     # print values on top of patch
     for bin_val in patch:
         x = (bin_val.xy[0] + (bin_val.xy[0] + bin_val._width))/2 - 0.25
