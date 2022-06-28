@@ -70,10 +70,10 @@ def distribution():
         # score = int(depth_first.chain.get_score())
 
         # " --------------------------------- Depth First ---------------------- "
-        depth_first = df.DepthFirst(chain)
-        depth_first.run()
+        # depth_first = df.DepthFirst(chain)
+        # depth_first.run()
 
-        score = int(depth_first.chain.get_score())
+        # score = int(depth_first.chain.get_score())
 
         " -------------------------------- Greedy Distance ------------------------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
@@ -125,18 +125,17 @@ def distribution():
     # np.savetxt("results/scores_gravity.csv", score_list, delimiter =", ", fmt ='% s')
 
 
-        # # " ---------------- Hill Climber ---------------"
-        # chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
-        # plt.title("Hill Climber")
-        # score = int(chain_result.get_score())
-        #
-        # m = max(score_list or [0])
-        #
-        # if score > m:
-        #     best_chain = deepcopy(greedy_distance.chain)
+        " ---------------- Hill Climber ---------------"
+        chain_result = hc.algorithm_hill_climber(chain, 5, 100) 
+        plt.title("Hill Climber")
+        score = int(chain_result.get_score())
 
-        # score_list.append(score)
-        # plt.title("Greedy distance")
+        m = max(score_list or [0])
+
+        if score > m:
+            best_chain = deepcopy(chain_result)
+
+        score_list.append(score)
 
         " --------------------------------- Greedy Gravity --------------------------------------- "
         # greedy_gravity = gg.GreedyGravity(chain)
@@ -169,7 +168,7 @@ def distribution():
     plt.ylabel("P")
     plt.xlabel("scores")
 
-    plt.show()
+    # plt.show()
 
     # save produced image
     plt.savefig("results/graph.png")

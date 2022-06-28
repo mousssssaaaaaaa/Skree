@@ -14,7 +14,7 @@ def main():
 
 
     # build protein chain
-    chain = ch.Chain(aminocode)
+    # chain = ch.Chain(aminocode)
 
 
     # " ---------------------------------- Random ------------------------------------------- "
@@ -34,7 +34,7 @@ def main():
     # greedy_gravity = gg.GreedyGravity(chain)
     # greedy_gravity.run()
     # chain_result = greedy_gravity.chain
-=======
+
     # Ask user for input chain
     print("Welcome to Protein Po(w)der, fill in the following variables to get solutions")
     aminocode = input("Chain: ")
@@ -70,7 +70,8 @@ def main():
     
     else: 
         #--------------------------------- Hill Climber -----------------------------------------
-        chain_result = hc.algorithm_hill_climber(chain, 7, 1000)    
+        chain_result = hc.algorithm_hill_climber(chain, 3, 100)    
+        print(chain_result.get_score())
 
     # visualize protein chain
     vis.visualisation(chain_result)
