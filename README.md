@@ -1,4 +1,4 @@
-# 
+# Programmertheorie (Heuristieken): Protein Pow(d)er
 
 
 ## Baseline
