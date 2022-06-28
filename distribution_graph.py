@@ -81,32 +81,32 @@ def distribution():
         # score_list.append(score)
         # plt.title("Greedy Gravity")
 
-        # " --------------------------------- Depth First ---------------------------------------- "
-        # print("Run:", runs)
-        # depth_first = df.DepthFirst(chain)
-        # depth_first.run()
-        #
-        # score = int(depth_first.chain.get_score())
-        # m = max(score_list or [0])
-        #
-        # if score > m:
-        #     best_chain = deepcopy(depth_first.chain)
-        #
-        # score_list.append(score)
-        # plt.title("Depth First")
+        " --------------------------------- Depth First ---------------------------------------- "
+        print("Run:", runs)
+        depth_first = df.DepthFirst(chain)
+        depth_first.run()
 
-        " --------------------------------- Hill Climber --------------------------------------- "
-        chain_result = hc.algorithm_hill_climber(chain, 7, 1000) # optional hill climber: chain_start
-        plt.title("Hill Climber")
-
-        score = int(chain_result.get_score())
+        score = int(depth_first.chain.get_score())
         m = max(score_list or [0])
 
         if score > m:
-            best_chain = deepcopy(chain_result)
+            best_chain = deepcopy(depth_first.chain)
 
         score_list.append(score)
-        plt.title("Hill Climber")
+        plt.title("Depth First")
+
+        # " --------------------------------- Hill Climber --------------------------------------- "
+        # chain_result = hc.algorithm_hill_climber(chain, 7, 1000) # optional hill climber: chain_start
+        # plt.title("Hill Climber")
+        #
+        # score = int(chain_result.get_score())
+        # m = max(score_list or [0])
+        #
+        # if score > m:
+        #     best_chain = deepcopy(chain_result)
+        #
+        # score_list.append(score)
+        # plt.title("Hill Climber")
 
         # " --------------------------------- Hill Climber Gravity --------------------------------------- "
         # chain_result, chain_start = hcg.algorithm_hill_climber(chain, 7, 1000)
@@ -136,8 +136,8 @@ def distribution():
     # np.savetxt("results/scores_random.csv", score_list, delimiter = ", ", fmt = '% s')
     # np.savetxt("results/scores_distance.csv", score_list, delimiter = ", ", fmt = '% s')
     # np.savetxt("results/scores_gravity.csv", score_list, delimiter = ", ", fmt = '% s')
-    # np.savetxt("results/scores_depth.csv", score_list, delimiter = ", ", fmt = '% s')
-    np.savetxt("results/scores_hill_climber.csv", score_list, delimiter = ", ", fmt = '% s')
+    np.savetxt("results/scores_depth.csv", score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_hill_climber.csv", score_list, delimiter = ", ", fmt = '% s')
     # np.savetxt("results/scores_hill_climber_gravity.csv", score_list, delimiter = ", ", fmt = '% s')
     # np.savetxt("results/scores_simulated_annealing.csv", score_list, delimiter = ", ", fmt = '% s')
 
