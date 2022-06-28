@@ -1,5 +1,4 @@
 # Programmertheorie (Heuristieken): Protein Pow(d)er
-<<<<<<< HEAD
 
 Teamleden: Nienke, Moussa, Jason
 
@@ -14,6 +13,10 @@ De volgende algoritmes werden toegepast:
 4. Depth First (constructief): Stabiliteitscore berekenen van verschillende mogelijke paden voordat een stuk van het eiwit wordt gebouwd
 5. Hill Climber (iteratief): Kleine aanpassingen maken die bijdragen aan de stabiliteit (op basis van Gravity-algoritme)
 
+Aannames die zijn meegenomen:
+- De aminozuursequenties zijn gebouwd op een grid met hoeken van 90 graden.
+- Alleen hydrofobe bindingen (H) bepalen de scores.
+
 ## Gebruiksinstructies
 
 1. In de terminal initieer je het programma vanaf de juiste directory met: python main.py
@@ -21,11 +24,14 @@ De volgende algoritmes werden toegepast:
 3. Nadat de opties zijn ingevoerd, verschijnt er een pop-up met een interactieve figuur van het meest stabiele eiwit dat gevonden kan worden met de gekozen algoritme.
 4. De resultaten worden opgeslagen op een .csv in de folder '/results'.
 
+#### Note: De resultaten hieronder zijn gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH in 3D-formaat.
+
 ## Parameter tuning
 
 ## Algoritmes vergelijken
-=======
->>>>>>> b2235b8272300024ed264e00bdc1ca6b4ae5787a
+
+![plot](./results/3D50_composite.png)
+
 
 
 ## Baseline
