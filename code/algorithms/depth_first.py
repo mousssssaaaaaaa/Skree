@@ -18,7 +18,7 @@ class DepthFirst:
                 return False
             for coordinate in options:
                 chain.build(coordinate)
-                _ = self.search(chain, depth, state_depth-1, ways)	
+                _ = self.search(chain, depth, state_depth-1, ways)
 
             # after building all in-between points, remove point
             chain.remove_last_point()

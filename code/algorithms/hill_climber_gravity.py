@@ -12,11 +12,10 @@ def algorithm_hill_climber(chain, n_flips, N):
     Hill climber algorithm that starts with random
     """
 
-    # Run a random algoritm to get starting point
-    # chain = rnd.algorithm_random(chain)
-    greedy_gravity = gg.GreedyGravity(chain)
-    greedy_gravity.run()
-    chain = greedy_gravity.chain
+    print("Initiate Hill Climber Gravity")
+    # Run a random algorithm to get starting point
+    chain = rnd.algorithm_random(chain)
+    chain_start = deepcopy(chain)
 
     baseline_score = chain.get_score()
     copy_chain = deepcopy(chain)
@@ -86,6 +85,7 @@ def algorithm_hill_climber(chain, n_flips, N):
 
                 # V2: Check if point moves closer
                 if (gravity_distance_old > gravity_distance_new) and (tuple(middle) not in copy_chain.folds):
+                    print("I can fold!")
                     copy_chain.folds[random_point_index + 1] = tuple(middle)
 
                 # # Check if point in fold
@@ -102,4 +102,4 @@ def algorithm_hill_climber(chain, n_flips, N):
         else:
             fails += 1
 
-    return chain
+    return chain, chain_start

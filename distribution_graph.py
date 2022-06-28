@@ -38,17 +38,17 @@ def distribution():
         chain = ch.Chain(aminocode, 3)
         print(runs)
 
-        " ---------------------------------- Random -------------------------- "
-        chain_result = rnd.algorithm_random(chain)
-
-        score = int(chain_result.get_score())
-        m = max(score_list or [0])
-
-        if score > m:
-            best_chain = deepcopy(chain_result)
-
-        score_list.append(score)
-        plt.title("Random")
+        # " ---------------------------------- Random -------------------------- "
+        # chain_result = rnd.algorithm_random(chain)
+        #
+        # score = int(chain_result.get_score())
+        # m = max(score_list or [0])
+        #
+        # if score > m:
+        #     best_chain = deepcopy(chain_result)
+        #
+        # score_list.append(score)
+        # plt.title("Random")
 
         # " -------------------------------- Greedy Distance ------------------------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
@@ -92,7 +92,7 @@ def distribution():
         # plt.title("Depth First")
 
         " --------------------------------- Hill Climber --------------------------------------- "
-        chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
+        chain_result = hc.algorithm_hill_climber(chain, 7, 1000) # optional hill climber: chain_start
         plt.title("Hill Climber")
 
         score = int(chain_result.get_score())
@@ -105,7 +105,7 @@ def distribution():
         plt.title("Hill Climber")
 
         # " --------------------------------- Hill Climber Gravity --------------------------------------- "
-        # chain_result = hcg.algorithm_hill_climber(chain, 7, 1000)
+        # chain_result, chain_start = hcg.algorithm_hill_climber(chain, 7, 1000)
         # plt.title("Hill Climber Gravity")
         #
         # score = int(chain_result.get_score())
@@ -155,13 +155,17 @@ def distribution():
     plt.ylabel("P")
     plt.xlabel("scores")
 
-    # plt.show()
+    plt.show()
 
     # save produced image
     plt.savefig("results/graph.png")
-    # plt.close()
+    plt.close()
+
+    # # visualize start before hill climber
+    # vis.visualisation(chain_start)
 
     # visualize protein chain
     vis.visualisation(best_chain)
+
 
 distribution()
