@@ -29,12 +29,13 @@ def distribution():
     score_list = []
 
     # best chain to save
-    best_chain = ch.Chain('')
+    best_chain = ch.Chain('', 3)
 
     for runs in range(n):
 
         # build protein chain
-        chain = ch.Chain(aminocode)
+        chain = ch.Chain(aminocode, 3)
+        print(runs)
 
         # " ---------------------------------- Random -------------------------- "
         # chain_result = rnd.algorithm_random(chain)
@@ -48,7 +49,7 @@ def distribution():
         # score_list.append(score)
         # plt.title("Random")
 
-        # " -------------------------------- Greedy Distance ------------------- "
+        # " -------------------------------- Greedy Distance ------------------------------------- "
         # greedy_distance = gd.GreedyDistance(chain)
         # greedy_distance.run()
         #
@@ -104,22 +105,21 @@ def distribution():
         " --------------------------------- Simulated Annealing --------------------------------------- "
         chain_result = sa.algorithm_simulated_annealing(chain, 7, 1000)
         score = int(chain_result.get_score())
-
+        
         m = max(score_list or [0])
-
+        
         if score > m:
             best_chain = deepcopy(chain_result)
 
         score_list.append(score)
-        plt.title("Simulated Annealing")
+        plt.title("Simulated Annealing??")
 
-    # np.savetxt("results/scores_random.csv", score_list, delimiter = ", ", fmt = '% s')
-    # np.savetxt("results/scores_distance.csv"), score_list, delimiter = ", ", fmt = '% s')
-    # np.savetxt("results/scores_gravity.csv", score_list, delimiter = ", ", fmt = '% s')
-    # np.savetxt("results/scores_depth.csv", score_list, delimiter = ", ", fmt = '% s')
-    # np.savetxt("results/scores_hill_climber.csv", score_list, delimiter = ", ", fmt = '% s')
-    # np.savetxt("results/scores_hill_climber_gravity.csv", score_list, delimiter = ", ", fmt = '% s')
-    # np.savetxt("results/scores_simulated_annealing.csv", score_list, delimiter = ", ", fmt = '% s')
+    # np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
+    # np.savetxt("results/scores_distance.csv"), score_list, delimiter =", ", fmt = '% s')
+    # np.savetxt("results/scores_gravity.csv", score_list, delimiter =", ", fmt ='% s')
+    # np.savetxt("results/scores_depth.csv", score_list, delimiter =", ", fmt ='% s')
+    # np.savetxt("results/scores_hill_climber.csv", score_list, delimiter =", ", fmt ='% s')
+    np.savetxt("results/scores_simulated_annealing.csv", score_list, delimiter =", ", fmt ='% s')
 
     highest_score = max(score_list)
     bins = np.arange(highest_score + 2) - 0.5
@@ -141,7 +141,7 @@ def distribution():
 
     # save produced image
     plt.savefig("results/graph.png")
-    plt.close()
+    # plt.close()
 
     # visualize protein chain
     vis.visualisation(best_chain)

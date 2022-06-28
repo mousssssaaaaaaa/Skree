@@ -31,7 +31,7 @@ def algorithm_hill_climber(chain, n_flips, N):
         # Flip parts of chain
         for _ in range(n_flips):
             # Choose a random point
-
+            
 
             # Check if not last chain point
             if random_point_index <= (len(chain.folds) -3):
