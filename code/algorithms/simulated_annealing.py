@@ -6,11 +6,21 @@ from code.algorithms import greedy_gravity as gg
 from code.functions import gravity as g
 from code.visualisation import visualisation as vis
 
+# Testing
+import numpy as np
+import matplotlib.pyplot as plt
+from code.functions import get_point_colors as gp
+import matplotlib.lines as mlines
+
 
 def algorithm_simulated_annealing(chain, n_flips, N):
     """
     Simulated Annealing algorithm that starts with Greedy Gravity
     """
+
+    # Testing
+    Prob_log = []
+
 
     # Run a random algoritm to get starting point
     greedy_gravity = gg.GreedyGravity(chain)
@@ -19,14 +29,15 @@ def algorithm_simulated_annealing(chain, n_flips, N):
 
     baseline_score = chain.get_score()
     copy_chain = deepcopy(chain)
-    fails = 0
+    iterations = 1
 
     # Introduce temperature and alpha
-    temp = 1
-    alpha = 0.85
+    tempO = 5
+    temp = tempO
+    # alpha = 0.995
 
     # Run until no improvements
-    while fails < N:
+    while iterations < N:
 
         flips = 0
 
@@ -90,22 +101,30 @@ def algorithm_simulated_annealing(chain, n_flips, N):
         current_score = copy_chain.get_score()
 
         # Put a lower bound on temperature
-        if temp < 0.09:
-            temp = 0.09
+        if temp < 0.01:
+            temp = 0.01
 
         # Set probability of accepting a solution
         probability = 2 ** ((current_score - baseline_score)/ temp)
-        if current_score == baseline_score:
-            probability = temp
+        print(probability)
+        Prob_log.append(probability)
+        # if current_score != baseline_score:        
+        #     Prob_log.append(temp)
 
         # Accept if better or accept some bad solutions depending on the current temperature.
-        if  probability > random.random():
+        if probability > random.random():
             chain = deepcopy(copy_chain)
             baseline_score = chain.get_score()
-        else:
-            fails += 1
-        
-        # Lower temperature 
-        temp = temp * alpha
+
+        # Lower temperature
+        # exp.
+        temp = tempO * (0.97 ** iterations)
+
+        iterations += 1
+
+    # plot of probability adjusment used
+    plt.plot(Prob_log)
+    plt.show()
+    plt.ylabel('probability')
 
     return chain

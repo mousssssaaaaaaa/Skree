@@ -29,4 +29,4 @@ def outputwriter(output, aminocode, chain_result):
     df['fold'] = directions
     df.loc[''] = ['score', int(chain_result)]
 
-    df.to_csv('results/output?.csv', index= False)
+    df.to_csv('results/output.csv', index= False)

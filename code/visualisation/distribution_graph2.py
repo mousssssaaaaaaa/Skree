@@ -133,6 +133,7 @@ def distribution2(aminocode, dimensions, algorithm, iterations):
 
     elif algorithm == 6:
         for runs in range(n):
+            print(runs)
 
             # Build protein chain
             chain = ch.Chain(aminocode, dimensions)
@@ -183,9 +184,7 @@ def distribution2(aminocode, dimensions, algorithm, iterations):
     plt.xlabel("scores")
 
     # Save produced image
-    # plt.show()
     plt.savefig("results/graph.png")
-    plt.close()
 
     # Visualize protein chain
     vis.visualisation(best_chain)
