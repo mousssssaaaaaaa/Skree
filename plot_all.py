@@ -17,7 +17,7 @@ plt.xlabel("scores")
 plt.ylabel("probability density")
 
 # set arguments
-kwargs = dict(histtype = 'step', density = True, alpha = 1.0, bins = 10)
+kwargs = dict(histtype = 'step', density = True, alpha = 1.0)
 
 # plot histograms of every applied algorithms with legend
 l0 = ax.hist(scores_random, label = 'random', **kwargs)
