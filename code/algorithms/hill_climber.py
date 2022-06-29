@@ -8,7 +8,7 @@ from code.functions import gravity as g
 
 class HillClimber:
     """
-    Hill climber algorithm that starts with Greedy Gravity
+    Hill climber algorithm that makes small changes to an aminoacid chain.
     """
     def __init__(self, chain, n_flips, upperbound_fails):
         self.chain = chain

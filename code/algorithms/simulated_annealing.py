@@ -22,11 +22,11 @@ def algorithm_simulated_annealing(chain, n_flips, N):
     fails = 0
 
     # Introduce temperature and alpha
-    temp = 1
-    alpha = 0.85
+    temp = 10
+    alpha = 0.04
 
     # Run until no improvements
-    while fails < N:
+    for fails in range(N):
 
         flips = 0
 
@@ -88,26 +88,25 @@ def algorithm_simulated_annealing(chain, n_flips, N):
 
         # Set score to compare to baseline
         current_score = copy_chain.get_score() 
-        print(current_score)
 
         if temp < 0.09:
             temp = 0.09
 
-        probability = 2 ** ((baseline_score - current_score)/ temp)
+        probability = 2 ** ((current_score - baseline_score)/ temp)
         #print(baseline_score)
         
-
-        if baseline_score - current_score == 0:
-            probability = temp
+        # if baseline_score - current_score == 0:
+        #     probability = temp
 
         # Accept if better or accept some bad solutions depending on the current temperature.
         if  probability > random.random():
             chain = deepcopy(copy_chain)
             baseline_score = chain.get_score()
-        else:
-            fails += 1
+      
+        # else:
+        #     fails += 1
         
         # Lower temperature 
-        temp = temp * alpha
+        temp = temp - alpha
 
     return chain

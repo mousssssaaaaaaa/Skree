@@ -109,29 +109,29 @@ def distribution():
         # plt.title("Hill Climber")
 
         " --------------------------------- Hill Climber Gravity --------------------------------------- "
-        chain_result = hcg.algorithm_hill_climber(chain, 7, 1000)
-        plt.title("Hill Climber Gravity")
+        # chain_result = hcg.algorithm_hill_climber(chain, 7, 1000)
+        # plt.title("Hill Climber Gravity")
 
-        score = int(chain_result.get_score())
-        m = max(score_list or [0])
-
-        if score > m:
-            best_chain = deepcopy(chain_result)
-
-        score_list.append(score)
-        plt.title("Hill Climber")
-
-        " --------------------------------- Simulated Annealing --------------------------------------- "
-        # chain_result = sa.algorithm_simulated_annealing(chain, 7, 10)
         # score = int(chain_result.get_score())
-        
         # m = max(score_list or [0])
-        
+
         # if score > m:
         #     best_chain = deepcopy(chain_result)
 
         # score_list.append(score)
-        # plt.title("Simulated Annealing??")
+        # plt.title("Hill Climber")
+
+        " --------------------------------- Simulated Annealing --------------------------------------- "
+        chain_result = sa.algorithm_simulated_annealing(chain, 4, 5000)
+        score = int(chain_result.get_score())
+        
+        m = max(score_list or [0])
+        
+        if score > m:
+            best_chain = deepcopy(chain_result)
+
+        score_list.append(score)
+        plt.title("Simulated Annealing??")
 
     # np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
     # np.savetxt("results/scores_distance.csv"), score_list, delimiter =", ", fmt = '% s')
@@ -146,10 +146,6 @@ def distribution():
     # create histogram and assign elements separately
     n, bin, patch = plt.hist(score_list, density=True)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 5aeed6cab2f90b7547cbe595c9a008cfa1e92a0b
     # print values on top of patch
     for bin_val in patch:
         x = (bin_val.xy[0] + (bin_val.xy[0] + bin_val._width))/2 - 0.25
