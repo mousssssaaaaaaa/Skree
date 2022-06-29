@@ -13,7 +13,7 @@ class GreedyGravity():
         """
         Returns point closest to center of gravity of chain.
         """
-        score = 100
+        old_distance = 100
 
         # calculate center of gravity for current protein
         gravity_value = g.get_gravity(self.chain.folds)
@@ -21,8 +21,10 @@ class GreedyGravity():
         # calculate distance (Pythagoras)
         for point in options:
             gravity_distance = d.distance(point, gravity_value)
-            if gravity_distance < score:
-                score = gravity_distance
+
+            # compare
+            if gravity_distance < old_distance:
+                old_distance = gravity_distance
                 best_point = point
         return best_point
 
@@ -33,7 +35,7 @@ class GreedyGravity():
         """
         while len(self.chain.folds) < len(self.chain.aminocode):
             options = self.chain.get_options()
-
+            print(options)
             if len(options) == 0:
                 self.chain.folds = [(0, 0, 0)]
 
@@ -42,5 +44,5 @@ class GreedyGravity():
                 best_point = random.choice(list(options))
             else:
                 best_point = self.closest_to_gravity(options)
-            
+
             self.chain.build(best_point)
