@@ -33,8 +33,6 @@ class SimulatedAnnealing(HillClimber):
         if current_score == self.baseline_score:
             probability = self.tempO - (self.tempO / self.total_iterations) * self.iterations
 
-        self.probability_L.append(probability)
-
         return probability
 
     def change_temperature(self, iterations):
@@ -88,4 +86,3 @@ class SimulatedAnnealing(HillClimber):
 
             self.change_temperature(self.iterations)
             self.iterations += 1
-            self.iterations_L.append(self.iterations)

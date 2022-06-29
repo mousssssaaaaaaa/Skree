@@ -1,4 +1,7 @@
 def get_point_colors(aminocode):
+    """
+    Assign color codes to each amino acid.
+    """
     colors = []
 
     for code in aminocode:
@@ -10,4 +13,4 @@ def get_point_colors(aminocode):
             color = 'yellow'
         colors.append(color)
 
-    return colors 
+    return colors
