@@ -193,7 +193,7 @@ def distribution(aminocode, dimensions, algorithm, iterations):
     # print values on top of patch at two decimals
     for bin_val in patch:
         x = (bin_val.xy[0] + (bin_val.xy[0] + bin_val._width))/2 - 0.25
-        y = bin_val._height + 0.005
+        y = bin_val._height + 0.002
         if bin_val._height != 0:
             plt.text(x, y, round(bin_val._height, 3), fontsize = 8)
 

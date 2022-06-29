@@ -20,12 +20,17 @@ plt.ylabel("probability density")
 kwargs = dict(histtype = 'step', density = True, alpha = 1.0)
 
 # plot histograms of every applied algorithms with legend
-l0 = ax.hist(scores_random, label = 'random', **kwargs)
-l1 = ax.hist(scores_depth, label = 'depth', **kwargs)
-l2 = ax.hist(scores_gravity, label = 'gravity', **kwargs)
-l3 = ax.hist(scores_distance, label = 'distance', **kwargs)
-l4 = ax.hist(scores_hill_climber, label = 'hill climber', **kwargs)
-ax.legend(loc='upper right')
+l0 = ax.hist(scores_random, label = 'random',
+            bins = np.arange(max(scores_random) + 1), **kwargs)
+l1 = ax.hist(scores_depth, label = 'depth',
+            bins = np.arange(max(scores_depth) + 1), **kwargs)
+l2 = ax.hist(scores_gravity, label = 'gravity',
+            bins =  np.arange(max(scores_gravity) + 1), **kwargs)
+l3 = ax.hist(scores_distance, label = 'distance',
+            bins =  np.arange(max(scores_distance) + 1), **kwargs)
+l4 = ax.hist(scores_hill_climber, label = 'hill climber',
+            bins = np.arange(max(scores_hill_climber)) + 1, **kwargs)
+ax.legend(loc = 'upper right')
 
 # store and present plot
 plt.savefig("results/hist_all.png")
