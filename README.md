@@ -55,7 +55,7 @@ Vergelijk met 2D50 en bespreek hoe dit de scores beinvloed.
 
 ### Algoritmes vergelijken
 
-![plot](3D50_composite.png)
+![plot](results/3D50_composite.png)
 
 **Figuur 1**. Stabiliteitsscore-distributies van de vijf algoritmes op 3D50
 
@@ -65,7 +65,7 @@ Zowel Distance als Gravity maken keuzes die op het moment het beste lijken te zi
 
 Als laatste werd Hill Climber toegepast op het 3D50-eiwit. Dit algoritme maakt kleine aanpassingen op een willekeurige begin state door eiwitvouwingen te flippen. Een nadeel is dat dit algoritme niet erg efficient is wanneer de begin state van het eiwit veel rechte stukken bevat, zoals bij Random. Om dat te voorkomen werd Gravity toegepast om begin states te creëren, die veel vouwingen produceert. Omdat Gravity het beginpunt is, wordt er verwacht dat deze versie van Hill Climber qua stabiliteit op z'n minst beter moet scoren dan Gravity. Figuur 1 toonde aan dat Hill Climber verbeterde ten opzichte van Greedy. Vergeleken met de andere algoritmes was Hill Climber het beste algoritme van onze selectie, met 21 als maximum en 15 optimum. Hoewel Greedy veel vouwingen bevat, de condensed eiwitstructuur zorgt er wel voor dat er weinig plek is om aminozuren te flippen binnen het eiwit, waardoor er minder condensed oplossingen worden overgeslagen.
 
-![plot](hill_climber_example.png)
+![plot](results/hill_climber_example.png)
 
 **Figuur 2**. Voorbeeld Hill Climber met Gravity als begin state (score = 7) en het resultaat van hetzelfde eiwit (score = 11). De rode cirkels benadrukken een selectie van de geflipte aanpassingen.  
 
