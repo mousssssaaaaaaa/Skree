@@ -12,7 +12,7 @@ In dit project wordt met behulp van een aantal algoritmes gekeken wat voor elk a
 Verdere uitwerking van aanpak algoritmes voor oplevering.
 
 De volgende algoritmes werden toegepast:
-1. Random:
+1. Random: Elk aminozuur wordt willekeurig geplaatst.
 2. Distance (constructief): Greedy op basis van het afstand tussen H-bindingen
 3. Gravity (constructief): Greedy op basis van het zwaartepunt
 4. Depth First (constructief): Stabiliteitscore berekenen van verschillende mogelijke paden voordat een stuk van het eiwit wordt gebouwd
@@ -26,7 +26,7 @@ Aannames die zijn meegenomen:
 ## Gebruiksinstructies
 
 1. In de terminal initieer je het programma vanaf de juiste directory met: ``python main.py``
-2. Vervolgens verschijnt er een prompt die vraagt om (1) aminozuursequentie; (2) keuze algoritme; (3) aantal iteraties; (4) gepresenteerd in 2D of 3D.
+2. Vervolgens verschijnt er een prompt die vraagt om (1) aminozuursequentie; (2) keuze algoritme; (3) vouwingen in 2D of 3D; (4) aantal iteraties; en (5) keuze interactieve plot.
 
 Voorbeelden van sequenties die je kunt invullen:
 

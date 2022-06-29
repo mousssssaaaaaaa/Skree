@@ -10,30 +10,29 @@ def visualisation(chain):
     Visualise aminoacid chain on a grid
     """
 
-    # get input
+    # Get input
     input = chain.folds
-    print(input)
 
-    # assign colours to each scatter point
+    # Assign colours to each scatter point
     x, y, z = zip(*input)
     point_color = gp.get_point_colors(chain.aminocode)
     colors = np.array(point_color)
 
-    # plot 3d graph with grid
+    # Plot 3d graph with grid
     fig = plt.figure()
     ax = fig.add_subplot(projection = '3d')
     ax.grid(True)
 
-    # plot amino acids
+    # Plot amino acids
     ax.scatter(x, y, z, c = colors)
 
-    # plot covalent bonds
+    # Plot covalent bonds
     ax.plot(x, y, z, c = 'gray')
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
 
-    # add descriptions in legend
+    # Add descriptions in legend
     blue_sq = mlines.Line2D([], [], color = 'blue', marker = 'o',
                             linestyle = 'None', markersize = 10,
                             label = 'Polair')
@@ -46,14 +45,45 @@ def visualisation(chain):
     score = "Score: " + str(int(chain.get_score()))
     ax.legend(handles = [blue_sq, red_sq, yellow_sq], title = score)
 
-    # show interactive figure
-    plt.show()
-
     # store static figure
     plt.savefig("results/scatter.png")
 
-    # terminate matplotlib plot
-    plt.close()
+def twisting_plot(chain):
+    """
+    Visualise aminoacid chain on a interactive grid
+    """
 
-    # store interactive figure
-    # pkl.dump(fig, open('results/latestFigObj.fig.pickle', 'wb'))
+    # Get input
+    input = chain.folds
+
+    # Assign colours to each scatter point
+    x, y, z = zip(*input)
+    point_color = gp.get_point_colors(chain.aminocode)
+    colors = np.array(point_color)
+
+    # Plot 3d graph with grid
+    fig = plt.figure()
+    ax = fig.add_subplot(projection = '3d')
+    ax.grid(True)
+
+    # Plot amino acids
+    ax.scatter(x, y, z, c = colors)
+
+    # Plot covalent bonds
+    ax.plot(x, y, z, c = 'gray')
+
+    # Add descriptions in legend
+    blue_sq = mlines.Line2D([], [], color = 'blue', marker = 'o',
+                            linestyle = 'None', markersize = 10,
+                            label = 'Polair')
+    red_sq = mlines.Line2D([], [], color = 'red', marker = 'o',
+                            linestyle = 'None', markersize = 10,
+                            label = 'Hydrofoob')
+    yellow_sq = mlines.Line2D([], [], color = 'yellow', marker = 'o',
+                            linestyle = 'None', markersize = 10,
+                            label = 'Cysteïne')
+    score = "Score: " + str(int(chain.get_score()))
+    ax.legend(handles = [blue_sq, red_sq, yellow_sq], title = score)
+
+    # Show interactive figure
+    plt.show()

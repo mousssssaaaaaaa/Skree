@@ -1,12 +1,12 @@
 import csv
 import pandas as pd 
 
-def outputwriter(output, aminocode, chain):
+def outputwriter(output, aminocode, chain_result):
     "Convert output to dataframe-csv" 
 
     directions = []
     
-    # compare every point on chain to find direction
+    # Compare every point on chain to find direction
     for point in output:
             index = output.index(point)
             if index == (len(output) - 1):
@@ -21,13 +21,12 @@ def outputwriter(output, aminocode, chain):
 
                 directions.append(direction)
 
-
-    # create empty dataframe
+    # Create empty dataframe
     df = pd.DataFrame()
     
-    # add results to dataframe/ csv 
-    df['amino'] = aminocode
+    # Add results to dataframe/ csv 
+    df['amino'] = list(aminocode)
     df['fold'] = directions
-    df.loc[''] = ['score', int(chain.get_score())]
+    df.loc[''] = ['score', int(chain_result)]
 
     df.to_csv('results/output.csv', index= False)
