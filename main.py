@@ -17,13 +17,16 @@ def main():
     aminocode = input("Chain: ").upper()
 
     # Ask for algorithm
-    algorithm = int(input("Pick a number to choose an algoritm: (1) Random, (2) Depth First, (3) Greedy Distance, (4) Greedy Gravity, (5) Hill Climber or (6) Simulated Annealing \n"))
+    print("Pick a number to choose an algorithm: (1) Random, (2) Depth First, (3) Greedy Distance, (4) Greedy Gravity, (5) Hill Climber or (6) Simulated Annealing\n")
+    algorithm = int(input("Algorithm: "))
 
     # Ask for amount of dimensions
-    dimensions = int(input("How many dimensions can the chain occupy (choose between 2 and 3)?\n"))
+    print("How many dimensions can the chain occupy? Choose either 2 and 3.\n")
+    dimensions = int(input("Dimensions: "))
 
     # Ask for iterations
-    iterations = int(input("How many iterations should the algoritm run?\n"))
+    print("How many iterations should the algorithm run?\n")
+    iterations = int(input("Iterations: "))
 
     # Use algoritm to create results
     best_chain, chain_result = his.distribution(aminocode, dimensions, algorithm, iterations)
@@ -32,7 +35,8 @@ def main():
     out.outputwriter(best_chain.folds, aminocode, chain_result)
 
     # Ask if user wants to see interactive plot
-    interactive = int(input("State if the interactive plot should be printed? (1) for yes and (0) for no \n"))
+    print("State if an interactive plot should be shown? (1) for yes, and (0) for no.\n")
+    interactive = int(input("Interactivity: "))
     if interactive == 1:
         dim.twisting_plot(best_chain)
 

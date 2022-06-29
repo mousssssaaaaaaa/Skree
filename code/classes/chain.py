@@ -31,7 +31,7 @@ class Chain():
         """
         Get all neighbouring points depending on dimensions.
         """
-        
+
         if self.dimensions == 3:
             x, y, z = point
             top = (x, y + 1, z)
@@ -40,9 +40,9 @@ class Chain():
             right = (x + 1, y, z)
             up = (x, y, z + 1)
             down = (x, y, z - 1)
-            
+
             return {top, bottom, left, right, up, down}
-        
+
         else:
             x, y, z = point
             top = (x, y + 1, z)
@@ -62,7 +62,7 @@ class Chain():
 
     def get_score(self):
         """
-        Calculate score of the current structure. 
+        Calculate score of the current structure.
         Neighbouring hydrophobic points that are not covalently connected equals 1 point.
         Neighbouring hydrophobic and cysteine points also equal 1 point.
         Neighbouring cysteine points equal 5 points.
@@ -99,7 +99,7 @@ class Chain():
         Get covalent connections from point.
         """
         index = self.folds.index(point)
-    
+
         if index == 0:
             return {self.folds[index + 1]}
         elif index == len(self.aminocode[0: len(self.folds)]) - 1:

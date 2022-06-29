@@ -70,6 +70,7 @@ Als laatste werd Hill Climber toegepast op het 3D50-eiwit. Dit algoritme maakt k
 
 ### Parameter tuning
 
-#### TODO:
+#### TODO:  
+Met 2D?
 Figuur Optimum Depth First 4, 6, 8, 10.
 Figuur Optimum Hill Climber: aantal flips - 5, 7, 10, 15.

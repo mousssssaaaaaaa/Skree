@@ -35,16 +35,16 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             # Build protein chain
             chain = ch.Chain(aminocode, dimensions)
 
-            # Run Random 
+            # Run Random
             chain_result = rnd.algorithm_random(chain)
             best_chain = chain_result
 
             score = int(chain_result.get_score())
             m = max(score_list or [0])
-            
+
             if score > m:
                 best_chain = deepcopy(chain_result)
-            
+
             score_list.append(score)
             plt.title("Random")
 
@@ -54,18 +54,18 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             # Build protein chain
             chain = ch.Chain(aminocode, dimensions)
 
-            # Run Depth First 
+            # Run Depth First
             depth_first = df.DepthFirst(chain)
             depth_first.run()
             chain_result = depth_first.chain
             best_chain = chain_result
-            
+
             score = int(depth_first.chain.get_score())
             m = max(score_list or [0])
-            
+
             if score > m:
                 best_chain = deepcopy(depth_first.chain)
-            
+
             score_list.append(score)
             plt.title("Depth First")
 
@@ -75,18 +75,17 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             # Build protein chain
             chain = ch.Chain(aminocode, dimensions)
 
-            # Run Greedy Distance 
+            # Run Greedy Distance
             greedy_distance = gd.GreedyDistance(chain)
             greedy_distance.run()
             chain_result = greedy_distance.chain
             best_chain = chain_result
-            
+
             score = int(greedy_distance.chain.get_score())
             m = max(score_list or [0])
-            
             if score > m:
                 best_chain = deepcopy(greedy_distance.chain)
-            
+
             score_list.append(score)
             plt.title("Greedy Distance")
 
@@ -95,20 +94,20 @@ def distribution(aminocode, dimensions, algorithm, iterations):
 
             # build protein chain
             chain = ch.Chain(aminocode, dimensions)
-      
-            # Run Greedy Gravity 
+
+            # Run Greedy Gravity
             greedy_gravity = gg.GreedyGravity(chain)
             greedy_gravity.run()
             chain_result = greedy_gravity.chain
             best_chain = chain_result
 
             score = int(greedy_gravity.chain.get_score())
-            
+
             m = max(score_list or [0])
-            
+
             if score > m:
                 best_chain = deepcopy(greedy_gravity.chain)
-            
+
             score_list.append(score)
             plt.title("Greedy Gravity")
 
@@ -121,18 +120,18 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             greedy_gravity.run()
             chain_complete = greedy_gravity.chain
 
-            # Run Hill Climber 
+            # Run Hill Climber
             hillclimber = hc.HillClimber(chain_complete, 5, 500)
             hillclimber.run()
             chain_result = hillclimber.chain
             best_chain = chain_result
-        
+
             score = int(chain_result.get_score())
             m = max(score_list or [0])
-            
+
             if score > m:
                 best_chain = deepcopy(chain_result)
-            
+
             score_list.append(score)
             plt.title("Hill Climber")
 
@@ -151,16 +150,16 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             chain_result = simana.chain
             score = int(chain_result.get_score())
             best_chain = chain_result
-            
+
             m = max(score_list or [0])
-            
+
             if score > m:
                 best_chain = deepcopy(chain_result)
 
             score_list.append(score)
             plt.title("Simulated Annealing")
 
-    # Save scores of every run 
+    # Save scores of every run
     if algorithm == 1:
         np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
     if algorithm == 2:
@@ -199,4 +198,3 @@ def distribution(aminocode, dimensions, algorithm, iterations):
     vis.visualisation(best_chain)
 
     return best_chain, highest_score
-

@@ -18,7 +18,10 @@ class DepthFirst:
                 return False
             for coordinate in options:
                 chain.build(coordinate)
-                _ = self.search(chain, depth, state_depth-1, ways)
+                returned_val = self.search(chain, depth, state_depth-1, ways)
+
+                if returned_val == False:
+                    return False
 
             # after building all in-between points, remove point
             chain.remove_last_point()
@@ -38,7 +41,7 @@ class DepthFirst:
         while len(self.chain.folds) < len(self.chain.aminocode):
 
             # searh for all possible routes of depth 4
-            ways = self.search(deepcopy(self.chain), 6, 6, [])
+            ways = self.search(deepcopy(self.chain), 4, 4, [])
             if ways == False:
                 self.chain.folds = [(0, 0, 0)]
 
