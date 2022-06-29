@@ -28,6 +28,9 @@ def visualisation(chain):
 
     # Plot covalent bonds
     ax.plot(x, y, z, c = 'gray')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
 
     # Add descriptions in legend
     blue_sq = mlines.Line2D([], [], color = 'blue', marker = 'o',
@@ -45,7 +48,7 @@ def visualisation(chain):
     # store static figure
     plt.savefig("results/scatter.png")
 
-def twisting_plot(chain): 
+def twisting_plot(chain):
     """
     Visualise aminoacid chain on a interactive grid
     """
@@ -84,4 +87,3 @@ def twisting_plot(chain):
 
     # Show interactive figure
     plt.show()
-
