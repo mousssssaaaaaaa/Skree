@@ -72,7 +72,7 @@ def twisting_plot(chain):
     # Plot covalent bonds
     ax.plot(x, y, z, c = 'gray')
 
-    # Add descriptions in legend
+    # Add descriptions  asin legend
     blue_sq = mlines.Line2D([], [], color = 'blue', marker = 'o',
                             linestyle = 'None', markersize = 10,
                             label = 'Polair')
