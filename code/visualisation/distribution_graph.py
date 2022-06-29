@@ -82,7 +82,7 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             best_chain = chain_result
             
             score = int(greedy_distance.chain.get_score())
-            m = max(score_list)
+            m = max(score_list or [0])
             
             if score > m:
                 best_chain = deepcopy(greedy_distance.chain)
@@ -104,7 +104,7 @@ def distribution(aminocode, dimensions, algorithm, iterations):
 
             score = int(greedy_gravity.chain.get_score())
             
-            m = max(score_list)
+            m = max(score_list or [0])
             
             if score > m:
                 best_chain = deepcopy(greedy_gravity.chain)

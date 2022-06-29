@@ -21,7 +21,6 @@ def algorithm_simulated_annealing(chain, n_flips, N):
     # Testing
     Prob_log = []
 
-
     # Run a random algoritm to get starting point
     greedy_gravity = gg.GreedyGravity(chain)
     greedy_gravity.run()
