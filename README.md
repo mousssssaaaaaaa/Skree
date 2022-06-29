@@ -1,6 +1,8 @@
 # Programmertheorie (Heuristieken): Protein Pow(d)er
 
 Teamleden: Nienke, Moussa, Jason
+Begeleiders: Mayla, Joos
+Opleveringsdatum: 29 juni 2022, 23:59
 
 ## Inleiding
 
@@ -8,15 +10,12 @@ Eiwitten zijn opgebouwd uit aminozuurketens die ieder hun eigen processen regule
 
 In dit project wordt met behulp van een aantal algoritmes gekeken wat voor elk aminozuursequentie het meest stabiel is.
 
-#### TODO:
-Verdere uitwerking van aanpak algoritmes voor oplevering.
-
 De volgende algoritmes werden toegepast:
-1. Random: Elk aminozuur wordt willekeurig geplaatst.
-2. Distance (constructief): Greedy op basis van het afstand tussen H-bindingen
-3. Gravity (constructief): Greedy op basis van het zwaartepunt
-4. Depth First (constructief): Stabiliteitscore berekenen van verschillende mogelijke paden voordat een stuk van het eiwit wordt gebouwd
-5. Hill Climber (iteratief): Kleine aanpassingen maken die bijdragen aan de stabiliteit (op basis van Gravity-algoritme). Hierbij worden twee aminozuren gepakt met ééntje ertussen. Wanneer het middelste aminozuur op een vouwing ligt, wordt deze 180 graden om de twee eerdergenoemde aminozuren
+1. **Random**: Elk aminozuur wordt willekeurig geplaatst op een locatie waar geen aminozuur staat.
+2. **Distance** (constructief): Greedy op basis van het afstand tussen H-bindingen. Wanneer het eerstvolgende aminozuur dat gelegd moet worden een H is, worden de afstanden tussen die H en andere Hs in de omgeving met elkaar vergeleken. De nabije H met de kortste afstand tot de neer te zetten H wordt dan als pad gekozen.
+3. **Gravity** (constructief): Greedy op basis van het zwaartepunt. Na elke stap wordt het zwaartepunt berekend en vergeleken met de mogelijke vouwingen die het volgende aminozuur kan leggen. De richting die het dichtstbij het zwaartepunt liggen, wordt gekozen als pad.
+4. **Depth First** (constructief): Stabiliteitscore berekenen van verschillende mogelijke paden, voordat er een stuk van het eiwit wordt gebouwd.
+5. **Hill Climber** (iteratief): Kleine aanpassingen maken die bijdragen aan de stabiliteit (op basis van Gravity-algoritme). Hierbij worden twee aminozuren gepakt met ééntje ertussen. Wanneer het middelste aminozuur op een vouwing ligt, wordt deze 180 graden om de twee eerdergenoemde aminozuren
 geflipt.
 
 Aannames die zijn meegenomen:
@@ -30,20 +29,20 @@ Aannames die zijn meegenomen:
 
 Voorbeelden van sequenties die je kunt invullen:
 
-**Zonder cysteine (C):**
+**Zonder cysteine (C): \n**
 HHPHHHPHPHHHPH
 HPHPPHHPHPPHPHHPPHPH
 PPPHHPPHHPPPPPHHHHHHHPPHHPPPPHHPPHPP
 HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH
 
-**Met cysteine (C):**
+**Met cysteine (C): \n**
 PPCHHPPCHPPPPCHHHHCHHPPHHPPPPHHPPHPP
 CPPCHPPCHPPCPPHHHHHHCCPCHPPCPCHPPHPC
 HCPHPCPHPCHCHPHPPPHPPPHPPPPHPCPHPPPHPHHHCCHCHCHCHH
 HCPHPHPHCHHHHPCCPPHPPPHPPPPCPPPHPPPHPHHHHCHPHPHPHH
 
 3. Nadat de opties zijn ingevoerd, verschijnt er een pop-up met een interactieve figuur van het meest stabiele eiwit dat gevonden kan worden met de gekozen algoritme. Een binding tussen H-H en C-H levert 1 punt op, terwijl C-C 5 punten oplevert.
-4. De stabiliteitsscores en figuur worden respectievelijk opgeslagen op een ``.csv``- en ``.png``-bestand in de folder ``/results``.
+4. De stabiliteitsscores en figuur worden respectievelijk opgeslagen op een ``.csv``- en ``.png``-bestand in de folder ``/results``. Hiernaast wordt ook een ``output.csv`` geproduceerd met de vouwrichting voor elk aminozuur.
 5. Wanneer alle vijf algoritmes zijn toegepast, kan er een histogram gemaakt worden met de resultaten over elkaar heen geplot. Dit wordt uitgevoerd met: ``python plot_all.py``.
 
 #### TODO:
@@ -51,11 +50,7 @@ Vergelijk met 2D50 en bespreek hoe dit de scores beinvloed.
 
 ## Resultaten
 
-Note: De resultaten hieronder zijn gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH in 3D-formaat (3D50).
-
-Z.s.m. oplossing vinden zonder dat het resultaten beinvloed, immers met probability density gewerkt.
-
-Twee output voor .csv (output.csv en scores_.csv)
+De resultaten hieronder waren gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH in 3D-formaat (3D50). Het aantal iteraties werd ingesteld op 1000, omdat de oplossingen op deze manier zo snel mogelijk kan worden geproduceerd zonder dat het de verdeling van de probability density significant beinvloed.
 
 ### Algoritmes vergelijken
 
