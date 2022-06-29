@@ -14,7 +14,7 @@ from code.algorithms import greedy_gravity as gg
 from code.algorithms import hill_climber as hc
 from code.algorithms import simulated_annealing as sa
 
-def distribution2(aminocode, dimensions, algorithm, iterations):
+def distribution(aminocode, dimensions, algorithm, iterations):
     """
     The distribution functions runs the algoritms for given amount of runs and collects the results.
     """
@@ -133,7 +133,6 @@ def distribution2(aminocode, dimensions, algorithm, iterations):
 
     elif algorithm == 6:
         for runs in range(n):
-            print(runs)
 
             # Build protein chain
             chain = ch.Chain(aminocode, dimensions)

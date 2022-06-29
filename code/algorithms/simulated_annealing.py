@@ -48,8 +48,11 @@ def algorithm_simulated_annealing(chain, n_flips, N):
         # Flip parts of chain
         for _ in range(n_flips):
 
+            # Choose a random point
+
+
             # Check if not last chain point
-            if random_point_index <= (len(chain.folds) -3):
+            if random_point_index <= (len(chain.folds) -n_flips):
 
                 # Find next point
                 next_point = copy_chain.folds[random_point_index + 2]
@@ -106,8 +109,8 @@ def algorithm_simulated_annealing(chain, n_flips, N):
 
         # Set probability of accepting a solution
         probability = 2 ** ((current_score - baseline_score)/ temp)
-        print(probability)
-        Prob_log.append(probability)
+        # print(probability)
+        # Prob_log.append(probability)
         # if current_score != baseline_score:        
         #     Prob_log.append(temp)
 
@@ -124,7 +127,6 @@ def algorithm_simulated_annealing(chain, n_flips, N):
 
     # plot of probability adjusment used
     plt.plot(Prob_log)
-    plt.show()
-    plt.ylabel('probability')
+    # plt.show()
 
     return chain

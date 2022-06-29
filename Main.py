@@ -8,7 +8,7 @@ from code.algorithms import random as rnd
 from code.algorithms import greedy_distance as gd
 from code.algorithms import greedy_gravity as gg
 from code.algorithms import hill_climber as hc
-from code.visualisation import distribution_graph2 as his
+from code.visualisation import distribution_graph as his
 from code.visualisation import visualisation as dim
 
 def main():    
@@ -26,7 +26,7 @@ def main():
     iterations = int(input("How many iterations should the algoritm run?\n"))
 
     # Use algoritm to create results
-    best_chain, chain_result = his.distribution2(aminocode, dimensions, algorithm, iterations)
+    best_chain, chain_result = his.distribution(aminocode, dimensions, algorithm, iterations)
     
     # Store protein data into csv for the best chain
     out.outputwriter(best_chain.folds, aminocode, chain_result)
@@ -35,6 +35,9 @@ def main():
     interactive = int(input("State if the interactive plot should be printed? (1) for yes and  (0) for no \n"))
     if interactive == 1:
         dim.twisting_plot(best_chain)
+    
+    # Print end statement
+    print("Program has ended, see the results folder for the results!")
 
 if __name__ == "__main__":
     main()
