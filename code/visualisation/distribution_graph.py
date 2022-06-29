@@ -28,7 +28,7 @@ def distribution(aminocode, dimensions, algorithm, iterations):
     # Best chain to save
     best_chain = ch.Chain('', dimensions)
 
-    # Perform choosen algoritm
+    # Perform chosen algoritm
     if algorithm == 1:
         for runs in range(n):
 

@@ -13,7 +13,8 @@ from code.visualisation import visualisation as dim
 def main():
 
     # Ask user for input chain
-    print("Welcome to Protein Po(w)der, fill in the following variables to get solutions")
+    print("Welcome to Protein Po(w)der, fill in the following variables to get solutions.")
+    print("Enter a chain combination, consisting of Cysteines (C), polar (P), and hydrophobic (H) amino acids.")
     aminocode = input("Chain: ").upper()
 
     # Ask for algorithm
@@ -29,7 +30,8 @@ def main():
     iterations = int(input("Iterations: "))
 
     # Use algoritm to create results
-    best_chain, chain_result = his.distribution(aminocode, dimensions, algorithm, iterations)
+    best_chain, chain_result = his.distribution(aminocode, dimensions, algorithm,
+                                                iterations)
 
     # Store protein data into csv for the best chain
     out.outputwriter(best_chain.folds, aminocode, chain_result)
