@@ -38,7 +38,7 @@ class DepthFirst:
         while len(self.chain.folds) < len(self.chain.aminocode):
 
             # searh for all possible routes of depth 4
-            ways = self.search(deepcopy(self.chain), 6, 6, [])
+            ways = self.search(deepcopy(self.chain), 4, 4, [])
             if ways == False:
                 self.chain.folds = [(0, 0, 0)]
 
