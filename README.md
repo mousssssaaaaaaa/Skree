@@ -12,7 +12,7 @@ In dit project wordt met behulp van een aantal algoritmes gekeken wat voor elk a
 Verdere uitwerking van aanpak algoritmes voor oplevering.
 
 De volgende algoritmes werden toegepast:
-1. Random
+1. Random:
 2. Distance (constructief): Greedy op basis van het afstand tussen H-bindingen
 3. Gravity (constructief): Greedy op basis van het zwaartepunt
 4. Depth First (constructief): Stabiliteitscore berekenen van verschillende mogelijke paden voordat een stuk van het eiwit wordt gebouwd
@@ -23,11 +23,26 @@ Aannames die zijn meegenomen:
 - De aminozuursequenties zijn gebouwd op een grid met hoeken van 90 graden.
 - Alleen hydrofobe bindingen (H) bepalen de scores.
 
-### Gebruiksinstructies
+## Gebruiksinstructies
 
 1. In de terminal initieer je het programma vanaf de juiste directory met: ``python main.py``
 2. Vervolgens verschijnt er een prompt die vraagt om (1) aminozuursequentie; (2) keuze algoritme; (3) aantal iteraties; (4) gepresenteerd in 2D of 3D.
-3. Nadat de opties zijn ingevoerd, verschijnt er een pop-up met een interactieve figuur van het meest stabiele eiwit dat gevonden kan worden met de gekozen algoritme.
+
+Voorbeelden van sequenties die je kunt invullen:
+
+Zonder cysteine (C):
+HHPHHHPHPHHHPH
+HPHPPHHPHPPHPHHPPHPH
+PPPHHPPHHPPPPPHHHHHHHPPHHPPPPHHPPHPP
+HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH
+
+Met cysteine (C):
+PPCHHPPCHPPPPCHHHHCHHPPHHPPPPHHPPHPP
+CPPCHPPCHPPCPPHHHHHHCCPCHPPCPCHPPHPC
+HCPHPCPHPCHCHPHPPPHPPPHPPPPHPCPHPPPHPHHHCCHCHCHCHH
+HCPHPHPHCHHHHPCCPPHPPPHPPPPCPPPHPPPHPHHHHCHPHPHPHH
+
+3. Nadat de opties zijn ingevoerd, verschijnt er een pop-up met een interactieve figuur van het meest stabiele eiwit dat gevonden kan worden met de gekozen algoritme. Een binding tussen H-H en C-H levert 1 punt op, terwijl C-C 5 punten oplevert.
 4. De stabiliteitsscores en figuur worden respectievelijk opgeslagen op een ``.csv``- en ``.png``-bestand in de folder ``/results``.
 5. Wanneer alle vijf algoritmes zijn toegepast, kan er een histogram gemaakt worden met de resultaten over elkaar heen geplot. Dit wordt uitgevoerd met: ``python plot_all.py``.
 
@@ -60,14 +75,14 @@ Als laatste werd Hill Climber toegepast op het 3D50-eiwit. Dit algoritme maakt k
 Figuur Optimum Depth First 4, 6, 8, 10.
 Figuur Optimum Hill Climber: aantal flips - 5, 7, 10, 15.
 
-### Baseline
+## Milestone 3: Baseline
 
-#### Ontwerp
+### Ontwerp
 Als baseline oplossing voor de casus Protein Pow(d)er hebben wij gebruik gemaakt van de random module van python. Het random algoritme maakt een willekeurige keuze voor het volgende punt van de ketting. De opties hiervoor zijn omhoog, omlaag, links, rechts, boven en onder (voor in 3d). Voordat het random aloritme een keuze maakt sluiten wij echter de opties uit waarbij de ketting overlapt. In bepaalde situaties zal de ketting hierdoor vastlopen doordat er geen opties beschikbaar zijn, in dit geval resetten wij het programma. In het onderstaande voorbeeld wordt een vastgelopen situatie weergeven waarbij de ketting een tunnel is ingelopen en daardoor geen mogelijke richtingen kan kiezen zonder in overlap te eindigen.
 
 ![Screenshot 2022-06-21 at 12 15 05](https://user-images.githubusercontent.com/65379947/174776196-fc20661c-c950-492a-bd8a-df68ce3e6f6e.png)
 
-#### Resultaat
+### Resultaat
 De onderstaande grafiek laat zien dat bij afspelen van 10.000 willekeurige oplossingen de score (hoeveelheid hydrofobe bindingen) normaal verdeeld is. De grafiek begint bij een score van nul waardoor de normaal verdeling alleen aan de rechterkant zichtbaar is. Het resetten van het programma na vastlopen heeft geen gevolgen op de verdeling van de score omdat de ongeldige resultaten worden vervangen door alternatieven met gelijke kansen als wanneeer het resetten niet was gebeurd. Wij hebben een algoritme getest waarbij de algoritme een stapje terugzet in plaats van gereset wordt met als gevolg dat de stapje terug -algoritme en reset-algoritme tot dezelfde verdeling komen. Het resetten van verkeerde oplossingen leidt echter tot een snellere uitwerking bij het afspelen van grote steekproeven.
 
 ![Screenshot 2022-06-21 at 12 50 53](https://user-images.githubusercontent.com/65379947/174782718-ec7e37cb-b2e1-4841-a8c8-ef7e6118f8da.png)

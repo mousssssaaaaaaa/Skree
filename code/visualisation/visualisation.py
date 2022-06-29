@@ -29,6 +29,9 @@ def visualisation(chain):
 
     # plot covalent bonds
     ax.plot(x, y, z, c = 'gray')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
 
     # add descriptions in legend
     blue_sq = mlines.Line2D([], [], color = 'blue', marker = 'o',
@@ -49,6 +52,7 @@ def visualisation(chain):
     # store static figure
     plt.savefig("results/scatter.png")
 
+    # terminate matplotlib plot
     plt.close()
 
     # store interactive figure
