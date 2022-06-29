@@ -1,7 +1,7 @@
 # Programmertheorie (Heuristieken): Protein Pow(d)er
 
-Teamleden: Nienke, Moussa, Jason
-Begeleiders: Mayla, Joos
+Teamleden: Nienke, Moussa, Jason  
+Begeleiders: Mayla, Joos  
 Opleveringsdatum: 29 juni 2022, 23:59
 
 ## Inleiding
