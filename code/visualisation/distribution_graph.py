@@ -32,37 +32,42 @@ def distribution(aminocode, dimensions, algorithm, iterations):
     if algorithm == 1:
         for runs in range(n):
 
-            # build protein chain
+            # Build protein chain
             chain = ch.Chain(aminocode, dimensions)
 
-            # bun Random
+            # Run Random
             chain_result = rnd.algorithm_random(chain)
+            # 
 
-            # obtain score of current iteration
+            # Obtain score of current iteration
             score = int(chain_result.get_score())
 
-            # store max score when condition passes
+            # Store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(chain_result)
 
             score_list.append(score)
+            
+        if max(score_list) == 0: 
+            best_chain = chain_result
 
     elif algorithm == 2:
         for runs in range(n):
 
-            # build protein chain
+            # Build protein chain
             chain = ch.Chain(aminocode, dimensions)
 
-            # run Depth First
+            # Run Depth First
             depth_first = df.DepthFirst(chain)
             depth_first.run()
             chain_result = depth_first.chain
+            best_chain = chain_result
 
-            # obtain score of current iteration
+            # Obtain score of current iteration
             score = int(depth_first.chain.get_score())
 
-            # store max score when condition passes
+            # Store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(depth_first.chain)
@@ -72,19 +77,19 @@ def distribution(aminocode, dimensions, algorithm, iterations):
     elif algorithm == 3:
         for runs in range(n):
 
-            # build protein chain
+            # Build protein chain
             chain = ch.Chain(aminocode, dimensions)
 
-            # run Greedy Distance
+            # Run Greedy Distance
             greedy_distance = gd.GreedyDistance(chain)
             greedy_distance.run()
             chain_result = greedy_distance.chain
-            # best_chain = chain_result
+            best_chain = chain_result
 
-            # obtain score of current iteration
+            # Obtain score of current iteration
             score = int(greedy_distance.chain.get_score())
 
-            # store max score when condition passes
+            # Store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(greedy_distance.chain)
@@ -94,19 +99,19 @@ def distribution(aminocode, dimensions, algorithm, iterations):
     elif algorithm == 4:
         for runs in range(n):
 
-            # build protein chain
+            # Build protein chain
             chain = ch.Chain(aminocode, dimensions)
 
             # Run Greedy Gravity
             greedy_gravity = gg.GreedyGravity(chain)
             greedy_gravity.run()
             chain_result = greedy_gravity.chain
-            # best_chain = chain_result
+            best_chain = chain_result
 
-            # obtain score of current iteration
+            # Obtain score of current iteration
             score = int(greedy_gravity.chain.get_score())
 
-            # store max score when condition passes
+            # Store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(greedy_gravity.chain)
@@ -116,7 +121,7 @@ def distribution(aminocode, dimensions, algorithm, iterations):
     elif algorithm == 5:
         for runs in range(n):
 
-            # build protein chain
+            # Build protein chain
             chain = ch.Chain(aminocode, dimensions)
             greedy_gravity = gg.GreedyGravity(chain)
             greedy_gravity.run()
@@ -126,12 +131,12 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             hillclimber = hc.HillClimber(chain_complete, 5, 500)
             hillclimber.run()
             chain_result = hillclimber.chain
-            # best_chain = chain_result
+            best_chain = chain_result
 
-            # obtain score of current iteration
+            # Obtain score of current iteration
             score = int(chain_result.get_score())
 
-            # store max score when condition passes
+            # Store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(chain_result)
@@ -151,19 +156,19 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             simana = sa.SimulatedAnnealing(chain_complete, 9, 1000, 10)
             simana.run()
             chain_result = simana.chain
-            # best_chain = chain_result
+            best_chain = chain_result
 
-            # obtain score of current iteration
+            # Obtain score of current iteration
             score = int(chain_result.get_score())
 
-            # store max score when condition passes
+            # Store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(chain_result)
 
             score_list.append(score)
 
-    # save scores of all iterations into a csv for additional plotting
+    # Save scores of all iterations into a csv for additional plotting
     if algorithm == 1:
         np.savetxt("results/scores_random.csv", score_list, delimiter =", ", fmt ='% s')
         plt.title("Random")
@@ -183,14 +188,14 @@ def distribution(aminocode, dimensions, algorithm, iterations):
         np.savetxt("results/scores_simulated_annealing.csv", score_list, delimiter =", ", fmt ='% s')
         plt.title("Simulated Annealing")
 
-    # save highest scores
+    # Save highest scores
     highest_score = max(score_list)
 
-    # create histogram and assign elements separately
+    # Create histogram and assign elements separately
     bins = np.arange(highest_score + 2) - 0.5
     n, bin, patch = plt.hist(score_list, density=True)
 
-    # print values on top of patch at two decimals
+    # Print values on top of patch at two decimals
     for bin_val in patch:
         x = (bin_val.xy[0] + (bin_val.xy[0] + bin_val._width))/2 - 0.25
         y = bin_val._height + 0.005

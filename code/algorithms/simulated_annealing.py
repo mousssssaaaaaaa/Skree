@@ -26,11 +26,14 @@ class SimulatedAnnealing(HillClimber):
         """
         Return probability of acceptance.
         """
+
         probability = 2 ** ((current_score - self.baseline_score)/ self.temperature)
 
-        # If scores stays the same reduce temperature manually
+        # If scores stays the same reduce probability with temperature function
         if current_score == self.baseline_score:
-            probability = 1 - (1/self.iterations)
+            probability = self.tempO - (self.tempO / self.total_iterations) * self.iterations
+        
+        self.probability_L.append(probability)
 
         return probability
 
@@ -39,7 +42,7 @@ class SimulatedAnnealing(HillClimber):
         Change the temperature.
         """
 
-        self.temperature = self.tempO - (self.tempO / self.iterations)
+        self.temperature = self.tempO - (self.tempO / self.total_iterations) * self.iterations
 
     def accept_or_fail(self):
         """
@@ -85,5 +88,4 @@ class SimulatedAnnealing(HillClimber):
 
             self.change_temperature(self.iterations)
             self.iterations += 1
-
-
+            self.iterations_L.append(self.iterations)
