@@ -1,8 +1,8 @@
 # Programmertheorie (Heuristieken): Protein Pow(d)er
 
-## Inleiding
-
 Teamleden: Nienke, Moussa, Jason
+
+## Inleiding
 
 Eiwitten zijn opgebouwd uit aminozuurketens die ieder hun eigen processen reguleren in het menselijk lichaam. De functie van zo'n eiwit is afhankelijk van de aminozuursequentie, en de vouwingen ten gevolge van de genoemde sequentie. Eiwitten die verkeerd gevouwen zijn, worden veelal gecorreleerd met verschillende ziektes en aandoeningen. Het is daarom van belang dat de medische wetenschapen een goed beeld hebben van hoe die vouwingen per eiwit tot stand komen. De vouwingen worden bepaald door een aantal eigenschappen en voor dit project wordt alleen gelet op hydrofobe interacties, waarbij het eiwit stabieler is wanneer twee hydrofobe (H) aminozuren naast elkaar liggen. Aminozuren met een polaire (P) eigenschap dragen niet bij aan de stabiliteitscore. Hoe meer H-bindingen naast elkaar, hoe stabieler het eiwit.
 
@@ -30,13 +30,13 @@ Aannames die zijn meegenomen:
 
 Voorbeelden van sequenties die je kunt invullen:
 
-Zonder cysteine (C):
+**Zonder cysteine (C):**
 HHPHHHPHPHHHPH
 HPHPPHHPHPPHPHHPPHPH
 PPPHHPPHHPPPPPHHHHHHHPPHHPPPPHHPPHPP
 HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH
 
-Met cysteine (C):
+**Met cysteine (C):**
 PPCHHPPCHPPPPCHHHHCHHPPHHPPPPHHPPHPP
 CPPCHPPCHPPCPPHHHHHHCCPCHPPCPCHPPHPC
 HCPHPCPHPCHCHPHPPPHPPPHPPPPHPCPHPPPHPHHHCCHCHCHCHH
@@ -46,12 +46,16 @@ HCPHPHPHCHHHHPCCPPHPPPHPPPPCPPPHPPPHPHHHHCHPHPHPHH
 4. De stabiliteitsscores en figuur worden respectievelijk opgeslagen op een ``.csv``- en ``.png``-bestand in de folder ``/results``.
 5. Wanneer alle vijf algoritmes zijn toegepast, kan er een histogram gemaakt worden met de resultaten over elkaar heen geplot. Dit wordt uitgevoerd met: ``python plot_all.py``.
 
-#### Note: De resultaten hieronder zijn gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH in 3D-formaat (3D50).
-
 #### TODO:
 Vergelijk met 2D50 en bespreek hoe dit de scores beinvloed.
 
 ## Resultaten
+
+Note: De resultaten hieronder zijn gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH in 3D-formaat (3D50).
+
+Z.s.m. oplossing vinden zonder dat het resultaten beinvloed, immers met probability density gewerkt.
+
+Twee output voor .csv (output.csv en scores_.csv)
 
 ### Algoritmes vergelijken
 
