@@ -17,7 +17,7 @@ De volgende algoritmes werden toegepast:
 4. **Depth First** (constructief): Stabiliteitscore berekenen van verschillende mogelijke paden, voordat er een stuk van het eiwit wordt gebouwd.
 5. **Hill Climber** (iteratief): Kleine aanpassingen maken die bijdragen aan de stabiliteit (op basis van Gravity-algoritme). Hierbij worden twee aminozuren gepakt met ééntje ertussen. Wanneer het middelste aminozuur op een vouwing ligt, wordt deze 180 graden om de twee eerdergenoemde aminozuren
 geflipt.
-6.  **Simulated Annealing** (iteratief): Maakt kleine aanpassingen zoals Hill climber, maar accepteert in de eerste iteraties van het algoritme ook aanpassingen die de stabiliteit verlagen. 
+6.  **Simulated Annealing** (iteratief): Maakt kleine aanpassingen zoals Hill climber, maar accepteert in de eerste iteraties van het algoritme ook aanpassingen die de stabiliteit verlagen.
 
 Aannames die zijn meegenomen:
 - De aminozuursequenties zijn gebouwd op een grid met hoeken van 90 graden.
@@ -55,7 +55,7 @@ De resultaten hieronder waren gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPH
 
 ### Algoritmes vergelijken
 
-![plot](results/3D50_composite.png)
+![plot](results/3D50_composit.png)
 
 **Figuur 1**. Stabiliteitsscore-distributies van de vijf algoritmes op 3D50
 
@@ -69,7 +69,7 @@ Vervolgens werd Hill Climber toegepast op het 3D50-eiwit. Dit algoritme maakt kl
 
 **Figuur 2**. Voorbeeld Hill Climber met Gravity als begin state (score = 7) en het resultaat van hetzelfde eiwit (score = 11). De rode cirkels benadrukken een selectie van de geflipte aanpassingen.  
 
-Tenslotte is geprobeerd om de score van Hill Climber te verbeteren met Simulated Annealing. Alhoewel de calibraties (met een hoge acceptatiekans in het begin en een lage aan het eind) lijkt te werken wordt de stabiliteit niet verbeterd. De onjuiste flips zijn waarschijnlijk niet genoeg gevarieerd om ervoor te zorgen dat Simulated Annealing tot een betere eindresultaat kan leiden. Simulated Annealing is hierom niet meegenomen in de resultaten. 
+Tenslotte is geprobeerd om de score van Hill Climber te verbeteren met Simulated Annealing. Alhoewel de calibraties (met een hoge acceptatiekans in het begin en een lage aan het eind) lijkt te werken wordt de stabiliteit niet verbeterd. De onjuiste flips zijn waarschijnlijk niet genoeg gevarieerd om ervoor te zorgen dat Simulated Annealing tot een betere eindresultaat kan leiden. Simulated Annealing is hierom niet meegenomen in de resultaten.
 
 ### Parameter tuning
 
