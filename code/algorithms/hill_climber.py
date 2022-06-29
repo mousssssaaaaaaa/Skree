@@ -25,6 +25,7 @@ class HillClimber:
         greedy_gravity = gg.GreedyGravity(self.chain)
         greedy_gravity.run()
         self.chain = deepcopy(greedy_gravity.chain)
+        # chain_start = greedy_gravity.chain
 
     def get_random_point(self):
         self.random_point_index = random.randint(0,len(self.copy_chain.folds)-1)
@@ -36,7 +37,7 @@ class HillClimber:
         """
         # Find next point
         next_point = self.copy_chain.folds[self.random_point_index + 2]
-    
+
 
         # Find middle point
         middle = list(self.copy_chain.folds[self.random_point_index + 1])
@@ -80,7 +81,7 @@ class HillClimber:
 
         # Set new random points
         self.random_point = self.copy_chain.folds[self.random_point_index + 1]
-        self.random_point_index += 1 
+        self.random_point_index += 1
 
     def run(self):
         """
