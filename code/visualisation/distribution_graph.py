@@ -37,16 +37,16 @@ def distribution(aminocode, dimensions, algorithm, iterations):
 
             # bun Random
             chain_result = rnd.algorithm_random(chain)
-            best_chain = chain_result
 
             # obtain score of current iteration
             score = int(chain_result.get_score())
-            score_list.append(score)
 
             # store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(chain_result)
+
+            score_list.append(score)
 
     elif algorithm == 2:
         for runs in range(n):
@@ -58,16 +58,16 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             depth_first = df.DepthFirst(chain)
             depth_first.run()
             chain_result = depth_first.chain
-            best_chain = chain_result
 
             # obtain score of current iteration
             score = int(depth_first.chain.get_score())
-            score_list.append(score)
 
             # store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(depth_first.chain)
+
+            score_list.append(score)
 
     elif algorithm == 3:
         for runs in range(n):
@@ -79,16 +79,17 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             greedy_distance = gd.GreedyDistance(chain)
             greedy_distance.run()
             chain_result = greedy_distance.chain
-            best_chain = chain_result
+            # best_chain = chain_result
 
             # obtain score of current iteration
             score = int(greedy_distance.chain.get_score())
-            score_list.append(score)
 
             # store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(greedy_distance.chain)
+
+            score_list.append(score)
 
     elif algorithm == 4:
         for runs in range(n):
@@ -100,16 +101,17 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             greedy_gravity = gg.GreedyGravity(chain)
             greedy_gravity.run()
             chain_result = greedy_gravity.chain
-            best_chain = chain_result
+            # best_chain = chain_result
 
             # obtain score of current iteration
             score = int(greedy_gravity.chain.get_score())
-            score_list.append(score)
 
             # store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(greedy_gravity.chain)
+
+            score_list.append(score)
 
     elif algorithm == 5:
         for runs in range(n):
@@ -124,17 +126,17 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             hillclimber = hc.HillClimber(chain_complete, 5, 500)
             hillclimber.run()
             chain_result = hillclimber.chain
-            best_chain = chain_result
+            # best_chain = chain_result
 
             # obtain score of current iteration
             score = int(chain_result.get_score())
-            score_list.append(score)
 
             # store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(chain_result)
 
+            score_list.append(score)
 
     elif algorithm == 6:
         for runs in range(n):
@@ -149,16 +151,17 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             simana = sa.SimulatedAnnealing(chain_complete, 9, 1000, 10)
             simana.run()
             chain_result = simana.chain
-            best_chain = chain_result
+            # best_chain = chain_result
 
             # obtain score of current iteration
             score = int(chain_result.get_score())
-            score_list.append(score)
 
             # store max score when condition passes
             m = max(score_list or [0])
             if score > m:
                 best_chain = deepcopy(chain_result)
+
+            score_list.append(score)
 
     # save scores of all iterations into a csv for additional plotting
     if algorithm == 1:
@@ -169,7 +172,7 @@ def distribution(aminocode, dimensions, algorithm, iterations):
         plt.title("Depth First")
     elif algorithm == 3:
         np.savetxt("results/scores_distance.csv", score_list, delimiter =", ", fmt = '% s')
-        title("Greedy Distance")
+        plt.title("Greedy Distance")
     elif algorithm == 4:
         np.savetxt("results/scores_gravity.csv", score_list, delimiter =", ", fmt ='% s')
         plt.title("Greedy Gravity")

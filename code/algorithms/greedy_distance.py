@@ -4,7 +4,7 @@ from copy import deepcopy
 
 class GreedyDistance:
     """
-    Build an aminoacid chain based on the distance to the nearest 'H'. Has favor for directions towards 'H' if it builds another 'H'. 
+    Build an aminoacid chain based on the distance to the nearest 'H'. Has favor for directions towards 'H' if it builds another 'H'.
     Does a random choice for building a 'P'.
     """
     def __init__(self, chain):
@@ -22,7 +22,7 @@ class GreedyDistance:
         # remove current point from hydrophobe list
         if self.chain.folds[-1] in self.chain.hydrophobe:
             list_H.remove(self.chain.folds[-1])
-        
+
         # check all options for best score
         self.index_to_check = len(self.chain.folds) - 1
         aminocode = self.chain.aminocode[self.index_to_check]
@@ -52,7 +52,7 @@ class GreedyDistance:
             self.chain.hydrophobe.append((0,0,0))
 
         while len(self.chain.folds) < len(self.chain.aminocode):
-            
+
             # get options
             options = self.chain.get_options()
             if len(options) == 0:
@@ -63,11 +63,9 @@ class GreedyDistance:
                     best_point = self.closest_to_H(options)
                 else:
                     best_point = random.choice(list(options))
-                    
+
                 # add to chain
                 self.chain.build(best_point)
 
                 # add if H to list of hydrophoc amino
                 self.add_hydrophobic(best_point)
-    
-    
