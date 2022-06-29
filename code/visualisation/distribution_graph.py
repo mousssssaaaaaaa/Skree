@@ -117,9 +117,14 @@ def distribution(aminocode, dimensions, algorithm, iterations):
 
             # build protein chain
             chain = ch.Chain(aminocode, dimensions)
+            greedy_gravity = gg.GreedyGravity(chain)
+            greedy_gravity.run()
+            chain_complete = greedy_gravity.chain
 
             # Run Hill Climber 
-            chain_result = hc.algorithm_hill_climber(chain, 7, 1000)
+            hillclimber = hc.HillClimber(chain_complete, 5, 500)
+            hillclimber.run()
+            chain_result = hillclimber.chain
             best_chain = chain_result
         
             score = int(chain_result.get_score())
@@ -136,9 +141,14 @@ def distribution(aminocode, dimensions, algorithm, iterations):
 
             # Build protein chain
             chain = ch.Chain(aminocode, dimensions)
+            greedy_gravity = gg.GreedyGravity(chain)
+            greedy_gravity.run()
+            chain_complete = greedy_gravity.chain
 
             # Run Simulated Annealing 
-            chain_result = sa.algorithm_simulated_annealing(chain, 9, 100)
+            simana = sa.SimulatedAnnealing(chain_complete, 9, 1000, 10)
+            simana.run()
+            chain_result = simana.chain
             score = int(chain_result.get_score())
             best_chain = chain_result
             

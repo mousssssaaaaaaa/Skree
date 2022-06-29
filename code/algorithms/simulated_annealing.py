@@ -5,127 +5,85 @@ from code.classes import chain as ch
 from code.algorithms import greedy_gravity as gg
 from code.functions import gravity as g
 from code.visualisation import visualisation as vis
+from .hill_climber import HillClimber
 
-# Testing
-import numpy as np
-import matplotlib.pyplot as plt
-from code.functions import get_point_colors as gp
-import matplotlib.lines as mlines
-
-
-def algorithm_simulated_annealing(chain, n_flips, N):
+class SimulatedAnnealing(HillClimber):
     """
-    Simulated Annealing algorithm that starts with Greedy Gravity
+    Make small changes to an aminoacid chain and accept the changes based on a slowly decreasing probability. 
+    It is allowed to accept changes that decrease the score.
     """
+    def __init__(self, chain, n_flips, total_iterations, temperature):
+        # Initialize Hill Climber
+        super().__init__(chain, n_flips, total_iterations)
 
-    # Testing
-    Prob_log = []
+        self.tempO = 6
+        self.total_iterations = total_iterations
+        self.temperature = temperature
+        self.probability = 0
+        self.iterations = 0
 
-    # Run a random algoritm to get starting point
-    greedy_gravity = gg.GreedyGravity(chain)
-    greedy_gravity.run()
-    chain = greedy_gravity.chain
+    def get_probability(self, current_score):
+        """
+        Return probability of acceptance.
+        """
+        probability = 2 ** ((current_score - self.baseline_score)/ self.temperature)
 
-    baseline_score = chain.get_score()
-    copy_chain = deepcopy(chain)
-    iterations = 1
+        # If scores stays the same reduce temperature manually
+        if current_score == self.baseline_score:
+            probability = 1 - (1/self.iterations)
 
-    # Introduce temperature and alpha
-    tempO = 5
-    temp = tempO
-    # alpha = 0.995
+        return probability
 
-    # Run until no improvements
-    while iterations < N:
+    def change_temperature(self, iterations):
+        """
+        Change the temperature.
+        """
 
-        flips = 0
+        self.temperature = self.tempO - (self.tempO / self.iterations)
 
-        # Choose a random point
-        random_point_index = random.randint(0,len(copy_chain.folds)-1)
-        random_point = copy_chain.folds[random_point_index]
+    def accept_or_fail(self):
+        """
+        Accept based on probability function.
+        """
+        current_score = self.copy_chain.get_score()
+        self.probability = self.get_probability(current_score)
 
-        # Flip parts of chain
-        for _ in range(n_flips):
+        if self.probability > random.random():
+            self.chain = deepcopy(self.copy_chain)
+            self.baseline_score = current_score
 
-            # Choose a random point
+    def run(self):
+        """
+        Run simulated annealing.
+        """
+        # Initiate copy to make small changes
+        self.copy_chain = deepcopy(self.chain)
+
+        # Introduce temperature
+        self.temperature = self.tempO
+
+        self.iterations = 1
+        while self.iterations < self.total_iterations:
+            super().get_random_point()
+
+            # Flip parts of chain of length n_flips if possible
+            for _ in range(self.n_flips):
+
+                # Check if not last chain point
+                if self.random_point_index <= (len(self.chain.folds) - self.n_flips):
+
+                    # Flip
+                    super().get_flip()
+                    super().flip()
+                    super().set_new_points()
+
+            # Set lowerbound
+            if self.temperature < 0.01:
+                self.temperature = 0.01
+
+            self.accept_or_fail()
+
+            self.change_temperature(self.iterations)
+            self.iterations += 1
 
 
-            # Check if not last chain point
-            if random_point_index <= (len(chain.folds) -n_flips):
-
-                # Find next point
-                next_point = copy_chain.folds[random_point_index + 2]
-
-                # Find middle point
-                middle = list(copy_chain.folds[random_point_index + 1])
-
-                dif_end_x = next_point[0] - random_point[0]
-                dif_end_y = next_point[1] - random_point[1]
-                dif_end_z = next_point[2] - random_point[2]
-
-                differences_end = (dif_end_x, dif_end_y, dif_end_z)
-
-                # check which dimension to ignore
-                if dif_end_x == 0:
-                    dim1 = 1
-                    dim2 = 2
-
-                elif dif_end_y == 0:
-                    dim1 = 0
-                    dim2 = 2
-
-                else:
-                    dim1 = 0
-                    dim2 = 1
-
-                # Check if not straight line (if only one coordinate)
-                if differences_end[dim1] != 0 and differences_end[dim2] != 0:
-
-                    # Calculate coordinates new point (invert change):
-
-                    dif_middle_dim1 = middle[dim1] - random_point[dim1]
-
-                    if dif_middle_dim1 == differences_end[dim1]:
-                        middle[dim1] = random_point[dim1]
-                        middle[dim2] = random_point[dim2] + differences_end[dim2]
-                    else:
-                        middle[dim1] = random_point[dim1] + differences_end[dim1]
-                        middle[dim2] = random_point[dim2]
-
-                # Check if point in fold
-                if tuple(middle) not in copy_chain.folds:
-                    copy_chain.folds[random_point_index + 1] = tuple(middle)
-
-                random_point = copy_chain.folds[random_point_index + 1]
-                random_point_index += 1
-
-        # Set score to compare to baseline
-        current_score = copy_chain.get_score()
-
-        # Put a lower bound on temperature
-        if temp < 0.01:
-            temp = 0.01
-
-        # Set probability of accepting a solution
-        probability = 2 ** ((current_score - baseline_score)/ temp)
-        # print(probability)
-        # Prob_log.append(probability)
-        # if current_score != baseline_score:        
-        #     Prob_log.append(temp)
-
-        # Accept if better or accept some bad solutions depending on the current temperature.
-        if probability > random.random():
-            chain = deepcopy(copy_chain)
-            baseline_score = chain.get_score()
-
-        # Lower temperature
-        # exp.
-        temp = tempO * (0.97 ** iterations)
-
-        iterations += 1
-
-    # plot of probability adjusment used
-    plt.plot(Prob_log)
-    # plt.show()
-
-    return chain
