@@ -52,6 +52,7 @@ class DepthFirst:
                         highscore = score
                         best_routes.append(way[1])
 
+                print(best_routes)
                 # take one of the best routes and add first point
                 next_point = random.choice(best_routes)[0]
                 self.chain.build(next_point)
