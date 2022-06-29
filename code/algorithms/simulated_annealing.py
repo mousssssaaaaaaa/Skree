@@ -9,7 +9,7 @@ from .hill_climber import HillClimber
 
 class SimulatedAnnealing(HillClimber):
     """
-    Make small changes to an aminoacid chain and accept the changes based on a slowly decreasing probability. 
+    Make small changes to an aminoacid chain and accept the changes based on a slowly decreasing probability.
     It is allowed to accept changes that decrease the score.
     """
     def __init__(self, chain, n_flips, total_iterations, temperature):
@@ -32,7 +32,7 @@ class SimulatedAnnealing(HillClimber):
         # If scores stays the same reduce probability with temperature function
         if current_score == self.baseline_score:
             probability = self.tempO - (self.tempO / self.total_iterations) * self.iterations
-        
+
         self.probability_L.append(probability)
 
         return probability

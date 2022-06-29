@@ -9,6 +9,7 @@ scores_distance = rs.read_scores('results/scores_distance.csv')
 scores_gravity = rs.read_scores('results/scores_gravity.csv')
 scores_depth = rs.read_scores('results/scores_depth.csv')
 scores_hill_climber = rs.read_scores('results/scores_hill_climber.csv')
+scores_simulated_annealing = rs.read_scores('results/scores_simulated_annealing.csv')
 
 # setup plot
 fig, ax = plt.subplots()
@@ -30,6 +31,8 @@ l3 = ax.hist(scores_distance, label = 'distance',
             bins =  np.arange(max(scores_distance) + 1), **kwargs)
 l4 = ax.hist(scores_hill_climber, label = 'hill climber',
             bins = np.arange(max(scores_hill_climber)) + 1, **kwargs)
+l5 = ax.hist(scores_simulated_annealing, label = 'simulated annealing',
+            bins = np.arange(max(scores_simulated_annealing)) + 1, **kwargs)
 ax.legend(loc = 'upper right')
 
 # store and present plot

@@ -14,9 +14,8 @@ De volgende algoritmes werden toegepast:
 1. **Random**: Elk aminozuur wordt willekeurig geplaatst op een locatie waar geen aminozuur staat.
 2. **Distance** (constructief): Greedy op basis van het afstand tussen H-bindingen. Wanneer het eerstvolgende aminozuur dat gelegd moet worden een H is, worden de afstanden tussen die H en andere Hs in de omgeving met elkaar vergeleken. De nabije H met de kortste afstand tot de neer te zetten H wordt dan als pad gekozen.
 3. **Gravity** (constructief): Greedy op basis van het zwaartepunt. Na elke stap wordt het zwaartepunt berekend en vergeleken met de mogelijke vouwingen die het volgende aminozuur kan leggen. De richting die het dichtstbij het zwaartepunt liggen, wordt gekozen als pad.
-4. **Depth First** (constructief): Stabiliteitscore berekenen van verschillende mogelijke paden, voordat er een stuk van het eiwit wordt gebouwd.
-5. **Hill Climber** (iteratief): Kleine aanpassingen maken die bijdragen aan de stabiliteit (op basis van Gravity-algoritme). Hierbij worden twee aminozuren gepakt met ééntje ertussen. Wanneer het middelste aminozuur op een vouwing ligt, wordt deze 180 graden om de twee eerdergenoemde aminozuren
-geflipt.
+4. **Depth First** (constructief): Stabiliteitscore berekenen van verschillende mogelijke paden, voordat er een stuk van het eiwit wordt gebouwd. De parameter voor diepte was ingesteld op 4.
+5. **Hill Climber** (iteratief): Kleine aanpassingen maken die bijdragen aan de stabiliteit (op basis van Gravity-algoritme). Hierbij worden twee aminozuren gepakt met ééntje ertussen. Wanneer het middelste aminozuur op een vouwing ligt, wordt deze 180 graden om de twee eerdergenoemde aminozuren geflipt. De parameters voor het aantal flips per evaluatie en maximum number of fails waren respectievelijk ingesteld op 5 en 500.
 6.  **Simulated Annealing** (iteratief): Maakt kleine aanpassingen zoals Hill climber, maar accepteert in de eerste iteraties van het algoritme ook aanpassingen die de stabiliteit verlagen.
 
 Aannames die zijn meegenomen:
@@ -46,9 +45,6 @@ HCPHPHPHCHHHHPCCPPHPPPHPPPPCPPPHPPPHPHHHHCHPHPHPHH
 4. De stabiliteitsscores en figuur worden respectievelijk opgeslagen op een ``.csv``- en ``.png``-bestand in de folder ``/results``. Hiernaast wordt ook een ``output.csv`` geproduceerd met de vouwrichting voor elk aminozuur.
 5. Wanneer alle vijf algoritmes zijn toegepast, kan er een histogram gemaakt worden met de resultaten over elkaar heen geplot. Dit wordt uitgevoerd met: ``python plot_all.py``.
 
-#### TODO:
-Vergelijk met 2D50 en bespreek hoe dit de scores beinvloed.
-
 ## Resultaten
 
 De resultaten hieronder waren gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPHPPPHPPPHPPPPHPPPHPPPHPHHHHPHPHPHPHH in 3D-formaat (3D50). Het aantal iteraties werd ingesteld op 1000, omdat de oplossingen op deze manier zo snel mogelijk kan worden geproduceerd zonder dat het de verdeling van de probability density significant beinvloed.
@@ -70,10 +66,3 @@ Vervolgens werd Hill Climber toegepast op het 3D50-eiwit. Dit algoritme maakt kl
 **Figuur 2**. Voorbeeld Hill Climber met Gravity als begin state (score = 7) en het resultaat van hetzelfde eiwit (score = 11). De rode cirkels benadrukken een selectie van de geflipte aanpassingen.  
 
 Tenslotte is geprobeerd om de score van Hill Climber te verbeteren met Simulated Annealing. Alhoewel de calibraties (met een hoge acceptatiekans in het begin en een lage aan het eind) lijkt te werken wordt de stabiliteit niet verbeterd. De onjuiste flips zijn waarschijnlijk niet genoeg gevarieerd om ervoor te zorgen dat Simulated Annealing tot een betere eindresultaat kan leiden. Simulated Annealing is hierom niet meegenomen in de resultaten.
-
-### Parameter tuning
-
-#### TODO:  
-Met 2D?
-Figuur Optimum Depth First 4, 6, 8, 10.
-Figuur Optimum Hill Climber: aantal flips - 5, 7, 10, 15.

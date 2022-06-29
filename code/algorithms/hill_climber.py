@@ -74,7 +74,7 @@ class HillClimber:
             else:
                 self.middle[dim1] = self.random_point[dim1] + differences_end[dim1]
                 self.middle[dim2] = self.random_point[dim2]
-      
+
     def flip(self):
         """
         Flip if point to flip to is not in chain. Do nothing otherwise.
