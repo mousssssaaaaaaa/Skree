@@ -187,14 +187,15 @@ def distribution(aminocode, dimensions, algorithm, iterations):
     highest_score = max(score_list)
 
     # create histogram and assign elements separately
-    bins = np.arange(highest_score + 2) - 0.5
-    n, bin, patch = plt.hist(score_list, density=True)
+    bins = np.arange(highest_score)
+    n, bin, patch = plt.hist(score_list, density = True, bins = bins)
 
     # print values on top of patch at two decimals
     for bin_val in patch:
         x = (bin_val.xy[0] + (bin_val.xy[0] + bin_val._width))/2 - 0.25
         y = bin_val._height + 0.005
-        plt.text(x, y, round(bin_val._height, 2))
+        if bin_val._height != 0:
+            plt.text(x, y, round(bin_val._height, 3))
 
     # Show labels
     plt.xticks(range(highest_score + 2))
