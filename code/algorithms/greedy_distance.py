@@ -3,7 +3,10 @@ from code.functions import distance_to_H as dh
 from copy import deepcopy
 
 class GreedyDistance:
-
+    """
+    Build an aminoacid chain based on the distance to the nearest 'H'. Has favor for directions towards 'H' if it builds another 'H'. 
+    Does a random choice for building a 'P'.
+    """
     def __init__(self, chain):
         self.chain = deepcopy(chain)
         self.index_to_check = 0
