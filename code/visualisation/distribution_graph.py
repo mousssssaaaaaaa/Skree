@@ -187,11 +187,11 @@ def distribution(aminocode, dimensions, algorithm, iterations):
     bins = np.arange(highest_score + 2) - 0.5
     n, bin, patch = plt.hist(score_list, density=True)
 
-    # print values on top of patch
+    # print values on top of patch at two decimals
     for bin_val in patch:
         x = (bin_val.xy[0] + (bin_val.xy[0] + bin_val._width))/2 - 0.25
         y = bin_val._height + 0.005
-        plt.text(x, y, bin_val._height)
+        plt.text(x, y, round(bin_val._height, 2))
 
     # Show labels
     plt.xticks(range(highest_score + 2))

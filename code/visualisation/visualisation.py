@@ -73,7 +73,7 @@ def twisting_plot(chain):
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
 
-    # Add descriptions  asin legend
+    # add descriptions in legend
     blue_sq = mlines.Line2D([], [], color = 'blue', marker = 'o',
                             linestyle = 'None', markersize = 10,
                             label = 'Polair')

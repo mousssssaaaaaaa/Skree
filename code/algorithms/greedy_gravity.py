@@ -35,7 +35,6 @@ class GreedyGravity():
         """
         while len(self.chain.folds) < len(self.chain.aminocode):
             options = self.chain.get_options()
-            print(options)
             if len(options) == 0:
                 self.chain.folds = [(0, 0, 0)]
 
