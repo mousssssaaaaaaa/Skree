@@ -79,7 +79,6 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             greedy_distance = gd.GreedyDistance(chain)
             greedy_distance.run()
             chain_result = greedy_distance.chain
-            # best_chain = chain_result
 
             # obtain score of current iteration
             score = int(greedy_distance.chain.get_score())
@@ -101,7 +100,6 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             greedy_gravity = gg.GreedyGravity(chain)
             greedy_gravity.run()
             chain_result = greedy_gravity.chain
-            # best_chain = chain_result
 
             # obtain score of current iteration
             score = int(greedy_gravity.chain.get_score())
@@ -126,7 +124,6 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             hillclimber = hc.HillClimber(chain_complete, 5, 500)
             hillclimber.run()
             chain_result = hillclimber.chain
-            # best_chain = chain_result
 
             # obtain score of current iteration
             score = int(chain_result.get_score())
@@ -151,7 +148,6 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             simana = sa.SimulatedAnnealing(chain_complete, 9, 1000, 10)
             simana.run()
             chain_result = simana.chain
-            # best_chain = chain_result
 
             # obtain score of current iteration
             score = int(chain_result.get_score())
@@ -182,6 +178,10 @@ def distribution(aminocode, dimensions, algorithm, iterations):
     elif algorithm == 6:
         np.savetxt("results/scores_simulated_annealing.csv", score_list, delimiter =", ", fmt ='% s')
         plt.title("Simulated Annealing")
+
+    # take last result for visualisation when score did not improve
+    if max(score_list) == 0:
+        best_chain = chain_result
 
     # save highest scores
     highest_score = max(score_list)
