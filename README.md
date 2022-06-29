@@ -55,7 +55,7 @@ De resultaten hieronder waren gebaseerd op de aminozuursequentie HHPHPHPHPHHHHPH
 
 ### Algoritmes vergelijken
 
-![plot](results/3D50_composit.png)
+![plot](results/3D50_composite.png)
 
 **Figuur 1**. Stabiliteitsscore-distributies van de vijf algoritmes op 3D50
 
