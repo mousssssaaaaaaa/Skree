@@ -83,7 +83,6 @@ def distribution(aminocode, dimensions, algorithm, iterations):
 
             score = int(greedy_distance.chain.get_score())
             m = max(score_list or [0])
-
             if score > m:
                 best_chain = deepcopy(greedy_distance.chain)
 
@@ -145,8 +144,8 @@ def distribution(aminocode, dimensions, algorithm, iterations):
             greedy_gravity.run()
             chain_complete = greedy_gravity.chain
 
-            # Run Simulated Annealing
-            simana = sa.SimulatedAnnealing(chain_complete, 9, 100, 10)
+            # Run Simulated Annealing 
+            simana = sa.SimulatedAnnealing(chain_complete, 9, 1000, 10)
             simana.run()
             chain_result = simana.chain
             score = int(chain_result.get_score())

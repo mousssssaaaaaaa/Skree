@@ -7,13 +7,6 @@ from code.functions import gravity as g
 from code.visualisation import visualisation as vis
 from .hill_climber import HillClimber
 
-# Testing
-import numpy as np
-import matplotlib.pyplot as plt
-from code.functions import get_point_colors as gp
-import matplotlib.lines as mlines
-
-
 class SimulatedAnnealing(HillClimber):
     """
     Make small changes to an aminoacid chain and accept the changes based on a slowly decreasing probability. 
@@ -23,27 +16,30 @@ class SimulatedAnnealing(HillClimber):
         # Initialize Hill Climber
         super().__init__(chain, n_flips, total_iterations)
 
-        self.tempO = 5
+        self.tempO = 6
         self.total_iterations = total_iterations
         self.temperature = temperature
-        self.prob_log = []
         self.probability = 0
+        self.iterations = 0
 
     def get_probability(self, current_score):
         """
         Return probability of acceptance.
         """
-        return 2 ** ((current_score - self.baseline_score)/ self.temperature)
+        probability = 2 ** ((current_score - self.baseline_score)/ self.temperature)
+
+        # If scores stays the same reduce temperature manually
+        if current_score == self.baseline_score:
+            probability = 1 - (1/self.iterations)
+
+        return probability
 
     def change_temperature(self, iterations):
         """
         Change the temperature.
         """
-        # Exponential
-        self.temperature = self.tempO * (0.97 ** iterations)
 
-        # Linear
-        # self.temperature = self.tempO - (self.tempO / self.total_iterations)*iterations
+        self.temperature = self.tempO - (self.tempO / self.iterations)
 
     def accept_or_fail(self):
         """
@@ -51,10 +47,6 @@ class SimulatedAnnealing(HillClimber):
         """
         current_score = self.copy_chain.get_score()
         self.probability = self.get_probability(current_score)
-
-        self.prob_log.append(self.probability)
-        # if current_score != self.baseline_score:        
-        #     self.prob_log.append(self.temperature)
 
         if self.probability > random.random():
             self.chain = deepcopy(self.copy_chain)
@@ -70,8 +62,8 @@ class SimulatedAnnealing(HillClimber):
         # Introduce temperature
         self.temperature = self.tempO
 
-        iterations = 1
-        while iterations < self.total_iterations:
+        self.iterations = 1
+        while self.iterations < self.total_iterations:
             super().get_random_point()
 
             # Flip parts of chain of length n_flips if possible
@@ -91,5 +83,7 @@ class SimulatedAnnealing(HillClimber):
 
             self.accept_or_fail()
 
-            self.change_temperature(iterations)
-            iterations += 1
+            self.change_temperature(self.iterations)
+            self.iterations += 1
+
+

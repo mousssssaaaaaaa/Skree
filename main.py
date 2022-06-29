@@ -11,6 +11,7 @@ from code.visualisation import distribution_graph as his
 from code.visualisation import visualisation as dim
 
 def main():
+
     # Ask user for input chain
     print("Welcome to Protein Po(w)der, fill in the following variables to get solutions")
     aminocode = input("Chain: ").upper()
