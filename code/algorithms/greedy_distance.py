@@ -45,7 +45,8 @@ class GreedyDistance:
 
     def run(self):
         """
-        Greedy based on best choice. Optimal choice is direction in which an 'H' is closest.
+        Greedy based on best choice. Optimal choice is direction
+        in which an 'H' is closest.
         """
         # check if first aminocode is H and add
         if self.chain.aminocode[0] == 'H':
@@ -53,12 +54,15 @@ class GreedyDistance:
 
         while len(self.chain.folds) < len(self.chain.aminocode):
 
-            # get options
+            # obtain options to build the next amino acid
             options = self.chain.get_options()
+
+            # restart when no options are present
             if len(options) == 0:
                 self.chain.folds = [(0, 0, 0)]
+                continue
             else:
-                    # get option closest to H
+                # get option closest to H
                 if len(self.chain.hydrophobe) != 0:
                     best_point = self.closest_to_H(options)
                 else:

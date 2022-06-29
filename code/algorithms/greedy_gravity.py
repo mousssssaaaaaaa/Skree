@@ -35,17 +35,25 @@ class GreedyGravity():
         Pick random coordinate as option on grid and
         see if proposed chain elongation is valid.
         """
-        #
+
+        # set how many times to build randomly for variability
+        threshold = round(len(self.chain.aminocode) / 4)
+
         while len(self.chain.folds) < len(self.chain.aminocode):
+
+            # obtain options to build the next amino acid
             options = self.chain.get_options()
+
+            # restart when no options are present
             if len(options) == 0:
                 self.chain.folds = [(0, 0, 0)]
-
-            best_point = random.choice(list(options))
-
-            if len(self.chain.folds) < 6:
-                best_point = random.choice(list(options))
+                continue
             else:
-                best_point = self.closest_to_gravity(options)
+                # select option closest to gravity or random when chain is short
+                if len(self.chain.folds) < threshold:
+                    best_point = random.choice(list(options))
+                else:
+                    best_point = self.closest_to_gravity(options)
 
+            # add to chain
             self.chain.build(best_point)
