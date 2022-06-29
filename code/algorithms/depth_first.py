@@ -18,7 +18,10 @@ class DepthFirst:
                 return False
             for coordinate in options:
                 chain.build(coordinate)
-                _ = self.search(chain, depth, state_depth-1, ways)
+                returned_val = self.search(chain, depth, state_depth-1, ways)
+
+                if returned_val == False:
+                    return False
 
             # after building all in-between points, remove point
             chain.remove_last_point()
@@ -52,7 +55,6 @@ class DepthFirst:
                         highscore = score
                         best_routes.append(way[1])
 
-                print(best_routes)
                 # take one of the best routes and add first point
                 next_point = random.choice(best_routes)[0]
                 self.chain.build(next_point)
