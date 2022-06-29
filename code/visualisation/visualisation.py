@@ -1,21 +1,91 @@
-
+import pickle as pkl
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
+from mpl_toolkits import mplot3d
 from code.functions import get_point_colors as gp
 
 def visualisation(chain):
+    """
+    Visualise aminoacid chain on a grid
+    """
 
+    # Get input
     input = chain.folds
-    x, y = zip(*input)
-    # [(0,0), (0,1)]
 
+    # Assign colours to each scatter point
+    x, y, z = zip(*input)
     point_color = gp.get_point_colors(chain.aminocode)
-    # colors = np.random.rand(N)
-    # area = (30 * np.random.rand(N))**2  # 0 to 15 point radii
-    axis = range(-10, 11)
-    plt.plot(x, y,c='gray')
-    plt.scatter(x, y, c=point_color) # s=area, , c=colors
-    plt.xticks(axis)
-    plt.yticks(axis)
-    plt.grid(True)
-    plt.savefig("scatter.pdf")
+    colors = np.array(point_color)
+
+    # Plot 3d graph with grid
+    fig = plt.figure()
+    ax = fig.add_subplot(projection = '3d')
+    ax.grid(True)
+
+    # Plot amino acids
+    ax.scatter(x, y, z, c = colors)
+
+    # Plot covalent bonds
+    ax.plot(x, y, z, c = 'gray')
+
+    # Add descriptions in legend
+    blue_sq = mlines.Line2D([], [], color = 'blue', marker = 'o',
+                            linestyle = 'None', markersize = 10,
+                            label = 'Polair')
+    red_sq = mlines.Line2D([], [], color = 'red', marker = 'o',
+                            linestyle = 'None', markersize = 10,
+                            label = 'Hydrofoob')
+    yellow_sq = mlines.Line2D([], [], color = 'yellow', marker = 'o',
+                            linestyle = 'None', markersize = 10,
+                            label = 'Cysteïne')
+    score = "Score: " + str(int(chain.get_score()))
+    ax.legend(handles = [blue_sq, red_sq, yellow_sq], title = score)
+
+    # store static figure
+    plt.savefig("results/scatter.png")
+    plt.close()
+
+def twisting_plot(chain):
+    """
+    Visualise aminoacid chain on a interactive grid
+    """
+
+    # Get input
+    input = chain.folds
+
+    # Assign colours to each scatter point
+    x, y, z = zip(*input)
+    point_color = gp.get_point_colors(chain.aminocode)
+    colors = np.array(point_color)
+
+    # Plot 3d graph with grid
+    fig = plt.figure()
+    ax = fig.add_subplot(projection = '3d')
+    ax.grid(True)
+
+    # Plot amino acids
+    ax.scatter(x, y, z, c = colors)
+
+    # Plot covalent bonds
+    ax.plot(x, y, z, c = 'gray')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+
+    # add descriptions in legend
+    blue_sq = mlines.Line2D([], [], color = 'blue', marker = 'o',
+                            linestyle = 'None', markersize = 10,
+                            label = 'Polair')
+    red_sq = mlines.Line2D([], [], color = 'red', marker = 'o',
+                            linestyle = 'None', markersize = 10,
+                            label = 'Hydrofoob')
+    yellow_sq = mlines.Line2D([], [], color = 'yellow', marker = 'o',
+                            linestyle = 'None', markersize = 10,
+                            label = 'Cysteïne')
+    score = "Score: " + str(int(chain.get_score()))
+    ax.legend(handles = [blue_sq, red_sq, yellow_sq], title = score)
+
+    # Show interactive figure
+    plt.show()
+    plt.close()
